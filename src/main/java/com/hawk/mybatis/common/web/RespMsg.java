@@ -1,11 +1,14 @@
 package com.hawk.mybatis.common.web;
 
+import lombok.Data;
+
 /**
  * @program: springboot3-mybatis
  * @description:
  * @author: zhb
  * @create: 2023-02-14 15:08
  */
+@Data
 public class RespMsg<T> {
     private int code;
 
