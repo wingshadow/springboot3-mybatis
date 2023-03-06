@@ -30,6 +30,7 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
         return pageInfo;
     }
 
+    @Override
     public List<User> listByName(String name) {
         return userMapper.selectByName(name);
     }
