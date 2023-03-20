@@ -12,6 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.ApplicationContext;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.stereotype.Component;
 
@@ -42,6 +43,7 @@ public class RedisDelayQueueRunner implements CommandLineRunner {
             new LinkedBlockingQueue<Runnable>(1000),
             new ThreadFactoryBuilder().setNameFormat("order-delay-%d").get());
 
+    @Async
     @Override
     public void run(String... args) throws Exception {
             while (true) {
