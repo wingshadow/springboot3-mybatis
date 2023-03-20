@@ -33,19 +33,25 @@
             <version>3.0.1</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.redisson</groupId>
+            <artifactId>redisson-spring-boot-starter</artifactId>
+            <version>3.19.0</version>
+        </dependency>
 
-<!--   tK中mybatis-spring版本较低,所以使用上面mybatis-spring-boot-starter最新版本     -->
+
+        <!--   tK中mybatis-spring版本较低,所以使用上面mybatis-spring-boot-starter最新版本     -->
         <dependency>
             <groupId>tk.mybatis</groupId>
             <artifactId>mapper-spring-boot-starter</artifactId>
             <version>4.2.2</version>
         </dependency>
 
-<!--        <dependency>-->
-<!--            <groupId>org.mybatis</groupId>-->
-<!--            <artifactId>mybatis-spring</artifactId>-->
-<!--            <version>3.0.1</version>-->
-<!--        </dependency>-->
+        <!--        <dependency>-->
+        <!--            <groupId>org.mybatis</groupId>-->
+        <!--            <artifactId>mybatis-spring</artifactId>-->
+        <!--            <version>3.0.1</version>-->
+        <!--        </dependency>-->
 
         <dependency>
             <groupId>com.github.pagehelper</groupId>
