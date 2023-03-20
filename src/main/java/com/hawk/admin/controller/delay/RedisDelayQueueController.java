@@ -27,11 +27,12 @@ public class RedisDelayQueueController {
 
     @PostMapping(value = "/add")
     public ResponseEntity delay() {
-        Map<String, String> map1 = new HashMap<>();
-        map1.put("orderId", "100");
-        map1.put("remark", "订单支付超时，自动取消订单");
+
 
         for (int i = 0; i < 100; i++) {
+            Map<String, String> map1 = new HashMap<>();
+            map1.put("orderId", i + "0");
+            map1.put("remark", "订单支付超时，自动取消订单");
             // 添加订单支付超时，自动取消订单延迟队列。为了测试效果，延迟10秒钟
             redisDelayQueueUtil.addDelayQueue(map1, 10, TimeUnit.SECONDS, RedisDelayQueueEnum.ORDER_PAYMENT_TIMEOUT.getCode());
         }

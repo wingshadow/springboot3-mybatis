@@ -15,6 +15,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.stereotype.Component;
 
+import java.util.Map;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
@@ -34,6 +35,8 @@ public class RedisDelayQueueRunner implements CommandLineRunner {
     private ApplicationContext context;
     @Autowired
     private ThreadPoolTaskExecutor ptask;
+    @Autowired
+    private OrderPaymentTimeout orderPaymentTimeout;
 
     ThreadPoolExecutor executorService = new ThreadPoolExecutor(3, 5, 30, TimeUnit.SECONDS,
             new LinkedBlockingQueue<Runnable>(1000),
@@ -41,15 +44,12 @@ public class RedisDelayQueueRunner implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        ptask.execute(() -> {
             while (true) {
                 try {
                         Object value = redisDelayQueueUtil.getDelayQueue(RedisDelayQueueEnum.ORDER_PAYMENT_TIMEOUT.getCode());
                         if (value != null) {
-                            RedisDelayQueueHandle<Object> redisDelayQueueHandle =
-                                    (RedisDelayQueueHandle<Object>) context.getBean(RedisDelayQueueEnum.ORDER_PAYMENT_TIMEOUT.getBeanId());
                             executorService.execute(() -> {
-                                redisDelayQueueHandle.execute(value);
+                                orderPaymentTimeout.execute((Map) value);
                             });
                         }
                     TimeUnit.MILLISECONDS.sleep(500);
@@ -57,7 +57,5 @@ public class RedisDelayQueueRunner implements CommandLineRunner {
                     log.error("(Redisson延迟队列监测异常中断) {}", e.getMessage());
                 }
             }
-        });
-        log.info("(Redisson延迟队列监测启动成功)");
     }
 }
