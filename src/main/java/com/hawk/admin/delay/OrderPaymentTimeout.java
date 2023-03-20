@@ -20,7 +20,7 @@ import java.util.Map;
 public class OrderPaymentTimeout implements RedisDelayQueueHandle<Map> {
     @Override
     public void execute(Map map) {
-        log.info("(收到订单支付超时延迟消息) {}", map);
+        log.info("{}", map);
         // TODO 订单支付超时，自动取消订单处理业务...
 
     }
