@@ -65,7 +65,8 @@ public class RedisDelayQueueUtil {
         }
         RBlockingDeque<Object> blockingDeque = redissonClient.getBlockingDeque(queueCode);
         RDelayedQueue<Object> delayedQueue = redissonClient.getDelayedQueue(blockingDeque);
-        T value = (T) blockingDeque.poll();
+        //队列为NULL,poll返回null,take中断
+        T value = (T) blockingDeque.take();
         return value;
     }
 
