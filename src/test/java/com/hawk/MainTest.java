@@ -1,6 +1,7 @@
 package com.hawk;
 
 
+import cn.hutool.crypto.digest.BCrypt;
 import cn.hutool.json.JSONUtil;
 import com.hawk.admin.orm.entity.SysUser;
 import com.hawk.admin.orm.service.SysUserService;
@@ -22,11 +23,18 @@ public class MainTest {
     private SysUserService sysUserService;
 
     @Test
-    public void test1(){
-//        List<SysUser> s = sysUserService.selectByName();
-
-        List<SysUser> list = sysUserService.listAll();
-        log.info("{}", JSONUtil.toJsonStr(list));
+    public void test1() {
+        log.info("list:{}", JSONUtil.toJsonStr(sysUserService.listAll()));
     }
 
+    @Test
+    public void test2(){
+        SysUser sysUser = new SysUser();
+        sysUser.setUserName("王朝");
+        sysUser.setAccount("wangchao");
+        sysUser.setPassword(BCrypt.hashpw("123456"));
+        sysUser.setDeptId(1L);
+        sysUser.setDelFlag(0);
+        sysUserService.save(sysUser);
+    }
 }

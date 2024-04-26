@@ -6,7 +6,6 @@ import com.hawk.admin.orm.entity.SysUser;
 import com.hawk.admin.orm.service.SysUserService;
 import com.hawk.mybatis.common.database.impl.BaseServiceImpl;
 import jakarta.annotation.Resource;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -22,16 +21,6 @@ public class SysUserServiceImpl extends BaseServiceImpl<SysUserMapper,SysUser> i
 
     @Resource
     SysUserMapper sysUserMapper;
-
-    @Override
-    public Long insert(SysUser paramBean) {
-        return null;
-    }
-
-    @Override
-    public void insertBatch(List<SysUser> paramBeans) {
-
-    }
 
     @Override
     public PageInfo<SysUser> listByPage(SysUser paramBean, final int pageNum, final int pageSize) {

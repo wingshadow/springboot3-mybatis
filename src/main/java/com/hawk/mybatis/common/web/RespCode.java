@@ -8,8 +8,8 @@ package com.hawk.mybatis.common.web;
  */
 public enum RespCode {
 
-    SUCCESS(0, "成功"),
-    FAIL(1, "执行失败");
+    SUCCESS(200, "成功"),
+    FAIL(500, "内部错误");
     /**
      * 状态码
      */

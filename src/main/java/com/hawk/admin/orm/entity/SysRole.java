@@ -4,31 +4,25 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.hawk.mybatis.common.base.BaseEntity;
-import lombok.*;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * @program: springboot3-mybatis
  * @description:
  * @author: zhb
- * @create: 2023-02-14 14:52
+ * @create: 2024-04-26 15:14
  */
-
 @Getter
 @Setter
-@TableName("sys_user")
-public class SysUser extends BaseEntity {
+@TableName("sys_role")
+public class SysRole extends BaseEntity {
 
     @JsonFormat(shape = JsonFormat.Shape.STRING)
-    @TableId(value = "user_id")
-    private Long userId;
+    @TableId(value = "role_id")
+    private Long roleId;
 
-    private String userName;
+    private String roleName;
 
-    private String account;
-
-    private String password;
-
-    private Long deptId;
-
-    private Integer delFlag;
+    private String dataScope;
 }

@@ -14,20 +14,7 @@ import java.util.List;
  * @create: 2023-02-14 14:05
  */
 public interface BaseService<M extends BaseMapper<T>, T extends BaseEntity> extends IService<T> {
-    /**
-     * 新增一条SysDept记录
-     *
-     * @param paramBean 要新增的SysDept记录数据对象
-     * @return 新增记录的ID
-     */
-    Long insert(T paramBean);
 
-    /**
-     * 批量新增SysDept记录
-     *
-     * @param paramBeans 要新增的SysDept记录数据对象集合
-     */
-    void insertBatch(List<T> paramBeans);
 
     /**
      * 根据主键ID，删除一条SysDept记录
@@ -85,13 +72,11 @@ public interface BaseService<M extends BaseMapper<T>, T extends BaseEntity> exte
                            final int pageSize);
 
     /**
-     *
      * @return
      */
     List<T> listAll();
 
     /**
-     *
      * @param paramBean
      * @return
      */
