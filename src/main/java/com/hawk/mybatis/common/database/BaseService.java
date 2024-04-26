@@ -1,7 +1,9 @@
 package com.hawk.mybatis.common.database;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.baomidou.mybatisplus.extension.service.IService;
 import com.github.pagehelper.PageInfo;
-import com.hawk.mybatis.common.base.BaseDO;
+import com.hawk.mybatis.common.base.BaseEntity;
 
 import java.util.List;
 
@@ -11,7 +13,7 @@ import java.util.List;
  * @author: zhb
  * @create: 2023-02-14 14:05
  */
-public interface BaseService<T extends BaseDO> {
+public interface BaseService<M extends BaseMapper<T>, T extends BaseEntity> extends IService<T> {
     /**
      * 新增一条SysDept记录
      *
@@ -81,12 +83,6 @@ public interface BaseService<T extends BaseDO> {
      */
     PageInfo<T> listByPage(T paramBean, final int pageNum,
                            final int pageSize);
-
-    /**
-     *
-     * @return
-     */
-    Class<T> getTypeArguement();
 
     /**
      *

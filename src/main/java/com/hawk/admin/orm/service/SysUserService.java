@@ -1,6 +1,7 @@
 package com.hawk.admin.orm.service;
 
-import com.hawk.admin.orm.entity.User;
+import com.hawk.admin.orm.dao.SysUserMapper;
+import com.hawk.admin.orm.entity.SysUser;
 import com.hawk.mybatis.common.database.BaseService;
 
 import java.util.List;
@@ -11,6 +12,6 @@ import java.util.List;
  * @author: zhb
  * @create: 2023-02-14 14:58
  */
-public interface UserService extends BaseService<User> {
-    List<User> listByName(String name);
+public interface SysUserService extends BaseService<SysUserMapper,SysUser> {
+
 }

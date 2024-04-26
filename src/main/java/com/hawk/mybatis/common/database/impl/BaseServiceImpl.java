@@ -1,19 +1,17 @@
 package com.hawk.mybatis.common.database.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.github.pagehelper.PageInfo;
 import com.github.pagehelper.page.PageMethod;
-import com.hawk.mybatis.common.base.BaseDO;
-import com.hawk.mybatis.common.database.BaseMapper;
+import com.hawk.mybatis.common.base.BaseEntity;
 import com.hawk.mybatis.common.database.BaseService;
-import com.hawk.mybatis.common.seq.snowflake.Snowflake;
-import jakarta.annotation.Resource;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
-import java.lang.reflect.ParameterizedType;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
 import java.util.stream.Collectors;
 
 /**
@@ -22,42 +20,11 @@ import java.util.stream.Collectors;
  * @author: zhb
  * @create: 2023-02-14 14:36
  */
-public abstract class BaseServiceImpl<T extends BaseDO> implements BaseService<T> {
-
-    @Resource(name = "snowflake")
-    private Snowflake snowflake;
-
-    @Resource
-    private BaseMapper<T> baseMapper;
-
-    private Class<T> cache = null;
-
-
-    private Long getNextId(){
-        return snowflake.nextId();
-    }
-    @Override
-    public Long insert(T bean) {
-        if (Objects.isNull(bean.getId()) || bean.getId() <= 0L) {
-            bean.setId(getNextId());
-        }
-        baseMapper.insert(bean);
-        return bean.getId();
-    }
-
-    @Override
-    @Transactional(rollbackFor = Exception.class)
-    public void insertBatch(List<T> paramBeans) {
-        for (T item : paramBeans) {
-            Long newId = getNextId();
-            item.setId(newId);
-            baseMapper.insert(item);
-        }
-    }
+public abstract class BaseServiceImpl<M extends BaseMapper<T>,T extends BaseEntity> extends ServiceImpl<M,T> implements BaseService<M,T> {
 
     @Override
     public void deleteByPrimaryKey(Long id) {
-        baseMapper.deleteByPrimaryKey(id);
+        baseMapper.deleteById(id);
     }
 
     @Override
@@ -69,47 +36,38 @@ public abstract class BaseServiceImpl<T extends BaseDO> implements BaseService<T
 
     @Override
     public void updateByPrimaryKeySelective(T paramBean) {
-        baseMapper.updateByPrimaryKeySelective(paramBean);
+        baseMapper.updateById(paramBean);
     }
 
     @Override
     public T getByPrimaryKey(Long id) {
-        return baseMapper.selectByPrimaryKey(id);
+        return baseMapper.selectById(id);
     }
 
     @Override
     public List<T> listByConditions(T paramBean) {
-        return baseMapper.select(paramBean);
+        return baseMapper.selectList(new LambdaQueryWrapper<>(paramBean));
     }
 
     @Override
     public List<T> listAll() {
-        return baseMapper.selectAll();
+        return baseMapper.selectList(new QueryWrapper<>());
     }
 
     @Override
     public T listOne(T paramBean) {
-        return baseMapper.selectOne(paramBean);
+        return baseMapper.selectOne(new LambdaQueryWrapper<>(paramBean));
     }
 
     @Override
     public PageInfo<T> listByPage(T paramBean, int pageNum, int pageSize) {
         PageMethod.startPage(pageNum, pageSize);
-        List<T> lst = baseMapper.select(paramBean);
+        List<T> lst = baseMapper.selectList(new LambdaQueryWrapper<>(paramBean));
         return new PageInfo<>(lst);
     }
 
     @Override
     public void deleteBatchByPrimaryKeys(List<Long> ids) {
         ids.forEach(this::deleteByPrimaryKey);
-    }
-
-
-    @Override
-    public Class<T> getTypeArguement() {
-        if (cache == null) {
-            cache = (Class<T>) ((ParameterizedType) this.getClass().getGenericSuperclass()).getActualTypeArguments()[0];
-        }
-        return cache;
     }
 }

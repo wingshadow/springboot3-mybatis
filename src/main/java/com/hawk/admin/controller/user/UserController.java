@@ -1,8 +1,8 @@
 package com.hawk.admin.controller.user;
 
 import com.github.pagehelper.PageInfo;
-import com.hawk.admin.orm.entity.User;
-import com.hawk.admin.orm.service.UserService;
+import com.hawk.admin.orm.entity.SysUser;
+import com.hawk.admin.orm.service.SysUserService;
 import com.hawk.mybatis.common.web.RespMsg;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,12 +20,12 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserController {
 
     @Autowired
-    private UserService userService;
+    private SysUserService userService;
 
     @GetMapping(value = "list")
     public RespMsg list() {
         // RespMsg不添加getter和setter方法导致无法解析json
-        PageInfo<User> pageInfo = userService.listByPage(null, 1, 10);
+        PageInfo<SysUser> pageInfo = userService.listByPage(null, 1, 10);
         return RespMsg.ok(pageInfo);
     }
 }
