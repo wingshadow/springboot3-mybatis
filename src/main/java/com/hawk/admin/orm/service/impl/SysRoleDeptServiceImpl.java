@@ -1,0 +1,17 @@
+package com.hawk.admin.orm.service.impl;
+
+import com.hawk.admin.orm.dao.SysRoleDeptMapper;
+import com.hawk.admin.orm.entity.SysRoleDept;
+import com.hawk.admin.orm.service.SysRoleDeptService;
+import com.hawk.mybatis.common.database.impl.BaseServiceImpl;
+import org.springframework.stereotype.Service;
+
+/**
+ * @program: springboot3-mybatis
+ * @description:
+ * @author: zhb
+ * @create: 2024-04-26 15:10
+ */
+@Service
+public class SysRoleDeptServiceImpl extends BaseServiceImpl<SysRoleDeptMapper, SysRoleDept> implements SysRoleDeptService {
+}
