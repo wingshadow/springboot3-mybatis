@@ -1,4 +1,4 @@
-package com.hawk.admin.config;
+package com.hawk.framework.config;
 
 import cn.hutool.core.net.NetUtil;
 import com.baomidou.mybatisplus.core.incrementer.DefaultIdentifierGenerator;

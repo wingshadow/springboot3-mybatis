@@ -1,0 +1,52 @@
+package com.hawk.framework.service;
+
+import cn.dev33.satoken.secure.BCrypt;
+import cn.dev33.satoken.stp.StpUtil;
+import cn.hutool.core.util.ObjectUtil;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.hawk.admin.orm.dao.SysUserMapper;
+import com.hawk.admin.orm.entity.SysUser;
+import com.hawk.framework.helper.LoginHelper;
+import com.hawk.framework.model.LoginUser;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+/**
+ * @program: springboot3-mybatis
+ * @description:
+ * @author: zhb
+ * @create: 2024-04-28 16:22
+ */
+@Slf4j
+@Service
+public class SysLoginService {
+
+    @Autowired
+    private SysUserMapper userMapper;
+
+    public String login(String account, String password) {
+        SysUser sysUser = loadUserByAccount(account);
+        if (!BCrypt.checkpw(password, sysUser.getPassword())) {
+            return null;
+        }
+        LoginUser loginUser = new LoginUser();
+        loginUser.setUserId(sysUser.getUserId());
+        loginUser.setUsername(sysUser.getAccount());
+        loginUser.setNickName(sysUser.getUserName());
+
+        LoginHelper.loginByDevice(loginUser);
+        return StpUtil.getTokenValue();
+    }
+
+    private SysUser loadUserByAccount(String userAccount) {
+        SysUser user = userMapper.selectOne(new LambdaQueryWrapper<SysUser>()
+                .select(SysUser::getUserName, SysUser::getDelFlag, SysUser::getPassword)
+                .eq(SysUser::getAccount, userAccount));
+        if (ObjectUtil.isNull(user)) {
+            log.info("登录用户：{} 不存在.", userAccount);
+            return null;
+        }
+        return user;
+    }
+}

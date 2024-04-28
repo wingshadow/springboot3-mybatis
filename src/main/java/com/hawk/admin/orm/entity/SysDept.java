@@ -3,6 +3,7 @@ package com.hawk.admin.orm.entity;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.hawk.framework.model.TreeEntity;
 import com.hawk.mybatis.common.base.BaseEntity;
 import lombok.Getter;
 import lombok.Setter;
@@ -16,7 +17,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @TableName("sys_dept")
-public class SysDept extends BaseEntity {
+public class SysDept extends TreeEntity<SysDept> {
 
     @JsonFormat(shape = JsonFormat.Shape.STRING)
     @TableId(value = "dept_id")

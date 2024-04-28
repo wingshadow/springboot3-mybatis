@@ -1,0 +1,94 @@
+package com.hawk.mybatis.aspect;
+
+import com.hawk.admin.orm.entity.SysRole;
+import com.hawk.admin.orm.entity.SysUser;
+import com.hawk.framework.helper.LoginHelper;
+import com.hawk.framework.model.LoginUser;
+import com.hawk.mybatis.annotation.DataScope;
+import com.hawk.mybatis.common.base.BaseEntity;
+import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Before;
+import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
+
+import java.util.List;
+
+/**
+ * @program: springboot3-mybatis
+ * @description:
+ * @author: zhb
+ * @create: 2024-04-28 15:26
+ */
+@Component
+@Aspect
+public class AspectDataScope {
+    //查询所有
+    private static final String DATA_SCOPE_ALL = "1";
+    //自定义
+    private static final String DATA_SCOPE_CUSTOM = "2";
+    //本部门
+    private static final String DATA_SCOPE_DEPT = "3";
+    //本部门以及子部门
+    private static final String DATA_SCOPE_DEPT_AND_CHILD = "4";
+    //只能查看自己的用户信息，不能查看部门信息
+    private static final String DATA_SCOPE_SELF = "5";
+    //动态参数名
+    private static final String DATA_SCOPE_FIELD = "data_scope";
+
+
+    @Before("@annotation(dataScope)")
+    public void before(JoinPoint joinPoint, DataScope dataScope) {
+        //清除前端传过来的动态参数
+        clearDataScope(joinPoint);
+
+        //拿到登录后的用户凭证
+        LoginUser loginUser = LoginHelper.getLoginUser();
+        //如果为1 则代表为超级管理员 不用进行权限处理
+        if (loginUser.getUserId() == 1L) {
+            return;
+        }
+        StringBuilder sb = new StringBuilder();
+        List<SysRole> sysRoleList = loginUser.getRoles();
+        //获取用户每个角色能够访问的部门信息
+        for (SysRole sysRole : sysRoleList) {
+            //查询每个角色的数据范围 1：全部数据权限 2：自定数据权限 3：本部门数据权限 4：本部门及以下数据权限
+            String sysRoleDataScope = sysRole.getDataScope();
+            if (DATA_SCOPE_ALL.equals(sysRoleDataScope)) {
+                // 1全部数据权限 什么也不做
+                return;
+            } else if (DATA_SCOPE_CUSTOM.equals(sysRoleDataScope)) {
+                // 2自定义数据权限 也就是直接在角色部门表 查询
+                sb.append(String.format(" OR %s.dept_id in(SELECT dept_id FROM sys_role_dept where role_id=%d)", dataScope.deptAlias(), sysRole.getRoleId()));
+            } else if (DATA_SCOPE_DEPT.equals(sysRoleDataScope)) {
+                // 3当前用户所在部门数据权限
+                sb.append(String.format(" OR %s.dept_id=%d", dataScope.deptAlias(), loginUser.getDeptId()));
+            } else if (DATA_SCOPE_DEPT_AND_CHILD.equals(sysRoleDataScope)) {
+                // 4当前用户对应的部门以及用户的子部门
+                sb.append(String.format(" OR %s.dept_id in(SELECT dept_id FROM sys_dept where dept_id=%d or FIND_IN_SET(%d,ancestors))", dataScope.deptAlias(), loginUser.getDeptId(), loginUser.getDeptId()));
+            } else if (DATA_SCOPE_SELF.equals(sysRoleDataScope)) {
+                // 5只能查看当前用户信息，不能查看此角色部门信息和当前用户下的部门信息
+                if (StringUtils.isEmpty(dataScope.userAlias())) {
+                    sb.append(" OR 1=0");
+                } else {
+                    sb.append(String.format(" OR %s.user_id=%d", dataScope.userAlias(), loginUser.getUserId()));
+                }
+            }
+        }
+        Object arg = joinPoint.getArgs()[0];
+        if (arg != null && arg instanceof BaseEntity) {
+            BaseEntity baseEntity = (BaseEntity) arg;
+            //截取开始的 "or "
+            baseEntity.getParams().put(DATA_SCOPE_FIELD, " and (" + sb.substring(4) + ")");
+        }
+    }
+
+    private void clearDataScope(JoinPoint joinPoint) {
+        //获取第一个参数
+        Object arg = joinPoint.getArgs()[0];
+        if (arg != null && arg instanceof BaseEntity) {
+            BaseEntity baseEntity = (BaseEntity) arg;
+            baseEntity.getParams().put(DATA_SCOPE_FIELD, "");
+        }
+    }
+}
