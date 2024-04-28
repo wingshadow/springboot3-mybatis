@@ -9,6 +9,8 @@ import cn.dev33.satoken.stp.StpLogic;
 import cn.dev33.satoken.stp.StpUtil;
 import com.hawk.framework.config.properites.SecurityProperties;
 import com.hawk.framework.handler.AllUrlHandler;
+import com.hawk.framework.satoken.PlusSaTokenDao;
+import com.hawk.framework.satoken.SaPermissionImpl;
 import com.hawk.utils.SpringUtils;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
