@@ -1,0 +1,126 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://t1-mysql-01.sdjpw.com.cn:3306/my_test?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8&autoReconnect=true&rewriteBatchedStatements=true
+    username: t1_app
+    password: EP5KeYXVMbLow15M
+    type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+      minimum-idle: 5
+      maximum-pool-size: 15
+      auto-commit: true
+      idle-timeout: 600000
+      pool-name: DatebookHikariCP
+      max-lifetime: 1800000
+      connection-timeout: 30000
+      connection-test-query: SELECT 1
+
+
+# MyBatisPlus配置
+# https://baomidou.com/config/
+mybatis-plus:
+  # 不支持多包, 如有需要可在注解配置 或 提升扫包等级
+  # 例如 com.**.**.mapper
+  mapperPackage: com.hawk.**.mapper
+  # 对应的 XML 文件位置
+  mapperLocations: classpath*:mapper/**/*Mapper.xml
+  # 实体扫描，多个package用逗号或者分号分隔
+  typeAliasesPackage: com.hawk.**.entity
+  # 启动时是否检查 MyBatis XML 文件的存在，默认不检查
+  checkConfigLocation: false
+  configuration:
+    # 自动驼峰命名规则（camel case）映射
+    mapUnderscoreToCamelCase: true
+    # MyBatis 自动映射策略
+    # NONE：不启用 PARTIAL：只对非嵌套 resultMap 自动映射 FULL：对所有 resultMap 自动映射
+    autoMappingBehavior: PARTIAL
+    # MyBatis 自动映射时未知列或未知属性处理策
+    # NONE：不做处理 WARNING：打印相关警告 FAILING：抛出异常和详细信息
+    autoMappingUnknownColumnBehavior: NONE
+    # 更详细的日志输出 会有性能损耗 org.apache.ibatis.logging.stdout.StdOutImpl
+    # 关闭日志记录 (可单纯使用 p6spy 分析) org.apache.ibatis.logging.nologging.NoLoggingImpl
+    # 默认日志输出 org.apache.ibatis.logging.slf4j.Slf4jImpl
+    logImpl: org.apache.ibatis.logging.nologging.NoLoggingImpl
+  global-config:
+    # 是否打印 Logo banner
+    banner: true
+    dbConfig:
+      # 主键类型
+      # AUTO 自增 NONE 空 INPUT 用户输入 ASSIGN_ID 雪花 ASSIGN_UUID 唯一 UUID
+      idType: ASSIGN_ID
+      # 逻辑已删除值
+      logicDeleteValue: 2
+      # 逻辑未删除值
+      logicNotDeleteValue: 0
+      # 字段验证策略之 insert,在 insert 的时候的字段验证策略
+      # IGNORED 忽略 NOT_NULL 非NULL NOT_EMPTY 非空 DEFAULT 默认 NEVER 不加入 SQL
+      insertStrategy: NOT_NULL
+      # 字段验证策略之 update,在 update 的时候的字段验证策略
+      updateStrategy: NOT_NULL
+      # 字段验证策略之 select,在 select 的时候的字段验证策略既 wrapper 根据内部 entity 生成的 where 条件
+      where-strategy: NOT_NULL
+
+
+# Sa-Token配置
+sa-token:
+  # token名称 (同时也是cookie名称)
+  token-name: Authorization
+  # token有效期 设为一天 (必定过期) 单位: 秒
+  timeout: 86400
+  # token临时有效期 (指定时间无操作就过期) 单位: 秒
+  activity-timeout: 1800
+  # 是否允许同一账号并发登录 (为true时允许一起登录, 为false时新登录挤掉旧登录)
+  is-concurrent: true
+  # 在多人登录同一账号时，是否共用一个token (为true时所有登录共用一个token, 为false时每次登录新建一个token)
+  is-share: false
+  # 是否尝试从header里读取token
+  is-read-header: true
+  # 是否尝试从cookie里读取token
+  is-read-cookie: false
+  # token前缀
+  token-prefix: "Bearer"
+  # jwt秘钥
+  jwt-secret-key: abcdefghijklmnopqrstuvwxyz
+
+# security配置
+security:
+  # 排除路径
+  excludes:
+    # 静态资源
+    - /*.html
+    - /**/*.html
+    - /**/*.css
+    - /**/*.js
+    # 公共路径
+    - /favicon.ico
+    - /error
+    # swagger 文档配置
+    - /*/api-docs
+    - /*/api-docs/**
+    # actuator 监控配置
+    - /actuator
+    - /actuator/**
+    # 日常配置
+    - /**
+
+redisson:
+  # redis key前缀
+  keyPrefix:
+  # 线程池数量
+  threads: 4
+  # Netty线程池数量
+  nettyThreads: 8
+  # 单节点配置
+  singleServerConfig:
+    # 客户端名称
+    clientName: my
+    # 最小空闲连接数
+    connectionMinimumIdleSize: 8
+    # 连接池大小
+    connectionPoolSize: 32
+    # 连接空闲超时，单位：毫秒
+    idleConnectionTimeout: 10000
+    # 命令等待超时，单位：毫秒
+    timeout: 3000
+    # 发布和订阅连接池大小
+    subscriptionConnectionPoolSize: 50
