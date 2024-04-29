@@ -1,4 +1,4 @@
-package com.hawk.framework.common.constant;
+package com.hawk.framework.constant;
 
 /**
  * 用户常量信息

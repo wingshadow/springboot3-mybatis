@@ -7,9 +7,11 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.hawk.admin.orm.dao.SysDeptMapper;
 import com.hawk.admin.orm.entity.SysDept;
 import com.hawk.admin.orm.service.SysDeptService;
+import com.hawk.framework.helper.DataBaseHelper;
 import com.hawk.framework.service.DeptService;
 import com.hawk.mybatis.common.database.impl.BaseServiceImpl;
 import com.hawk.utils.SpringUtils;
+import com.hawk.utils.StreamUtils;
 import com.hawk.utils.StringUtils;
 import org.springframework.stereotype.Service;
 
@@ -82,5 +84,21 @@ public class SysDeptServiceImpl extends BaseServiceImpl<SysDeptMapper, SysDept> 
     @Override
     public List<SysDept> getAllDeptList(SysDept sysDept) {
         return baseMapper.getAllDeptList();
+    }
+
+
+    public String getDeptAndChild(Long deptId) {
+        List<SysDept> deptList = baseMapper.selectList(new LambdaQueryWrapper<SysDept>()
+                .select(SysDept::getDeptId)
+                .apply(DataBaseHelper.findInSet(deptId, "ancestors")));
+        List<Long> ids = StreamUtils.toList(deptList, SysDept::getDeptId);
+        ids.add(deptId);
+        List<SysDept> list = baseMapper.selectList(new LambdaQueryWrapper<SysDept>()
+                .select(SysDept::getDeptId)
+                .in(SysDept::getDeptId, ids));
+        if (CollUtil.isNotEmpty(list)) {
+            return StreamUtils.join(list, d -> Convert.toStr(d.getDeptId()));
+        }
+        return null;
     }
 }

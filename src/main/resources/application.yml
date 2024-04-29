@@ -14,7 +14,12 @@ spring:
       max-lifetime: 1800000
       connection-timeout: 30000
       connection-test-query: SELECT 1
-
+  data:
+    redis:
+      host: t1-redis-02.sdjpw.com.cn
+      port: 6379
+      database: 15
+      password: Q8VuNPoWhva8uT0x
 
 # MyBatisPlus配置
 # https://baomidou.com/config/

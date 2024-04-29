@@ -15,4 +15,5 @@ import java.util.List;
 public interface SysDeptService extends BaseService<SysDeptMapper, SysDept> {
 
     List<SysDept> getAllDeptList(SysDept sysDept);
+    String getDeptAndChild(Long deptId);
 }

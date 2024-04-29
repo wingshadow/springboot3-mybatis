@@ -8,7 +8,7 @@ import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.convert.Convert;
 import cn.hutool.core.util.ObjectUtil;
 import com.hawk.admin.orm.entity.SysDept;
-import com.hawk.framework.common.constant.UserConstants;
+import com.hawk.framework.constant.UserConstants;
 import com.hawk.framework.enums.UserType;
 import com.hawk.framework.model.LoginUser;
 import com.hawk.framework.service.DeptService;

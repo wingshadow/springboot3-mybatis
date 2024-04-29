@@ -1,6 +1,7 @@
 package com.hawk.admin.orm.dao;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.hawk.admin.orm.entity.SysDept;
 import com.hawk.admin.orm.entity.SysRole;
 
 import java.util.List;
@@ -13,4 +14,6 @@ import java.util.List;
  */
 public interface SysRoleMapper extends BaseMapper<SysRole> {
     List<SysRole> getAllRoleList();
+
+    List<SysDept> selectDeptByRoleId(Long roleId);
 }

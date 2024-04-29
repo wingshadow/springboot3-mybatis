@@ -1,4 +1,4 @@
-package com.hawk.framework.common.constant;
+package com.hawk.framework.constant;
 
 /**
  * 通用常量信息

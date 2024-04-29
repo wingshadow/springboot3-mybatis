@@ -10,4 +10,12 @@
         WHERE 1=1
             ${params.data_scope}
     </select>
+
+    <select id="selectDeptByRoleId" resultType="com.hawk.admin.orm.entity.SysDept">
+        select *
+        from  sys_dept d
+            left join sys_role_dept rd on rd.dept_id = d.dept_id
+            left join sys_role r on r.role_id = rd.role_id
+        where r.role_id = #{roleId}
+    </select>
 </mapper>

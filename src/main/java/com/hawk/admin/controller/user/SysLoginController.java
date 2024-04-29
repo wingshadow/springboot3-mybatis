@@ -1,7 +1,7 @@
 package com.hawk.admin.controller.user;
 
 import cn.dev33.satoken.annotation.SaIgnore;
-import com.hawk.framework.common.constant.Constants;
+import com.hawk.framework.constant.Constants;
 import com.hawk.framework.model.LoginBody;
 import com.hawk.framework.service.SysLoginService;
 import com.hawk.mybatis.common.web.R;

@@ -84,4 +84,10 @@ public class MainTest {
         roleUser.setUserId(1784410888009310210L);
         sysRoleUserService.save(roleUser);
     }
+
+    @Test
+    public void test6(){
+        String ids = sysDeptService.getDeptAndChild(1L);
+        log.info("ids:{}",ids);
+    }
 }

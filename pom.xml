@@ -48,6 +48,12 @@
 
         <dependency>
             <groupId>com.baomidou</groupId>
+            <artifactId>dynamic-datasource-spring-boot-starter</artifactId>
+            <version>3.5.2</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.baomidou</groupId>
             <!--3.5.4开始,支持SpringBoot3使用此版本-->
             <artifactId>mybatis-plus-spring-boot3-starter</artifactId>
             <version>3.5.5</version>
