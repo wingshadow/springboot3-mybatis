@@ -73,7 +73,7 @@ public class MainTest {
          * 4:本部门及下属部门人员
          * 5:本人信息
          */
-        role.setDataScope(5);
+        role.setDataScope("5");
         sysRoleService.save(role);
     }
 

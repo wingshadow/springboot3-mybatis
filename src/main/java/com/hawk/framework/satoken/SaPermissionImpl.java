@@ -1,6 +1,8 @@
 package com.hawk.framework.satoken;
 
 import cn.dev33.satoken.stp.StpInterface;
+import com.hawk.framework.helper.LoginHelper;
+import com.hawk.framework.model.LoginUser;
 
 import java.util.ArrayList;
 import java.util.List;
