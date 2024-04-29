@@ -4,6 +4,8 @@ import com.hawk.admin.orm.dao.SysDeptMapper;
 import com.hawk.admin.orm.entity.SysDept;
 import com.hawk.mybatis.common.database.BaseService;
 
+import java.util.List;
+
 /**
  * @program: springboot3-mybatis
  * @description:
@@ -12,4 +14,5 @@ import com.hawk.mybatis.common.database.BaseService;
  */
 public interface SysDeptService extends BaseService<SysDeptMapper, SysDept> {
 
+    List<SysDept> getAllDeptList(SysDept sysDept);
 }

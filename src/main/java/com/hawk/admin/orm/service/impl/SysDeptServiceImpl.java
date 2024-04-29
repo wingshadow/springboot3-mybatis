@@ -25,6 +25,7 @@ import java.util.stream.Collectors;
  */
 @Service
 public class SysDeptServiceImpl extends BaseServiceImpl<SysDeptMapper, SysDept> implements SysDeptService, DeptService {
+
     @Override
     public String selectDeptNameByIds(String deptIds) {
         List<String> list = new ArrayList<>();
@@ -76,5 +77,10 @@ public class SysDeptServiceImpl extends BaseServiceImpl<SysDeptMapper, SysDept> 
                 .select(SysDept::getDeptName).eq(SysDept::getDeptId, dept.getParentId()));
         dept.setParentName(ObjectUtil.isNotNull(parentDept) ? parentDept.getDeptName() : null);
         return dept;
+    }
+
+    @Override
+    public List<SysDept> getAllDeptList(SysDept sysDept) {
+        return baseMapper.getAllDeptList();
     }
 }

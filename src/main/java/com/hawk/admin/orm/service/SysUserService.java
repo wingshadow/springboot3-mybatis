@@ -12,6 +12,6 @@ import java.util.List;
  * @author: zhb
  * @create: 2023-02-14 14:58
  */
-public interface SysUserService extends BaseService<SysUserMapper,SysUser> {
-
+public interface SysUserService extends BaseService<SysUserMapper, SysUser> {
+    List<SysUser> getAllUser(SysUser sysUser);
 }

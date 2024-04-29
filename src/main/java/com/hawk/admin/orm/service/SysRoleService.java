@@ -4,6 +4,8 @@ import com.hawk.admin.orm.dao.SysRoleMapper;
 import com.hawk.admin.orm.entity.SysRole;
 import com.hawk.mybatis.common.database.BaseService;
 
+import java.util.List;
+
 /**
  * @program: springboot3-mybatis
  * @description:
@@ -12,4 +14,5 @@ import com.hawk.mybatis.common.database.BaseService;
  */
 public interface SysRoleService extends BaseService<SysRoleMapper, SysRole> {
 
+    List<SysRole> getAllRoleList(SysRole sysRole);
 }

@@ -3,6 +3,8 @@ package com.hawk.admin.orm.dao;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.hawk.admin.orm.entity.SysDept;
 
+import java.util.List;
+
 /**
  * @program: springboot3-mybatis
  * @description:
@@ -10,4 +12,6 @@ import com.hawk.admin.orm.entity.SysDept;
  * @create: 2024-04-26 15:09
  */
 public interface SysDeptMapper extends BaseMapper<SysDept> {
+
+    List<SysDept> getAllDeptList();
 }

@@ -1,16 +1,16 @@
 package com.hawk.mybatis.aspect;
 
+import cn.hutool.core.util.ObjectUtil;
 import com.hawk.admin.orm.entity.SysRole;
-import com.hawk.admin.orm.entity.SysUser;
 import com.hawk.framework.helper.LoginHelper;
 import com.hawk.framework.model.LoginUser;
 import com.hawk.mybatis.annotation.DataScope;
 import com.hawk.mybatis.common.base.BaseEntity;
+import com.hawk.utils.StringUtils;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.springframework.stereotype.Component;
-import org.springframework.util.StringUtils;
 
 import java.util.List;
 
@@ -76,8 +76,7 @@ public class AspectDataScope {
             }
         }
         Object arg = joinPoint.getArgs()[0];
-        if (arg != null && arg instanceof BaseEntity) {
-            BaseEntity baseEntity = (BaseEntity) arg;
+        if (!ObjectUtil.isNull(arg) && arg instanceof BaseEntity baseEntity) {
             //截取开始的 "or "
             baseEntity.getParams().put(DATA_SCOPE_FIELD, " and (" + sb.substring(4) + ")");
         }
@@ -86,8 +85,7 @@ public class AspectDataScope {
     private void clearDataScope(JoinPoint joinPoint) {
         //获取第一个参数
         Object arg = joinPoint.getArgs()[0];
-        if (arg != null && arg instanceof BaseEntity) {
-            BaseEntity baseEntity = (BaseEntity) arg;
+        if (!ObjectUtil.isNull(arg) && arg instanceof BaseEntity baseEntity) {
             baseEntity.getParams().put(DATA_SCOPE_FIELD, "");
         }
     }

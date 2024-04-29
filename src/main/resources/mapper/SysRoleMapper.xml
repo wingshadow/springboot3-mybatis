@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hawk.admin.orm.dao.SysRoleMapper">
+    <select id="getAllRoleList" resultType="com.hawk.admin.orm.entity.SysRole">
+        SELECT sr.*
+        FROM sys_role sr
+                 LEFT JOIN sys_user_role sur ON sr.role_id = sur.role_id
+                 LEFT JOIN sys_user u ON sur.user_id = u.user_id
+                 LEFT JOIN sys_dept d ON u.dept_id = d.dept_id
+        WHERE 1=1
+            ${params.data_scope}
+    </select>
+</mapper>

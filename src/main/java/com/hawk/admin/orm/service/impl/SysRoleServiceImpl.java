@@ -6,6 +6,8 @@ import com.hawk.admin.orm.service.SysRoleService;
 import com.hawk.mybatis.common.database.impl.BaseServiceImpl;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * @program: springboot3-mybatis
  * @description:
@@ -14,4 +16,8 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class SysRoleServiceImpl extends BaseServiceImpl<SysRoleMapper, SysRole> implements SysRoleService {
+    @Override
+    public List<SysRole> getAllRoleList(SysRole sysRole) {
+        return baseMapper.getAllRoleList();
+    }
 }
