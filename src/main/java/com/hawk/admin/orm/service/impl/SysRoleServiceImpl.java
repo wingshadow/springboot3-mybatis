@@ -1,6 +1,7 @@
 package com.hawk.admin.orm.service.impl;
 
 import com.hawk.admin.orm.dao.SysRoleMapper;
+import com.hawk.admin.orm.entity.SysDept;
 import com.hawk.admin.orm.entity.SysRole;
 import com.hawk.admin.orm.service.SysRoleService;
 import com.hawk.mybatis.common.database.impl.BaseServiceImpl;
@@ -19,5 +20,10 @@ public class SysRoleServiceImpl extends BaseServiceImpl<SysRoleMapper, SysRole> 
     @Override
     public List<SysRole> getAllRoleList(SysRole sysRole) {
         return baseMapper.getAllRoleList();
+    }
+
+    @Override
+    public List<SysDept> selectDeptByRoleId(Long roleId) {
+        return baseMapper.selectDeptByRoleId(roleId);
     }
 }

@@ -74,7 +74,7 @@
         <!--sa-token-->
         <dependency>
             <groupId>cn.dev33</groupId>
-            <artifactId>sa-token-spring-boot-starter</artifactId>
+            <artifactId>sa-token-spring-boot3-starter</artifactId>
             <version>1.36.0</version>
         </dependency>
 
@@ -119,6 +119,13 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <version>3.2.1</version>
             <scope>test</scope>
+        </dependency>
+
+        <!-- sql性能分析插件 -->
+        <dependency>
+            <groupId>p6spy</groupId>
+            <artifactId>p6spy</artifactId>
+            <version>3.9.1</version>
         </dependency>
 
         <!--常用工具类 -->

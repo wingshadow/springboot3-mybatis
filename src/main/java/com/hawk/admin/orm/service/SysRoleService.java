@@ -1,6 +1,7 @@
 package com.hawk.admin.orm.service;
 
 import com.hawk.admin.orm.dao.SysRoleMapper;
+import com.hawk.admin.orm.entity.SysDept;
 import com.hawk.admin.orm.entity.SysRole;
 import com.hawk.mybatis.common.database.BaseService;
 
@@ -15,4 +16,6 @@ import java.util.List;
 public interface SysRoleService extends BaseService<SysRoleMapper, SysRole> {
 
     List<SysRole> getAllRoleList(SysRole sysRole);
+
+    List<SysDept> selectDeptByRoleId(Long roleId);
 }

@@ -1,18 +1,32 @@
 package com.hawk.mybatis.aspect;
 
+import cn.hutool.core.collection.CollUtil;
+import cn.hutool.core.convert.Convert;
 import cn.hutool.core.util.ObjectUtil;
+import com.hawk.admin.orm.entity.SysDept;
 import com.hawk.admin.orm.entity.SysRole;
+import com.hawk.admin.orm.service.SysRoleService;
 import com.hawk.framework.helper.LoginHelper;
 import com.hawk.framework.model.LoginUser;
+import com.hawk.framework.service.DeptService;
 import com.hawk.mybatis.annotation.DataScope;
 import com.hawk.mybatis.common.base.BaseEntity;
+import com.hawk.utils.StreamUtils;
 import com.hawk.utils.StringUtils;
+import jakarta.annotation.Resource;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.ibatis.annotations.SelectKey;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
+import java.io.DataInput;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * @program: springboot3-mybatis
@@ -20,6 +34,7 @@ import java.util.List;
  * @author: zhb
  * @create: 2024-04-28 15:26
  */
+@Slf4j
 @Component
 @Aspect
 public class AspectDataScope {
@@ -36,6 +51,11 @@ public class AspectDataScope {
     //动态参数名
     private static final String DATA_SCOPE_FIELD = "data_scope";
 
+    @Resource
+    private SysRoleService sysRoleService;
+
+    @Resource
+    private DeptService deptService;
 
     @Before("@annotation(dataScope)")
     public void before(JoinPoint joinPoint, DataScope dataScope) {
@@ -50,6 +70,8 @@ public class AspectDataScope {
         }
         StringBuilder sb = new StringBuilder();
         List<SysRole> sysRoleList = loginUser.getRoles();
+
+        Set<Long> deptIdSet = new HashSet<>();
         //获取用户每个角色能够访问的部门信息
         for (SysRole sysRole : sysRoleList) {
             //查询每个角色的数据范围 1：全部数据权限 2：自定数据权限 3：本部门数据权限 4：本部门及以下数据权限
@@ -58,14 +80,20 @@ public class AspectDataScope {
                 // 1全部数据权限 什么也不做
                 return;
             } else if (DATA_SCOPE_CUSTOM.equals(sysRoleDataScope)) {
+                List<SysDept> list = sysRoleService.selectDeptByRoleId(sysRole.getRoleId());
+                deptIdSet.addAll(list.stream().map(SysDept::getDeptId).collect(Collectors.toSet()));
                 // 2自定义数据权限 也就是直接在角色部门表 查询
-                sb.append(String.format(" OR %s.dept_id in(SELECT dept_id FROM sys_role_dept where role_id=%d)", dataScope.deptAlias(), sysRole.getRoleId()));
+//                sb.append(String.format(" OR %s.dept_id in(SELECT dept_id FROM sys_role_dept where role_id=%d)", dataScope.deptAlias(), sysRole.getRoleId()));
+                sb.append(String.format(" OR %s.dept_id in(%s)", dataScope.deptAlias(), StreamUtils.join(deptIdSet, Convert::toStr)));
             } else if (DATA_SCOPE_DEPT.equals(sysRoleDataScope)) {
+                deptIdSet.add(loginUser.getDeptId());
                 // 3当前用户所在部门数据权限
                 sb.append(String.format(" OR %s.dept_id=%d", dataScope.deptAlias(), loginUser.getDeptId()));
             } else if (DATA_SCOPE_DEPT_AND_CHILD.equals(sysRoleDataScope)) {
                 // 4当前用户对应的部门以及用户的子部门
-                sb.append(String.format(" OR %s.dept_id in(SELECT dept_id FROM sys_dept where dept_id=%d or FIND_IN_SET(%d,ancestors))", dataScope.deptAlias(), loginUser.getDeptId(), loginUser.getDeptId()));
+                deptIdSet.addAll(deptService.deptByParent(loginUser.getDeptId()));
+//                sb.append(String.format(" OR %s.dept_id in(SELECT dept_id FROM sys_dept where dept_id=%d or FIND_IN_SET(%d,ancestors))", dataScope.deptAlias(), loginUser.getDeptId(), loginUser.getDeptId()));
+                sb.append(String.format(" OR %s.dept_id in(%s)", dataScope.deptAlias(), StreamUtils.join(deptIdSet, Convert::toStr)));
             } else if (DATA_SCOPE_SELF.equals(sysRoleDataScope)) {
                 // 5只能查看当前用户信息，不能查看此角色部门信息和当前用户下的部门信息
                 if (StringUtils.isEmpty(dataScope.userAlias())) {
@@ -75,6 +103,10 @@ public class AspectDataScope {
                 }
             }
         }
+//        if (CollUtil.isNotEmpty(deptIdSet)) {
+//            sb.append(String.format(" OR %s.dept_id in(%s)", dataScope.deptAlias(), StreamUtils.join(deptIdSet, Convert::toStr)));
+////            log.info("deptIds:{}", StreamUtils.join(deptIdSet, Convert::toStr));
+//        }
         Object arg = joinPoint.getArgs()[0];
         if (!ObjectUtil.isNull(arg) && arg instanceof BaseEntity baseEntity) {
             //截取开始的 "or "

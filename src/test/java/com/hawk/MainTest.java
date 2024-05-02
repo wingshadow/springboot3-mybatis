@@ -3,10 +3,7 @@ package com.hawk;
 
 import cn.hutool.crypto.digest.BCrypt;
 import cn.hutool.json.JSONUtil;
-import com.hawk.admin.orm.entity.SysDept;
-import com.hawk.admin.orm.entity.SysRole;
-import com.hawk.admin.orm.entity.SysRoleUser;
-import com.hawk.admin.orm.entity.SysUser;
+import com.hawk.admin.orm.entity.*;
 import com.hawk.admin.orm.service.*;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
@@ -36,6 +33,9 @@ public class MainTest {
 
     @Resource
     private SysRoleUserService sysRoleUserService;
+
+    @Resource
+    private BizCarInfoService bizCarInfoService;
 
     @Test
     public void test1() {
@@ -89,5 +89,14 @@ public class MainTest {
     public void test6(){
         String ids = sysDeptService.getDeptAndChild(1L);
         log.info("ids:{}",ids);
+    }
+
+    @Test
+    public void test7(){
+        BizCarInfo carInfo = new BizCarInfo();
+        carInfo.setDeptId(1784407217880092673L);
+        carInfo.setDeptName("规划处");
+        carInfo.setCarNum("鲁A28R21");
+        bizCarInfoService.save(carInfo);
     }
 }

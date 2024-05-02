@@ -5,12 +5,16 @@ import cn.dev33.satoken.stp.StpUtil;
 import cn.hutool.core.util.ObjectUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.hawk.admin.orm.dao.SysUserMapper;
+import com.hawk.admin.orm.entity.SysRole;
 import com.hawk.admin.orm.entity.SysUser;
+import com.hawk.framework.enums.UserType;
 import com.hawk.framework.helper.LoginHelper;
 import com.hawk.framework.model.LoginUser;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * @program: springboot3-mybatis
@@ -30,10 +34,16 @@ public class SysLoginService {
         if (!BCrypt.checkpw(password, sysUser.getPassword())) {
             return null;
         }
+
+        List<SysRole> roleList = userMapper.selectRoleByUserId(sysUser.getUserId());
+
         LoginUser loginUser = new LoginUser();
         loginUser.setUserId(sysUser.getUserId());
         loginUser.setUsername(sysUser.getAccount());
         loginUser.setNickName(sysUser.getUserName());
+        loginUser.setUserType(UserType.employee.getUserType());
+        loginUser.setRoles(roleList);
+        loginUser.setDeptId(sysUser.getDeptId());
 
         LoginHelper.loginByDevice(loginUser);
         return StpUtil.getTokenValue();
@@ -41,7 +51,7 @@ public class SysLoginService {
 
     private SysUser loadUserByAccount(String userAccount) {
         SysUser user = userMapper.selectOne(new LambdaQueryWrapper<SysUser>()
-                .select(SysUser::getUserName, SysUser::getDelFlag, SysUser::getPassword)
+//                .select(SysUser::getUserId,SysUser::getUserName, SysUser::getDelFlag, SysUser::getPassword)
                 .eq(SysUser::getAccount, userAccount));
         if (ObjectUtil.isNull(user)) {
             log.info("登录用户：{} 不存在.", userAccount);
