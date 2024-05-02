@@ -25,7 +25,7 @@ public class CarController {
 
 
     @GetMapping("/list")
-    public R<List<BizCarInfo>> getList(){
-        return R.ok(carInfoService.getCarInfoList(new BizCarInfo()));
+    public R<List<BizCarInfo>> getList(BizCarInfo carInfo){
+        return R.ok(carInfoService.getCarInfoList(carInfo));
     }
 }

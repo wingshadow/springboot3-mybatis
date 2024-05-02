@@ -8,8 +8,11 @@
     <select id="getCarInfoList" resultType="com.hawk.admin.orm.entity.BizCarInfo">
         SELECT c.*
         FROM biz_car_info c
-                 left join sys_dept d on d.dept_id = c.dept_id
+        left join sys_dept d on d.dept_id = c.dept_id
         where 1=1
-            ${params.data_scope}
+        <if test="carNum!=null">
+            and c.car_num = #{carNum}
+        </if>
+        ${params.data_scope}
     </select>
 </mapper>
