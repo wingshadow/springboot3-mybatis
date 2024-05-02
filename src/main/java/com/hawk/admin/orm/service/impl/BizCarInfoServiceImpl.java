@@ -1,5 +1,8 @@
 package com.hawk.admin.orm.service.impl;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+import com.github.pagehelper.page.PageMethod;
 import com.hawk.admin.orm.dao.BizCarInfoMapper;
 import com.hawk.admin.orm.entity.BizCarInfo;
 import com.hawk.admin.orm.service.BizCarInfoService;
@@ -22,4 +25,13 @@ public class BizCarInfoServiceImpl extends BaseServiceImpl<BizCarInfoMapper, Biz
     public List<BizCarInfo> getCarInfoList(BizCarInfo carInfo){
         return baseMapper.getCarInfoList(carInfo);
     }
+
+
+    @DataScope(deptAlias = "d")
+    public PageInfo<BizCarInfo> getCarInfoPage(BizCarInfo carInfo,int pageSize,int pageNum){
+        PageHelper.startPage(pageNum, pageSize);
+        List<BizCarInfo> list =  baseMapper.getCarInfoList(carInfo);
+        return new PageInfo<>(list);
+    }
+
 }

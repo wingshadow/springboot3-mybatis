@@ -1,5 +1,6 @@
 package com.hawk.admin.controller.car;
 
+import com.github.pagehelper.PageInfo;
 import com.hawk.admin.orm.entity.BizCarInfo;
 import com.hawk.admin.orm.service.BizCarInfoService;
 import com.hawk.mybatis.common.web.R;
@@ -27,5 +28,10 @@ public class CarController {
     @GetMapping("/list")
     public R<List<BizCarInfo>> getList(BizCarInfo carInfo){
         return R.ok(carInfoService.getCarInfoList(carInfo));
+    }
+
+    @GetMapping("/page")
+    public R<PageInfo<BizCarInfo>> getPage(BizCarInfo carInfo,Integer pageSize,Integer pageNum){
+        return R.ok(carInfoService.getCarInfoPage(carInfo,pageSize,pageNum));
     }
 }

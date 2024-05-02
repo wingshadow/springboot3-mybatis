@@ -1,5 +1,6 @@
 package com.hawk.admin.orm.service;
 
+import com.github.pagehelper.PageInfo;
 import com.hawk.admin.orm.dao.BizCarInfoMapper;
 import com.hawk.admin.orm.entity.BizCarInfo;
 import com.hawk.mybatis.common.database.BaseService;
@@ -15,4 +16,6 @@ import java.util.List;
 public interface BizCarInfoService extends BaseService<BizCarInfoMapper, BizCarInfo> {
 
     List<BizCarInfo> getCarInfoList(BizCarInfo params);
+
+    PageInfo<BizCarInfo> getCarInfoPage(BizCarInfo params,int pageSize,int pageNum);
 }
