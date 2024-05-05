@@ -107,10 +107,10 @@ public class DataPermissionHandler {
                 // 3-本部门数据权限
                 sb.append(String.format(" %s.dept_id=%d", alias.get("dept"), loginUser.getDeptId()));
             } else if (DATA_SCOPE_DEPT_AND_CHILD.equals(sysRoleDataScope)) {
-                SysDeptService sysDeptService = SpringUtils.getBean(SysDeptService.class);
+                DeptService sysDeptService = SpringUtils.getBean(DeptService.class);
                 // 4-本部门及子部门数据权限
-                String deptIds = sysDeptService.getDeptAndChild(loginUser.getDeptId());
-                sb.append(String.format(" %s.dept_id in(%s)", alias.get("dept"), deptIds));
+                List<Long> deptIdList = sysDeptService.deptByParent(loginUser.getDeptId());
+                sb.append(String.format(" %s.dept_id in(%s)", alias.get("dept"), StreamUtils.join(deptIdList, Convert::toStr)));
             } else if (DATA_SCOPE_SELF.equals(sysRoleDataScope)) {
                 // 5只能查看当前用户信息，不能查看此角色部门信息和当前用户下的部门信息
                 if (StringUtils.isEmpty(alias.get("user"))) {
