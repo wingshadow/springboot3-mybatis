@@ -4,8 +4,6 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.github.pagehelper.PageInfo;
-import com.github.pagehelper.page.PageMethod;
 import com.hawk.mybatis.common.base.BaseEntity;
 import com.hawk.mybatis.common.database.BaseService;
 import org.springframework.util.StringUtils;
@@ -57,13 +55,6 @@ public abstract class BaseServiceImpl<M extends BaseMapper<T>,T extends BaseEnti
     @Override
     public T listOne(T paramBean) {
         return baseMapper.selectOne(new LambdaQueryWrapper<>(paramBean));
-    }
-
-    @Override
-    public PageInfo<T> listByPage(T paramBean, int pageNum, int pageSize) {
-        PageMethod.startPage(pageNum, pageSize);
-        List<T> lst = baseMapper.selectList(new LambdaQueryWrapper<>(paramBean));
-        return new PageInfo<>(lst);
     }
 
     @Override

@@ -1,4 +1,4 @@
-package com.hawk.mybatis.common.web;
+package com.hawk.framework.web;
 
 import lombok.Data;
 

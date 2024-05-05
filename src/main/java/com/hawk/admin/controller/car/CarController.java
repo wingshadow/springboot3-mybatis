@@ -1,9 +1,9 @@
 package com.hawk.admin.controller.car;
 
-import com.github.pagehelper.PageInfo;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.hawk.admin.orm.entity.BizCarInfo;
 import com.hawk.admin.orm.service.BizCarInfoService;
-import com.hawk.mybatis.common.web.R;
+import com.hawk.framework.web.R;
 import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,7 +31,12 @@ public class CarController {
     }
 
     @GetMapping("/page")
-    public R<PageInfo<BizCarInfo>> getPage(BizCarInfo carInfo,Integer pageSize,Integer pageNum){
+    public R<List<BizCarInfo>> getPage(BizCarInfo carInfo,Integer pageSize,Integer pageNum){
         return R.ok(carInfoService.getCarInfoPage(carInfo,pageSize,pageNum));
+    }
+
+    @GetMapping("/page2")
+    public R<Page<BizCarInfo>> getPage2(BizCarInfo carInfo,Integer pageSize,Integer pageNum){
+        return R.ok(carInfoService.getCarInfoPage2(carInfo,pageSize,pageNum));
     }
 }

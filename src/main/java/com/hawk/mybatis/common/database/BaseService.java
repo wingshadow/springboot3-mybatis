@@ -2,7 +2,6 @@ package com.hawk.mybatis.common.database;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.github.pagehelper.PageInfo;
 import com.hawk.mybatis.common.base.BaseEntity;
 
 import java.util.List;
@@ -59,17 +58,6 @@ public interface BaseService<M extends BaseMapper<T>, T extends BaseEntity> exte
      * @return SysDept数据查询结果集
      */
     List<T> listByConditions(T paramBean);
-
-    /**
-     * 分页查询符合条件的SysDept结果集
-     *
-     * @param paramBean 查询条件
-     * @param pageNum   查询的页码
-     * @param pageSize  每页记录数
-     * @return 数据查询结果集
-     */
-    PageInfo<T> listByPage(T paramBean, final int pageNum,
-                           final int pageSize);
 
     /**
      * @return

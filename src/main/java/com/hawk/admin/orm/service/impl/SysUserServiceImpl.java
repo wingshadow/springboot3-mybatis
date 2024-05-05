@@ -1,6 +1,5 @@
 package com.hawk.admin.orm.service.impl;
 
-import com.github.pagehelper.PageInfo;
 import com.hawk.admin.orm.dao.SysUserMapper;
 import com.hawk.admin.orm.entity.SysRole;
 import com.hawk.admin.orm.entity.SysUser;
@@ -19,14 +18,6 @@ import java.util.List;
  */
 @Service
 public class SysUserServiceImpl extends BaseServiceImpl<SysUserMapper, SysUser> implements SysUserService {
-
-    @Override
-    public PageInfo<SysUser> listByPage(SysUser paramBean, final int pageNum, final int pageSize) {
-        PageInfo<SysUser> pageInfo = super.listByPage(paramBean, pageNum, pageSize);
-        List<SysUser> list = pageInfo.getList();
-        pageInfo.setList(list);
-        return pageInfo;
-    }
 
     @Override
     public List<SysUser> getAllUser(SysUser sysUser) {

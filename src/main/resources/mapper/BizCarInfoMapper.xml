@@ -15,4 +15,22 @@
         </if>
         ${params.data_scope}
     </select>
+
+
+    <select id="getCarInfoPage" resultType="com.hawk.admin.orm.entity.BizCarInfo">
+        SELECT c.*
+        FROM biz_car_info c
+        left join sys_dept d on d.dept_id = c.dept_id
+        where 1=1
+        ${params.data_scope}
+<!--        ${ew.getCustomSqlSegment}-->
+    </select>
+
+    <select id="getCarInfoPage2" resultType="com.hawk.admin.orm.entity.BizCarInfo">
+        SELECT c.*
+        FROM biz_car_info c
+        left join sys_dept d on d.dept_id = c.dept_id
+                ${ew.getCustomSqlSegment}
+    </select>
+
 </mapper>

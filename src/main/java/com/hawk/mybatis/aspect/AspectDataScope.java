@@ -3,6 +3,7 @@ package com.hawk.mybatis.aspect;
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.convert.Convert;
 import cn.hutool.core.util.ObjectUtil;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.hawk.admin.orm.entity.SysDept;
 import com.hawk.admin.orm.entity.SysRole;
 import com.hawk.admin.orm.service.SysRoleService;
@@ -11,6 +12,7 @@ import com.hawk.framework.model.LoginUser;
 import com.hawk.framework.service.DeptService;
 import com.hawk.mybatis.annotation.DataScope;
 import com.hawk.mybatis.common.base.BaseEntity;
+import com.hawk.mybatis.constant.DataScopeType;
 import com.hawk.utils.StreamUtils;
 import com.hawk.utils.StringUtils;
 import jakarta.annotation.Resource;
@@ -36,18 +38,8 @@ import java.util.stream.Collectors;
  */
 @Slf4j
 @Component
-@Aspect
+//@Aspect
 public class AspectDataScope {
-    //查询所有
-    private static final String DATA_SCOPE_ALL = "1";
-    //自定义
-    private static final String DATA_SCOPE_CUSTOM = "2";
-    //本部门
-    private static final String DATA_SCOPE_DEPT = "3";
-    //本部门以及子部门
-    private static final String DATA_SCOPE_DEPT_AND_CHILD = "4";
-    //只能查看自己的用户信息，不能查看部门信息
-    private static final String DATA_SCOPE_SELF = "5";
     //动态参数名
     private static final String DATA_SCOPE_FIELD = "data_scope";
 
@@ -71,30 +63,26 @@ public class AspectDataScope {
         StringBuilder sb = new StringBuilder();
         List<SysRole> sysRoleList = loginUser.getRoles();
 
-        Set<Long> deptIdSet = new HashSet<>();
         //获取用户每个角色能够访问的部门信息
         for (SysRole sysRole : sysRoleList) {
             //查询每个角色的数据范围 1：全部数据权限 2：自定数据权限 3：本部门数据权限 4：本部门及以下数据权限
             String sysRoleDataScope = sysRole.getDataScope();
-            if (DATA_SCOPE_ALL.equals(sysRoleDataScope)) {
+            if (DataScopeType.DATA_SCOPE_ALL.equals(sysRoleDataScope)) {
                 // 1全部数据权限 什么也不做
                 return;
-            } else if (DATA_SCOPE_CUSTOM.equals(sysRoleDataScope)) {
+            } else if (DataScopeType.DATA_SCOPE_CUSTOM.equals(sysRoleDataScope)) {
                 List<SysDept> list = sysRoleService.selectDeptByRoleId(sysRole.getRoleId());
-                deptIdSet.addAll(list.stream().map(SysDept::getDeptId).collect(Collectors.toSet()));
+
                 // 2自定义数据权限 也就是直接在角色部门表 查询
-//                sb.append(String.format(" OR %s.dept_id in(SELECT dept_id FROM sys_role_dept where role_id=%d)", dataScope.deptAlias(), sysRole.getRoleId()));
-                sb.append(String.format(" OR %s.dept_id in(%s)", dataScope.deptAlias(), StreamUtils.join(deptIdSet, Convert::toStr)));
-            } else if (DATA_SCOPE_DEPT.equals(sysRoleDataScope)) {
-                deptIdSet.add(loginUser.getDeptId());
+                sb.append(String.format(" OR %s.dept_id in(%s)", dataScope.deptAlias(), StreamUtils.join(list, d->Convert.toStr(d.getDeptId()))));
+            } else if (DataScopeType.DATA_SCOPE_DEPT.equals(sysRoleDataScope)) {
                 // 3当前用户所在部门数据权限
                 sb.append(String.format(" OR %s.dept_id=%d", dataScope.deptAlias(), loginUser.getDeptId()));
-            } else if (DATA_SCOPE_DEPT_AND_CHILD.equals(sysRoleDataScope)) {
+            } else if (DataScopeType.DATA_SCOPE_DEPT_AND_CHILD.equals(sysRoleDataScope)) {
                 // 4当前用户对应的部门以及用户的子部门
-                deptIdSet.addAll(deptService.deptByParent(loginUser.getDeptId()));
-//                sb.append(String.format(" OR %s.dept_id in(SELECT dept_id FROM sys_dept where dept_id=%d or FIND_IN_SET(%d,ancestors))", dataScope.deptAlias(), loginUser.getDeptId(), loginUser.getDeptId()));
-                sb.append(String.format(" OR %s.dept_id in(%s)", dataScope.deptAlias(), StreamUtils.join(deptIdSet, Convert::toStr)));
-            } else if (DATA_SCOPE_SELF.equals(sysRoleDataScope)) {
+                List<Long> deptIdList = deptService.deptByParent(loginUser.getDeptId());
+                sb.append(String.format(" OR %s.dept_id in(%s)", dataScope.deptAlias(), StreamUtils.join(deptIdList, Convert::toStr)));
+            } else if (DataScopeType.DATA_SCOPE_SELF.equals(sysRoleDataScope)) {
                 // 5只能查看当前用户信息，不能查看此角色部门信息和当前用户下的部门信息
                 if (StringUtils.isEmpty(dataScope.userAlias())) {
                     sb.append(" OR 1=0");
@@ -103,15 +91,12 @@ public class AspectDataScope {
                 }
             }
         }
-//        if (CollUtil.isNotEmpty(deptIdSet)) {
-//            sb.append(String.format(" OR %s.dept_id in(%s)", dataScope.deptAlias(), StreamUtils.join(deptIdSet, Convert::toStr)));
-////            log.info("deptIds:{}", StreamUtils.join(deptIdSet, Convert::toStr));
-//        }
         Object arg = joinPoint.getArgs()[0];
         if (!ObjectUtil.isNull(arg) && arg instanceof BaseEntity baseEntity) {
             //截取开始的 "or "
             baseEntity.getParams().put(DATA_SCOPE_FIELD, " and (" + sb.substring(4) + ")");
         }
+
     }
 
     private void clearDataScope(JoinPoint joinPoint) {

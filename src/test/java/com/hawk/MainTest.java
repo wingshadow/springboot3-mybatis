@@ -1,10 +1,13 @@
 package com.hawk;
 
 
+import cn.hutool.core.convert.Convert;
 import cn.hutool.crypto.digest.BCrypt;
 import cn.hutool.json.JSONUtil;
 import com.hawk.admin.orm.entity.*;
 import com.hawk.admin.orm.service.*;
+import com.hawk.framework.service.DeptService;
+import com.hawk.utils.StreamUtils;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
@@ -36,6 +39,9 @@ public class MainTest {
 
     @Resource
     private BizCarInfoService bizCarInfoService;
+
+    @Resource
+    private DeptService deptService;
 
     @Test
     public void test1() {
@@ -87,8 +93,10 @@ public class MainTest {
 
     @Test
     public void test6(){
-        String ids = sysDeptService.getDeptAndChild(1L);
-        log.info("ids:{}",ids);
+        String ids1 = sysDeptService.getDeptAndChild(1L);
+        List<Long> ids2 = deptService.deptByParent(1L);
+        log.info("ids1:{}", ids1);
+        log.info("ids2:{}", Convert.toStr(StreamUtils.join(ids2, Convert::toStr)));
     }
 
     @Test

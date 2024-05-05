@@ -4,7 +4,7 @@ import cn.dev33.satoken.annotation.SaIgnore;
 import com.hawk.framework.constant.Constants;
 import com.hawk.framework.model.LoginBody;
 import com.hawk.framework.service.SysLoginService;
-import com.hawk.mybatis.common.web.R;
+import com.hawk.framework.web.R;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;

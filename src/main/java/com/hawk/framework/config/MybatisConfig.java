@@ -3,10 +3,19 @@ package com.hawk.framework.config;
 import cn.hutool.core.net.NetUtil;
 import com.baomidou.mybatisplus.core.incrementer.DefaultIdentifierGenerator;
 import com.baomidou.mybatisplus.core.incrementer.IdentifierGenerator;
+import com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor;
+import com.baomidou.mybatisplus.extension.plugins.inner.OptimisticLockerInnerInterceptor;
+import com.baomidou.mybatisplus.extension.plugins.inner.PaginationInnerInterceptor;
+import com.hawk.mybatis.interceptor.PermissionInterceptor;
+import jakarta.annotation.PostConstruct;
+import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.annotation.MapperScan;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+
+import java.util.List;
 
 /**
  * @program: springboot3-mybatis
@@ -23,6 +32,40 @@ public class MybatisConfig {
     public IdentifierGenerator idGenerator() {
         return new DefaultIdentifierGenerator(NetUtil.getLocalhost());
     }
+
+    @Bean
+    public MybatisPlusInterceptor mybatisPlusInterceptor() {
+        MybatisPlusInterceptor interceptor = new MybatisPlusInterceptor();
+        // 数据权限处理
+        interceptor.addInnerInterceptor(permissionInterceptor());
+        // 分页插件
+        interceptor.addInnerInterceptor(paginationInnerInterceptor());
+        // 乐观锁插件
+        interceptor.addInnerInterceptor(optimisticLockerInnerInterceptor());
+        return interceptor;
+    }
+
+    private PermissionInterceptor permissionInterceptor(){
+        return new PermissionInterceptor();
+    }
+
+    public PaginationInnerInterceptor paginationInnerInterceptor() {
+        PaginationInnerInterceptor paginationInnerInterceptor = new PaginationInnerInterceptor();
+        // 设置最大单页限制数量，默认 500 条，-1 不受限制
+        paginationInnerInterceptor.setMaxLimit(-1L);
+        // 分页合理化
+        paginationInnerInterceptor.setOverflow(true);
+        return paginationInnerInterceptor;
+    }
+
+    /**
+     * 乐观锁插件
+     */
+    public OptimisticLockerInnerInterceptor optimisticLockerInnerInterceptor() {
+        return new OptimisticLockerInnerInterceptor();
+    }
+
+
     /**
      * PaginationInnerInterceptor 分页插件，自动识别数据库类型
      * https://baomidou.com/pages/97710a/

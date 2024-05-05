@@ -57,7 +57,7 @@ public class SysDeptServiceImpl extends BaseServiceImpl<SysDeptMapper, SysDept> 
         LambdaQueryWrapper<SysDept> lqw = new LambdaQueryWrapper<SysDept>()
                 .eq(SysDept::getParentId, parentDeptId).eq(SysDept::getDelFlag, "0");
         deptList.addAll(CollUtil.emptyIfNull(baseMapper.selectList(lqw)).stream().map(SysDept::getDeptId)
-                .collect(Collectors.toList()));
+                .toList());
         return deptList;
     }
 
