@@ -19,7 +19,7 @@ import java.util.List;
 
 @Slf4j
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = {Main.class})
+@SpringBootTest(classes = {Application.class})
 public class MainTest {
 
     @Resource
