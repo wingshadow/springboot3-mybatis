@@ -51,8 +51,8 @@ public class MainTest {
     @Test
     public void test2(){
         SysUser sysUser = new SysUser();
-        sysUser.setUserName("刘晔");
-        sysUser.setAccount("liuye");
+        sysUser.setUserName("郭嘉");
+        sysUser.setAccount("guojia");
         sysUser.setPassword(BCrypt.hashpw("123456"));
         sysUser.setDeptId(1784406554567671810L);
         sysUser.setDelFlag(0);
@@ -86,8 +86,8 @@ public class MainTest {
     @Test
     public void test5(){
         SysRoleUser roleUser = new SysRoleUser();
-        roleUser.setRoleId(1784408935237853186L);
-        roleUser.setUserId(1784410888009310210L);
+        roleUser.setRoleId(1784409023771230210L);
+        roleUser.setUserId(1787008978792910849L);
         sysRoleUserService.save(roleUser);
     }
 

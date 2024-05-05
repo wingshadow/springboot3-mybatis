@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.hawk.admin.orm.dao.BizCarInfoMapper;
 import com.hawk.admin.orm.entity.BizCarInfo;
 import com.hawk.mybatis.common.database.BaseService;
+import com.hawk.mybatis.page.PageInfo;
 
 import java.util.List;
 
@@ -19,5 +20,5 @@ public interface BizCarInfoService extends BaseService<BizCarInfoMapper, BizCarI
 
     List<BizCarInfo> getCarInfoPage(BizCarInfo params, int pageSize, int pageNum);
 
-    Page<BizCarInfo> getCarInfoPage2(BizCarInfo params, int pageSize,int pageNum);
+    PageInfo<BizCarInfo> getCarInfoPage2(BizCarInfo params, int pageSize, int pageNum);
 }

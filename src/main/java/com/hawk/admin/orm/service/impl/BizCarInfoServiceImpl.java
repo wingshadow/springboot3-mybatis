@@ -8,6 +8,7 @@ import com.hawk.admin.orm.entity.BizCarInfo;
 import com.hawk.admin.orm.service.BizCarInfoService;
 import com.hawk.mybatis.annotation.DataScope;
 import com.hawk.mybatis.common.database.impl.BaseServiceImpl;
+import com.hawk.mybatis.page.PageInfo;
 import com.hawk.utils.StringUtils;
 import org.springframework.stereotype.Service;
 
@@ -30,17 +31,16 @@ public class BizCarInfoServiceImpl extends BaseServiceImpl<BizCarInfoMapper, Biz
 
     @DataScope(deptAlias = "d")
     public List<BizCarInfo> getCarInfoPage(BizCarInfo carInfo, int pageSize, int pageNum) {
-        List<BizCarInfo> list = baseMapper.getCarInfoPage(carInfo);
-        return list;
+        return baseMapper.getCarInfoPage(carInfo);
     }
 
 
-    public Page<BizCarInfo> getCarInfoPage2(BizCarInfo bizCarInfo, int pageSize, int pageNum) {
-        Page page = new Page(pageNum,pageSize);
+    public PageInfo<BizCarInfo> getCarInfoPage2(BizCarInfo bizCarInfo, int pageSize, int pageNum) {
+        Page<BizCarInfo> page = new Page<>(pageNum,pageSize);
         QueryWrapper<BizCarInfo> query = Wrappers.query();
         query.eq(StringUtils.isNotBlank(bizCarInfo.getCarNum()),"car_num",bizCarInfo.getCarNum());
-        Page<BizCarInfo> list = baseMapper.getCarInfoPage2(query,page);
-        return list;
+        page = baseMapper.getCarInfoPage2(query,page);
+        return new PageInfo<>(page.getRecords(), (int) page.getPages());
     }
 
 }
