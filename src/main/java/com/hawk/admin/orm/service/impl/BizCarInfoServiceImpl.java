@@ -40,7 +40,7 @@ public class BizCarInfoServiceImpl extends BaseServiceImpl<BizCarInfoMapper, Biz
         QueryWrapper<BizCarInfo> query = Wrappers.query();
         query.eq(StringUtils.isNotBlank(bizCarInfo.getCarNum()),"car_num",bizCarInfo.getCarNum());
         page = baseMapper.getCarInfoPage2(query,page);
-        return new PageInfo<>(page.getRecords(), (int) page.getPages());
+        return new PageInfo<>(page);
     }
 
 }

@@ -58,18 +58,42 @@ public class PageInfo<T> implements Serializable {
     public PageInfo() {
     }
 
-    public PageInfo(List<T> list) {
-        this(list, 8);
+
+    public PageInfo(Page<T> page) {
+        this.total = page.getTotal();
+        this.pages = (int) page.getPages();
+        this.list = page.getRecords();
+        this.pageSize = (int) page.getSize();
+        this.pageNum = (int) page.getCurrent();
+
+
+        this.startRow = (int) (pageNum * pageSize + 1);
+        //计算实际的endRow（最后一页的时候特殊）
+        int rows = 0;
+        if (page.getCurrent() == pages) {
+            rows = (int) (total - this.pages * pageSize);
+        } else {
+            rows = (int) (pageNum * pageSize);
+        }
+        this.endRow = (int) (this.startRow - 1 + rows);
+
+        this.navigatePages = 8;
+        //计算导航页
+        calcNavigatepageNums();
+        //计算前后页，第一页，最后一页
+        calcPage();
+        //判断页面边界
+        judgePageBoudary();
     }
+
     /**
      * 包装Page对象
      *
      * @param list
      */
-    public PageInfo(List<T> list,int pages) {
-        this(list,pages, 8);
+    public PageInfo(List<T> list) {
+        this(list, 8);
     }
-
 
 
     /**
@@ -78,13 +102,14 @@ public class PageInfo<T> implements Serializable {
      * @param list          page结果
      * @param navigatePages 页码数量
      */
-    public PageInfo(List<T> list, int pages,int navigatePages) {
+    public PageInfo(List<T> list, int navigatePages) {
         this.total = list.size();
         this.list = list;
-        this.pages = pages;
         if (list instanceof Collection) {
             this.pageNum = 1;
             this.pageSize = list.size();
+
+            this.pages = this.pageSize > 0 ? 1 : 0;
             this.size = list.size();
             this.startRow = 0;
             this.endRow = list.size() > 0 ? list.size() - 1 : 0;
@@ -99,7 +124,6 @@ public class PageInfo<T> implements Serializable {
             judgePageBoudary();
         }
     }
-
 
 
     public static <T> PageInfo<T> of(List<T> list) {
@@ -315,8 +339,6 @@ public class PageInfo<T> implements Serializable {
     public void setList(List<T> list) {
         this.list = list;
     }
-
-
 
     @Override
     public String toString() {
