@@ -29,8 +29,9 @@ public class SysLoginService {
     @Autowired
     private SysUserMapper userMapper;
 
-    public String login(String account, String password) {
-        SysUser sysUser = loadUserByAccount(account);
+    public String login(String userAccount, String password) {
+        SysUser sysUser = loadUserByAccount(userAccount);
+        assert sysUser != null;
         if (!BCrypt.checkpw(password, sysUser.getPassword())) {
             return null;
         }
@@ -45,7 +46,7 @@ public class SysLoginService {
         loginUser.setRoles(roleList);
         loginUser.setDeptId(sysUser.getDeptId());
 
-        LoginHelper.loginByDevice(loginUser);
+        LoginHelper.loginByDevice(loginUser,"PC");
         return StpUtil.getTokenValue();
     }
 

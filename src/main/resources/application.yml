@@ -20,7 +20,7 @@ spring:
     redis:
       host: t1-redis-02.sdjpw.com.cn
       port: 6379
-      database: 15
+      database: 0
       password: Q8VuNPoWhva8uT0x
 
 # MyBatisPlus配置

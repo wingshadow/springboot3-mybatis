@@ -46,7 +46,7 @@ public class LoginHelper {
      * @param loginUser 登录用户信息
      */
     public static void login(LoginUser loginUser) {
-        loginByDevice(loginUser);
+        loginByDevice(loginUser,"PC");
     }
 
     /**
@@ -55,12 +55,12 @@ public class LoginHelper {
      *
      * @param loginUser 登录用户信息
      */
-    public static void loginByDevice(LoginUser loginUser) {
+    public static void loginByDevice(LoginUser loginUser, String loginType) {
         SaStorage storage = SaHolder.getStorage();
         storage.set(LOGIN_USER_KEY, loginUser);
         storage.set(USER_KEY, loginUser.getUserId());
         SaLoginModel model = new SaLoginModel();
-        model.setDevice("PC");
+        model.setDevice(loginType);
         StpUtil.login(loginUser.getLoginId(), model.setExtra(USER_KEY, loginUser.getUserId()));
         StpUtil.getTokenSession().set(LOGIN_USER_KEY, loginUser);
     }
