@@ -46,7 +46,7 @@ public class LoginHelper {
      * @param loginUser 登录用户信息
      */
     public static void login(LoginUser loginUser) {
-        loginByDevice(loginUser,"PC");
+        loginByDevice(loginUser, "PC");
     }
 
     /**
@@ -155,10 +155,6 @@ public class LoginHelper {
             return null;
         }
         SysDept userDept = getLoginUser().getDept();
-        if (3701L == userDept.getDeptId() || userDept.getDeptId().toString().startsWith("370100")) {
-            // 济南市烟草专卖局 市局用户  查看全部
-            return null;
-        }
         long deptParent = userDept.getDeptId() < 1000000 ? userDept.getDeptId() : userDept.getDeptId() / 100;
         if (!deptList.containsKey(deptParent)) {
             List<Long> deptIdList;

@@ -1,10 +1,14 @@
 package com.hawk.mybatis.page;
 
+import cn.hutool.core.bean.BeanUtil;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 
+import javax.xml.crypto.dsig.keyinfo.PGPData;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.List;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 /**
  * @program: springboot3-mybatis
@@ -73,13 +77,13 @@ public class PageInfo<T> implements Serializable {
         if (page.getCurrent() == pages) {
             rows = (int) (total - this.pages * pageSize);
         } else {
-            rows = (int) (pageNum * pageSize);
+            rows = pageNum * pageSize;
         }
-        this.endRow = (int) (this.startRow - 1 + rows);
+        this.endRow = this.startRow - 1 + rows;
 
         this.navigatePages = 8;
         //计算导航页
-        calcNavigatepageNums();
+        calcNavigateNums();
         //计算前后页，第一页，最后一页
         calcPage();
         //判断页面边界
@@ -94,7 +98,6 @@ public class PageInfo<T> implements Serializable {
     public PageInfo(List<T> list) {
         this(list, 8);
     }
-
 
     /**
      * 包装Page对象
@@ -117,7 +120,7 @@ public class PageInfo<T> implements Serializable {
         if (list instanceof Collection) {
             this.navigatePages = navigatePages;
             //计算导航页
-            calcNavigatepageNums();
+            calcNavigateNums();
             //计算前后页，第一页，最后一页
             calcPage();
             //判断页面边界
@@ -134,10 +137,25 @@ public class PageInfo<T> implements Serializable {
         return new PageInfo<T>(list, navigatePages);
     }
 
+    public static <T, R> PageInfo<T> build(Page<R> page, Function<R, T> function) {
+        Page<T> result = new Page<>();
+        result.setPages(page.getPages());
+        result.setSize(page.getSize());
+        result.setCurrent(page.getCurrent());
+        result.setTotal(page.getTotal());
+        result.setSearchCount(page.searchCount());
+        result.setRecords(page.getRecords().stream().map(function).collect(Collectors.toList()));
+        return new PageInfo<>(result);
+    }
+
+    public static <T, R> PageInfo<T> build(Page<R> page, Class<T> type) {
+        return build(page, r -> BeanUtil.toBean(r, type));
+    }
+
     /**
      * 计算导航页
      */
-    private void calcNavigatepageNums() {
+    private void calcNavigateNums() {
         //当总页数小于或等于导航页码数时
         if (pages <= navigatePages) {
             navigatepageNums = new int[pages];

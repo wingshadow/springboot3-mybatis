@@ -15,12 +15,15 @@ import java.util.List;
 public interface BaseService<M extends BaseMapper<T>, T extends BaseEntity> extends IService<T> {
 
 
+    boolean insert(T paramBean);
+
     /**
      * 根据主键ID，删除一条SysDept记录
      *
      * @param id SysDept的主键
+     * @return
      */
-    void deleteByPrimaryKey(Long id);
+    boolean deleteByPrimaryKey(Long id);
 
     /**
      * 根据主键ID，批量删除多条SysDept记录
@@ -41,7 +44,7 @@ public interface BaseService<M extends BaseMapper<T>, T extends BaseEntity> exte
      *
      * @param paramBean 要更新的SysDept数据对象
      */
-    void updateByPrimaryKeySelective(T paramBean);
+    boolean updateByPrimaryKeySelective(T paramBean);
 
     /**
      * 根据主键查询SysDept数据对象

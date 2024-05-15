@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.hawk.mybatis.common.base.BaseEntity;
 import com.hawk.mybatis.common.database.BaseService;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
 import java.util.Arrays;
@@ -18,23 +19,34 @@ import java.util.stream.Collectors;
  * @author: zhb
  * @create: 2023-02-14 14:36
  */
-public abstract class BaseServiceImpl<M extends BaseMapper<T>,T extends BaseEntity> extends ServiceImpl<M,T> implements BaseService<M,T> {
+public abstract class BaseServiceImpl<M extends BaseMapper<T>, T extends BaseEntity> extends ServiceImpl<M, T> implements BaseService<M, T> {
+
+    public boolean insert(T paramBean) {
+        return baseMapper.insert(paramBean) > 0;
+    }
 
     @Override
-    public void deleteByPrimaryKey(Long id) {
-        baseMapper.deleteById(id);
+    public boolean deleteByPrimaryKey(Long id) {
+        return baseMapper.deleteById(id) > 0;
     }
 
     @Override
     public void deleteBatchByPrimaryKeys(String ids) {
         String[] stringList = StringUtils.split(ids, ",");
+        assert stringList != null;
         List<Long> idLst = Arrays.stream(stringList).map(Long::parseLong).collect(Collectors.toList());
         deleteBatchByPrimaryKeys(idLst);
     }
 
     @Override
-    public void updateByPrimaryKeySelective(T paramBean) {
-        baseMapper.updateById(paramBean);
+    @Transactional(rollbackFor = RuntimeException.class)
+    public void deleteBatchByPrimaryKeys(List<Long> ids) {
+        ids.forEach(this::deleteByPrimaryKey);
+    }
+
+    @Override
+    public boolean updateByPrimaryKeySelective(T paramBean) {
+        return baseMapper.updateById(paramBean) > 0;
     }
 
     @Override
@@ -57,8 +69,5 @@ public abstract class BaseServiceImpl<M extends BaseMapper<T>,T extends BaseEnti
         return baseMapper.selectOne(new LambdaQueryWrapper<>(paramBean));
     }
 
-    @Override
-    public void deleteBatchByPrimaryKeys(List<Long> ids) {
-        ids.forEach(this::deleteByPrimaryKey);
-    }
+
 }
