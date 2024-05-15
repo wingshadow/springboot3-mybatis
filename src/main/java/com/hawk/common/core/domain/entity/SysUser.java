@@ -59,6 +59,7 @@ public class SysUser extends BaseDataEntity {
 
     private short gender;
 
+    @Sensitive(strategy = SensitiveStrategy.PHONE)
     private String mobile;
 
     @Sensitive(strategy = SensitiveStrategy.EMAIL)
