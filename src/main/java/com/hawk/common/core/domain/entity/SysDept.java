@@ -22,6 +22,7 @@ public class SysDept extends TreeEntity<SysDept> {
     @TableId(value = "dept_id")
     private Long deptId;
 
+    @JsonFormat(shape = JsonFormat.Shape.STRING)
     private Long parentId;
 
     private String deptName;
