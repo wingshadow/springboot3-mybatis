@@ -1,8 +1,8 @@
 package com.hawk.admin.orm.dao;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.hawk.admin.orm.entity.SysRole;
-import com.hawk.admin.orm.entity.SysUser;
+import com.hawk.common.core.domain.entity.SysRole;
+import com.hawk.common.core.domain.entity.SysUser;
 
 import java.util.List;
 

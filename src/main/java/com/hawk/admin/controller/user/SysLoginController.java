@@ -1,10 +1,10 @@
 package com.hawk.admin.controller.user;
 
 import cn.dev33.satoken.annotation.SaIgnore;
-import com.hawk.framework.constant.Constants;
+import com.hawk.common.constant.Constants;
 import com.hawk.framework.model.LoginBody;
 import com.hawk.framework.service.SysLoginService;
-import com.hawk.framework.web.R;
+import com.hawk.common.web.resp.R;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;

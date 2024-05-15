@@ -1,8 +1,8 @@
 package com.hawk.admin.orm.service;
 
 import com.hawk.admin.orm.dao.SysRoleUserMapper;
-import com.hawk.admin.orm.entity.SysRoleUser;
-import com.hawk.mybatis.common.database.BaseService;
+import com.hawk.common.core.domain.entity.SysRoleUser;
+import com.hawk.mybatis.common.BaseService;
 
 /**
  * @program: springboot3-mybatis

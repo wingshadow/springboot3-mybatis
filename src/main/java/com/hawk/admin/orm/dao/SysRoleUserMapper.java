@@ -1,8 +1,7 @@
 package com.hawk.admin.orm.dao;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.hawk.admin.orm.entity.SysRoleDept;
-import com.hawk.admin.orm.entity.SysRoleUser;
+import com.hawk.common.core.domain.entity.SysRoleUser;
 
 /**
  * @program: springboot3-mybatis

@@ -1,7 +1,7 @@
 package com.hawk.framework.service;
 
 
-import com.hawk.admin.orm.entity.SysDept;
+import com.hawk.common.core.domain.entity.SysDept;
 
 import java.util.List;
 

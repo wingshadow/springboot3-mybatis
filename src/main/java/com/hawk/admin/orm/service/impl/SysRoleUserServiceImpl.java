@@ -1,9 +1,9 @@
 package com.hawk.admin.orm.service.impl;
 
 import com.hawk.admin.orm.dao.SysRoleUserMapper;
-import com.hawk.admin.orm.entity.SysRoleUser;
+import com.hawk.common.core.domain.entity.SysRoleUser;
 import com.hawk.admin.orm.service.SysRoleUserService;
-import com.hawk.mybatis.common.database.impl.BaseServiceImpl;
+import com.hawk.mybatis.common.impl.BaseServiceImpl;
 import org.springframework.stereotype.Service;
 
 /**

@@ -8,7 +8,7 @@ import cn.dev33.satoken.stp.StpInterface;
 import cn.dev33.satoken.stp.StpLogic;
 import cn.dev33.satoken.stp.StpUtil;
 import com.hawk.framework.config.properites.SecurityProperties;
-import com.hawk.framework.handler.AllUrlHandler;
+import com.hawk.framework.handler.WebAllUrlHandler;
 import com.hawk.framework.satoken.PlusSaTokenDao;
 import com.hawk.framework.satoken.SaPermissionImpl;
 import com.hawk.utils.SpringUtils;
@@ -38,7 +38,7 @@ public class SaTokenConfig implements WebMvcConfigurer {
     public void addInterceptors(InterceptorRegistry registry) {
         // 注册路由拦截器，自定义验证规则
         registry.addInterceptor(new SaInterceptor(handler -> {
-            AllUrlHandler allUrlHandler = SpringUtils.getBean(AllUrlHandler.class);
+            WebAllUrlHandler allUrlHandler = SpringUtils.getBean(WebAllUrlHandler.class);
             // 登录验证 -- 排除多个路径
             SaRouter
                 // 获取所有的

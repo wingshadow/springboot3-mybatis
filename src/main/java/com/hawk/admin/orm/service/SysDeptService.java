@@ -1,8 +1,8 @@
 package com.hawk.admin.orm.service;
 
 import com.hawk.admin.orm.dao.SysDeptMapper;
-import com.hawk.admin.orm.entity.SysDept;
-import com.hawk.mybatis.common.database.BaseService;
+import com.hawk.common.core.domain.entity.SysDept;
+import com.hawk.mybatis.common.BaseService;
 
 import java.util.List;
 

@@ -1,7 +1,7 @@
 package com.hawk.framework.model;
 
-import com.hawk.admin.orm.entity.SysDept;
-import com.hawk.admin.orm.entity.SysRole;
+import com.hawk.common.core.domain.entity.SysDept;
+import com.hawk.common.core.domain.entity.SysRole;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 

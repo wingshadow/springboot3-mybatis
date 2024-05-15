@@ -1,7 +1,8 @@
 package com.hawk.framework.model;
 
 import com.baomidou.mybatisplus.annotation.TableField;
-import com.hawk.mybatis.common.base.BaseEntity;
+import com.hawk.common.entity.BaseDataEntity;
+import com.hawk.common.entity.BaseEntity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -16,7 +17,7 @@ import java.util.List;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class TreeEntity<T> extends BaseEntity {
+public class TreeEntity<T> extends BaseDataEntity {
 
     private static final long serialVersionUID = 1L;
 

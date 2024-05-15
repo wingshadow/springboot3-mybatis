@@ -1,34 +1,25 @@
 package com.hawk.mybatis.aspect;
 
-import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.convert.Convert;
 import cn.hutool.core.util.ObjectUtil;
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.hawk.admin.orm.entity.SysDept;
-import com.hawk.admin.orm.entity.SysRole;
+import com.hawk.common.core.domain.entity.SysDept;
+import com.hawk.common.core.domain.entity.SysRole;
 import com.hawk.admin.orm.service.SysRoleService;
 import com.hawk.framework.helper.LoginHelper;
 import com.hawk.framework.model.LoginUser;
 import com.hawk.framework.service.DeptService;
 import com.hawk.mybatis.annotation.DataScope;
-import com.hawk.mybatis.common.base.BaseEntity;
+import com.hawk.common.entity.BaseEntity;
 import com.hawk.mybatis.constant.DataScopeType;
 import com.hawk.utils.StreamUtils;
 import com.hawk.utils.StringUtils;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.ibatis.annotations.SelectKey;
 import org.aspectj.lang.JoinPoint;
-import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
-import java.io.DataInput;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 /**
  * @program: springboot3-mybatis

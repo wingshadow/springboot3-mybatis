@@ -2,16 +2,8 @@ package com.hawk.framework.helper;
 
 import cn.hutool.core.convert.Convert;
 
-import com.baomidou.dynamic.datasource.DynamicRoutingDataSource;
-import com.hawk.framework.enums.DataBaseType;
-import com.hawk.utils.SpringUtils;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
-
-import javax.sql.DataSource;
-import java.sql.Connection;
-import java.sql.DatabaseMetaData;
-import java.sql.SQLException;
 
 /**
  * 数据库助手

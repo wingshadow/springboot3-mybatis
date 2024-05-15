@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hawk.admin.orm.dao.SysRoleMapper">
-    <select id="getAllRoleList" resultType="com.hawk.admin.orm.entity.SysRole">
+    <select id="getAllRoleList" resultType="com.hawk.common.core.domain.entity.SysRole">
         SELECT sr.*
         FROM sys_role sr
                  LEFT JOIN sys_user_role sur ON sr.role_id = sur.role_id
@@ -11,7 +11,7 @@
             ${params.data_scope}
     </select>
 
-    <select id="selectDeptByRoleId" resultType="com.hawk.admin.orm.entity.SysDept">
+    <select id="selectDeptByRoleId" resultType="com.hawk.common.core.domain.entity.SysDept">
         select *
         from  sys_dept d
             left join sys_role_dept rd on rd.dept_id = d.dept_id

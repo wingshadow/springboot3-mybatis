@@ -3,7 +3,7 @@ package com.hawk.framework.config;
 import cn.hutool.core.util.ObjectUtil;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hawk.framework.config.properites.RedissonProperties;
-import com.hawk.framework.handler.KeyPrefixHandler;
+import com.hawk.framework.handler.CacheKeyPrefixHandler;
 import com.hawk.framework.manager.PlusSpringCacheManager;
 import lombok.extern.slf4j.Slf4j;
 import org.redisson.codec.JsonJacksonCodec;
@@ -43,7 +43,7 @@ public class RedisConfig {
                 // 使用单机模式
                 config.useSingleServer()
                     //设置redis key前缀
-                    .setNameMapper(new KeyPrefixHandler(redissonProperties.getKeyPrefix()))
+                    .setNameMapper(new CacheKeyPrefixHandler(redissonProperties.getKeyPrefix()))
                     .setTimeout(singleServerConfig.getTimeout())
                     .setClientName(singleServerConfig.getClientName())
                     .setIdleConnectionTimeout(singleServerConfig.getIdleConnectionTimeout())
@@ -56,7 +56,7 @@ public class RedisConfig {
             if (ObjectUtil.isNotNull(clusterServersConfig)) {
                 config.useClusterServers()
                     //设置redis key前缀
-                    .setNameMapper(new KeyPrefixHandler(redissonProperties.getKeyPrefix()))
+                    .setNameMapper(new CacheKeyPrefixHandler(redissonProperties.getKeyPrefix()))
                     .setTimeout(clusterServersConfig.getTimeout())
                     .setClientName(clusterServersConfig.getClientName())
                     .setIdleConnectionTimeout(clusterServersConfig.getIdleConnectionTimeout())

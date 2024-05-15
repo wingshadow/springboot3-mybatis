@@ -7,8 +7,8 @@ import com.hawk.admin.orm.dao.BizCarInfoMapper;
 import com.hawk.admin.orm.entity.BizCarInfo;
 import com.hawk.admin.orm.service.BizCarInfoService;
 import com.hawk.mybatis.annotation.DataScope;
-import com.hawk.mybatis.common.database.impl.BaseServiceImpl;
-import com.hawk.mybatis.page.PageInfo;
+import com.hawk.mybatis.common.impl.BaseServiceImpl;
+import com.hawk.common.web.page.PageInfo;
 import com.hawk.utils.StringUtils;
 import org.springframework.stereotype.Service;
 

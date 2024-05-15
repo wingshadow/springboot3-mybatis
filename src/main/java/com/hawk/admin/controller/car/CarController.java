@@ -1,10 +1,9 @@
 package com.hawk.admin.controller.car;
 
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.hawk.admin.orm.entity.BizCarInfo;
 import com.hawk.admin.orm.service.BizCarInfoService;
-import com.hawk.framework.web.R;
-import com.hawk.mybatis.page.PageInfo;
+import com.hawk.common.web.resp.R;
+import com.hawk.common.web.page.PageInfo;
 import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

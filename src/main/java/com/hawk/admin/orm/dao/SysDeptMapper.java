@@ -1,7 +1,7 @@
 package com.hawk.admin.orm.dao;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.hawk.admin.orm.entity.SysDept;
+import com.hawk.common.core.domain.entity.SysDept;
 
 import java.util.List;
 
