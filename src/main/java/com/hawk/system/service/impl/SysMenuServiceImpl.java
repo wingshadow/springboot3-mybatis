@@ -11,6 +11,7 @@ import com.hawk.common.constant.UserConstants;
 import com.hawk.common.core.domain.entity.SysMenu;
 import com.hawk.common.core.domain.entity.SysRole;
 import com.hawk.common.core.domain.entity.SysRoleMenu;
+import com.hawk.common.core.domain.entity.SysUser;
 import com.hawk.framework.helper.LoginHelper;
 import com.hawk.mybatis.common.impl.BaseServiceImpl;
 import com.hawk.system.domain.vo.MetaVo;
@@ -298,6 +299,18 @@ public class SysMenuServiceImpl extends BaseServiceImpl<SysMenuMapper, SysMenu> 
                 .eq(SysMenu::getParentId, menu.getParentId())
                 .ne(ObjectUtil.isNotNull(menu.getMenuId()), SysMenu::getMenuId, menu.getMenuId()));
         return !exist;
+    }
+
+    @Override
+    public Set<String> getMenuPermission(SysUser user) {
+        Set<String> perms = new HashSet<>();
+        // 管理员拥有所有权限
+        if (user.isAdmin()) {
+            perms.add("*:*:*");
+        } else {
+            perms.addAll(baseMapper.selectMenuPermsByUserId(user.getUserId()));
+        }
+        return perms;
     }
 
     /**

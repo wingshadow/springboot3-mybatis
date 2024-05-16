@@ -2,6 +2,7 @@ package com.hawk.system.service;
 
 import cn.hutool.core.lang.tree.Tree;
 import com.hawk.common.core.domain.entity.SysMenu;
+import com.hawk.common.core.domain.entity.SysUser;
 import com.hawk.mybatis.common.BaseService;
 import com.hawk.system.domain.vo.RouterVo;
 import com.hawk.system.mapper.SysMenuMapper;
@@ -136,4 +137,6 @@ public interface SysMenuService extends BaseService<SysMenuMapper, SysMenu> {
      * @return 结果
      */
     boolean checkMenuNameUnique(SysMenu menu);
+
+    Set<String> getMenuPermission(SysUser user);
 }
