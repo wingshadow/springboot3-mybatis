@@ -2,7 +2,7 @@ package com.hawk.framework.satoken;
 
 import cn.dev33.satoken.dao.SaTokenDao;
 import cn.dev33.satoken.util.SaFoxUtil;
-import com.hawk.utils.RedisUtils;
+import com.hawk.common.utils.RedisUtils;
 
 import java.time.Duration;
 import java.util.ArrayList;

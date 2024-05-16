@@ -15,7 +15,7 @@
  */
 package com.hawk.framework.manager;
 
-import com.hawk.utils.RedisUtils;
+import com.hawk.common.utils.RedisUtils;
 import org.redisson.api.RMap;
 import org.redisson.api.RMapCache;
 import org.redisson.spring.cache.CacheConfig;

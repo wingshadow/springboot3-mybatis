@@ -1,4 +1,4 @@
-package com.hawk.admin.controller.user;
+package com.hawk.admin.controller.system;
 
 import com.hawk.common.core.domain.entity.SysUser;
 import com.hawk.common.web.resp.R;

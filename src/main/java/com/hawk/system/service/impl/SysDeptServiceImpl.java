@@ -10,7 +10,7 @@ import com.hawk.system.service.SysDeptService;
 import com.hawk.framework.helper.DataBaseHelper;
 import com.hawk.framework.service.DeptService;
 import com.hawk.mybatis.common.impl.BaseServiceImpl;
-import com.hawk.utils.SpringUtils;
+import com.hawk.common.utils.SpringUtils;
 import com.hawk.utils.StreamUtils;
 import com.hawk.utils.StringUtils;
 import org.springframework.stereotype.Service;

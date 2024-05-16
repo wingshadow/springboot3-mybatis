@@ -93,7 +93,7 @@ public class LoginUser implements Serializable {
     /**
      * 用户名
      */
-    private String username;
+    private String userAccount;
     /**
      * 手机号
      */
@@ -102,7 +102,7 @@ public class LoginUser implements Serializable {
     /**
      * 用户名
      */
-    private String nickName;
+    private String userName;
 
     /**
      * 角色对象

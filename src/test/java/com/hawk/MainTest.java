@@ -40,7 +40,7 @@ public class MainTest {
     private SysRoleDeptService sysRoleDeptService;
 
     @Resource
-    private SysRoleUserService sysRoleUserService;
+    private SysUserRoleService sysUserRoleService;
 
     @Resource
     private BizCarInfoService bizCarInfoService;
@@ -93,7 +93,7 @@ public class MainTest {
         SysRoleUser roleUser = new SysRoleUser();
         roleUser.setRoleId(1784409023771230210L);
         roleUser.setUserId(1787008978792910849L);
-        sysRoleUserService.save(roleUser);
+        sysUserRoleService.save(roleUser);
     }
 
     @Test

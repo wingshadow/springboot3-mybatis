@@ -4,6 +4,9 @@ import cn.dev33.satoken.secure.BCrypt;
 import cn.dev33.satoken.stp.StpUtil;
 import cn.hutool.core.util.ObjectUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.hawk.common.enums.LoginType;
+import com.hawk.common.enums.UserStatus;
+import com.hawk.common.exception.UserException;
 import com.hawk.system.mapper.SysUserMapper;
 import com.hawk.common.core.domain.entity.SysRole;
 import com.hawk.common.core.domain.entity.SysUser;
@@ -35,29 +38,46 @@ public class SysLoginService {
         if (!BCrypt.checkpw(password, sysUser.getPassword())) {
             return null;
         }
+//        List<SysRole> roleList = userMapper.selectRoleByUserId(sysUser.getUserId());
+        LoginUser loginUser = build(sysUser);
+        LoginHelper.loginByDevice(loginUser, LoginType.PC);
+        return StpUtil.getTokenValue();
+    }
 
-        List<SysRole> roleList = userMapper.selectRoleByUserId(sysUser.getUserId());
-
+    private LoginUser build(SysUser sysUser){
         LoginUser loginUser = new LoginUser();
         loginUser.setUserId(sysUser.getUserId());
-        loginUser.setUsername(sysUser.getUserAccount());
-        loginUser.setNickName(sysUser.getUserName());
-        loginUser.setUserType(UserType.employee.getUserType());
-        loginUser.setRoles(roleList);
+        loginUser.setUserAccount(sysUser.getUserAccount());
+        loginUser.setUserName(sysUser.getUserName());
+        loginUser.setUserType(sysUser.getUserType());
+        loginUser.setRoles(sysUser.getRoles());
         loginUser.setDeptId(sysUser.getDeptId());
-
-        LoginHelper.loginByDevice(loginUser,"PC");
-        return StpUtil.getTokenValue();
+        loginUser.setDeptName(sysUser.getDept().getDeptName());
+        loginUser.setDept(sysUser.getDept());
+        loginUser.setRoles(sysUser.getRoles());
+        return loginUser;
     }
 
     private SysUser loadUserByAccount(String userAccount) {
         SysUser user = userMapper.selectOne(new LambdaQueryWrapper<SysUser>()
-//                .select(SysUser::getUserId,SysUser::getUserName, SysUser::getDelFlag, SysUser::getPassword)
+                .select(SysUser::getUserId, SysUser::getUserAccount, SysUser::getDelFlag, SysUser::getPassword, SysUser::getStatus)
                 .eq(SysUser::getUserAccount, userAccount));
         if (ObjectUtil.isNull(user)) {
             log.info("登录用户：{} 不存在.", userAccount);
-            return null;
+            throw new UserException("user.not.exists", userAccount);
+        } else if (UserStatus.DISABLE.getCode() == user.getStatus()) {
+            log.info("登录用户：{} 已被停用.", userAccount);
+            throw new UserException("user.blocked", userAccount);
         }
-        return user;
+        return userMapper.selectUserByAccount(user.getUserAccount());
+    }
+
+    public void logout() {
+        LoginUser loginUser = LoginHelper.getLoginUser();
+        if (loginUser == null) {
+            return;
+        }
+        StpUtil.logout();
+        log.info("{}退出", ObjectUtil.isNotEmpty(loginUser) ? loginUser.getUserAccount() : "");
     }
 }

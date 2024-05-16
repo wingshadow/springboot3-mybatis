@@ -1,4 +1,4 @@
-package com.hawk.utils;
+package com.hawk.common.utils;
 
 import cn.hutool.extra.spring.SpringUtil;
 import org.springframework.aop.framework.AopContext;

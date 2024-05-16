@@ -1,5 +1,6 @@
-package com.hawk.utils;
+package com.hawk.common.utils;
 
+import com.hawk.common.utils.SpringUtils;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import org.springframework.context.MessageSource;

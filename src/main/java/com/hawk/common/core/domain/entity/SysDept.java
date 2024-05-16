@@ -29,5 +29,8 @@ public class SysDept extends TreeEntity<SysDept> {
 
     private String ancestors;
 
+    private Integer orderNum;
+
+    private Integer status;
     private Integer delFlag;
 }

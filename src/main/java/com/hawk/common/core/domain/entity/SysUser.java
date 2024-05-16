@@ -79,6 +79,11 @@ public class SysUser extends BaseDataEntity {
     @TableField(exist = false)
     private List<SysRole> sysRoleList;
 
+    @TableField(exist = false)
+    private SysDept dept;
+
+    @TableField(exist = false)
+    private List<SysRole> roles;
     public boolean isAdmin() {
         return UserConstants.ADMIN_ID.equals(this.userId);
     }

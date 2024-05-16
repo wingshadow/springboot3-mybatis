@@ -1,7 +1,7 @@
 package com.hawk.framework.handler;
 
 import cn.hutool.core.util.ReUtil;
-import com.hawk.utils.SpringUtils;
+import com.hawk.common.utils.SpringUtils;
 import lombok.Data;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.stereotype.Component;

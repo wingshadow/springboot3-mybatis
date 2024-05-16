@@ -16,4 +16,6 @@ public interface SysUserMapper extends BaseMapper<SysUser> {
     List<SysRole> selectRoleByUserId(Long userId);
 
     List<SysUser> getAllUser(SysUser sysUser);
+
+    SysUser selectUserByAccount(String userAccount);
 }

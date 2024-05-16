@@ -16,8 +16,8 @@ import lombok.Setter;
  */
 @Getter
 @Setter
-@TableName("sys_role_user")
-public class SysRoleUser extends BaseEntity {
+@TableName("sys_user_role")
+public class SysUserRole extends BaseEntity {
 
     @JsonFormat(shape = JsonFormat.Shape.STRING)
     @TableId(type = IdType.INPUT)

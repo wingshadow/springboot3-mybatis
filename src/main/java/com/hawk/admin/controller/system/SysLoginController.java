@@ -1,4 +1,4 @@
-package com.hawk.admin.controller.user;
+package com.hawk.admin.controller.system;
 
 import cn.dev33.satoken.annotation.SaIgnore;
 import com.hawk.common.constant.Constants;
@@ -34,5 +34,11 @@ public class SysLoginController {
         String token = loginService.login(loginBody.getAccount(), loginBody.getPassword());
         ajax.put(Constants.TOKEN, token);
         return R.ok(ajax);
+    }
+
+    @PostMapping(value = "logout")
+    public R<Void> logout() {
+        loginService.logout();
+        return R.ok();
     }
 }

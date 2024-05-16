@@ -10,7 +10,7 @@ import com.fasterxml.jackson.databind.ser.ContextualSerializer;
 import com.hawk.common.annotation.Sensitive;
 import com.hawk.common.enums.SensitiveStrategy;
 import com.hawk.common.service.SensitiveService;
-import com.hawk.utils.SpringUtils;
+import com.hawk.common.utils.SpringUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeansException;
 

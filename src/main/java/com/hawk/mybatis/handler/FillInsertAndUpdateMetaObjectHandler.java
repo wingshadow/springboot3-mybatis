@@ -32,7 +32,7 @@ public class FillInsertAndUpdateMetaObjectHandler implements MetaObjectHandler {
                 baseDataEntity.setCreateTime(current);
                 baseDataEntity.setUpdateTime(current);
                 String username = StringUtils.isNotBlank(baseDataEntity.getCreateBy())
-                        ? baseDataEntity.getCreateBy() : getLoginUsername();
+                        ? baseDataEntity.getCreateBy() : getLoginAccount();
                 // 当前已登录 且 创建人为空 则填充
                 baseDataEntity.setCreateBy(username);
                 // 当前已登录 且 更新人为空 则填充
@@ -51,7 +51,7 @@ public class FillInsertAndUpdateMetaObjectHandler implements MetaObjectHandler {
                 Date current = new Date();
                 // 更新时间填充(不管为不为空)
                 baseDataEntity.setUpdateTime(current);
-                String username = getLoginUsername();
+                String username = getLoginAccount();
                 // 当前已登录 更新人填充(不管为不为空)
                 if (StringUtils.isNotBlank(username)) {
                     baseDataEntity.setUpdateBy(username);
@@ -62,7 +62,7 @@ public class FillInsertAndUpdateMetaObjectHandler implements MetaObjectHandler {
         }
     }
 
-    private String getLoginUsername() {
+    private String getLoginAccount() {
         LoginUser loginUser;
         try {
             loginUser = LoginHelper.getLoginUser();
@@ -70,6 +70,6 @@ public class FillInsertAndUpdateMetaObjectHandler implements MetaObjectHandler {
             log.warn("自动注入警告 => 用户未登录");
             return null;
         }
-        return ObjectUtil.isNotNull(loginUser) ? loginUser.getUsername() : null;
+        return ObjectUtil.isNotNull(loginUser) ? loginUser.getUserAccount() : null;
     }
 }
