@@ -60,7 +60,7 @@ public class MainTest {
         sysUser.setUserAccount("guojia");
         sysUser.setPassword(BCrypt.hashpw("123456"));
         sysUser.setDeptId(1784406554567671810L);
-        sysUser.setDelFlag((short) 0);
+        sysUser.setDelFlag(0);
         sysUserService.save(sysUser);
     }
 
