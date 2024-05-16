@@ -1,12 +1,12 @@
-package com.hawk.admin.orm.service.impl;
+package com.hawk.system.service.impl;
 
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.convert.Convert;
 import cn.hutool.core.util.ObjectUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.hawk.admin.orm.dao.SysDeptMapper;
+import com.hawk.system.mapper.SysDeptMapper;
 import com.hawk.common.core.domain.entity.SysDept;
-import com.hawk.admin.orm.service.SysDeptService;
+import com.hawk.system.service.SysDeptService;
 import com.hawk.framework.helper.DataBaseHelper;
 import com.hawk.framework.service.DeptService;
 import com.hawk.mybatis.common.impl.BaseServiceImpl;

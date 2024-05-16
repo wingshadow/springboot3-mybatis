@@ -6,12 +6,12 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.hawk.common.annotation.Sensitive;
-import com.hawk.common.entity.BaseDataEntity;
-import com.hawk.common.entity.BaseEntity;
 import com.hawk.common.constant.UserConstants;
+import com.hawk.common.entity.BaseDataEntity;
 import com.hawk.common.enums.SensitiveStrategy;
 import com.hawk.common.xss.Xss;
-import lombok.*;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;

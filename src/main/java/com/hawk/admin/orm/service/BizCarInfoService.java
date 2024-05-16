@@ -1,6 +1,6 @@
 package com.hawk.admin.orm.service;
 
-import com.hawk.admin.orm.dao.BizCarInfoMapper;
+import com.hawk.admin.orm.mapper.BizCarInfoMapper;
 import com.hawk.admin.orm.entity.BizCarInfo;
 import com.hawk.mybatis.common.BaseService;
 import com.hawk.common.web.page.PageInfo;

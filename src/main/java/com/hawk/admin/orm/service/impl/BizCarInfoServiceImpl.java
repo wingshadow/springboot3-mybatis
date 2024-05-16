@@ -3,7 +3,7 @@ package com.hawk.admin.orm.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.hawk.admin.orm.dao.BizCarInfoMapper;
+import com.hawk.admin.orm.mapper.BizCarInfoMapper;
 import com.hawk.admin.orm.entity.BizCarInfo;
 import com.hawk.admin.orm.service.BizCarInfoService;
 import com.hawk.mybatis.annotation.DataScope;

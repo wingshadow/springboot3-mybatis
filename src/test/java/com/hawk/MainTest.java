@@ -11,6 +11,7 @@ import com.hawk.common.core.domain.entity.SysRole;
 import com.hawk.common.core.domain.entity.SysRoleUser;
 import com.hawk.common.core.domain.entity.SysUser;
 import com.hawk.framework.service.DeptService;
+import com.hawk.system.service.*;
 import com.hawk.utils.StreamUtils;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;

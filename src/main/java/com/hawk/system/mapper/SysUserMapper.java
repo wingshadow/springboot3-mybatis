@@ -1,4 +1,4 @@
-package com.hawk.admin.orm.dao;
+package com.hawk.system.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.hawk.common.core.domain.entity.SysRole;

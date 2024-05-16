@@ -1,6 +1,6 @@
-package com.hawk.admin.orm.service;
+package com.hawk.system.service;
 
-import com.hawk.admin.orm.dao.SysRoleDeptMapper;
+import com.hawk.system.mapper.SysRoleDeptMapper;
 import com.hawk.common.core.domain.entity.SysRoleDept;
 import com.hawk.mybatis.common.BaseService;
 

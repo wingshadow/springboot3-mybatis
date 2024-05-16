@@ -25,7 +25,7 @@ import java.util.List;
  */
 @Configuration
 @EnableTransactionManagement(proxyTargetClass = true)
-@MapperScan(basePackages ="com.hawk.**.dao")
+@MapperScan(basePackages ="com.hawk.**.mapper")
 public class MybatisConfig {
 
     @Bean

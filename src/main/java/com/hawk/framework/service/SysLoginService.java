@@ -4,7 +4,7 @@ import cn.dev33.satoken.secure.BCrypt;
 import cn.dev33.satoken.stp.StpUtil;
 import cn.hutool.core.util.ObjectUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.hawk.admin.orm.dao.SysUserMapper;
+import com.hawk.system.mapper.SysUserMapper;
 import com.hawk.common.core.domain.entity.SysRole;
 import com.hawk.common.core.domain.entity.SysUser;
 import com.hawk.common.enums.UserType;
@@ -40,7 +40,7 @@ public class SysLoginService {
 
         LoginUser loginUser = new LoginUser();
         loginUser.setUserId(sysUser.getUserId());
-        loginUser.setUsername(sysUser.getAccount());
+        loginUser.setUsername(sysUser.getUserAccount());
         loginUser.setNickName(sysUser.getUserName());
         loginUser.setUserType(UserType.employee.getUserType());
         loginUser.setRoles(roleList);
@@ -53,7 +53,7 @@ public class SysLoginService {
     private SysUser loadUserByAccount(String userAccount) {
         SysUser user = userMapper.selectOne(new LambdaQueryWrapper<SysUser>()
 //                .select(SysUser::getUserId,SysUser::getUserName, SysUser::getDelFlag, SysUser::getPassword)
-                .eq(SysUser::getAccount, userAccount));
+                .eq(SysUser::getUserAccount, userAccount));
         if (ObjectUtil.isNull(user)) {
             log.info("登录用户：{} 不存在.", userAccount);
             return null;

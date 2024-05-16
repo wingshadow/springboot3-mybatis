@@ -1,4 +1,4 @@
-package com.hawk.admin.orm.dao;
+package com.hawk.admin.orm.mapper;
 
 import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;

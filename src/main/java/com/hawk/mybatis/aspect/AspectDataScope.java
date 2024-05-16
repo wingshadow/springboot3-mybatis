@@ -4,7 +4,7 @@ import cn.hutool.core.convert.Convert;
 import cn.hutool.core.util.ObjectUtil;
 import com.hawk.common.core.domain.entity.SysDept;
 import com.hawk.common.core.domain.entity.SysRole;
-import com.hawk.admin.orm.service.SysRoleService;
+import com.hawk.system.service.SysRoleService;
 import com.hawk.framework.helper.LoginHelper;
 import com.hawk.framework.model.LoginUser;
 import com.hawk.framework.service.DeptService;

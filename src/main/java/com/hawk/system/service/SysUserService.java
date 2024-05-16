@@ -1,6 +1,6 @@
-package com.hawk.admin.orm.service;
+package com.hawk.system.service;
 
-import com.hawk.admin.orm.dao.SysUserMapper;
+import com.hawk.system.mapper.SysUserMapper;
 import com.hawk.common.core.domain.entity.SysUser;
 import com.hawk.mybatis.common.BaseService;
 

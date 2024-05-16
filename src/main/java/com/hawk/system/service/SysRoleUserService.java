@@ -1,6 +1,6 @@
-package com.hawk.admin.orm.service;
+package com.hawk.system.service;
 
-import com.hawk.admin.orm.dao.SysRoleUserMapper;
+import com.hawk.system.mapper.SysRoleUserMapper;
 import com.hawk.common.core.domain.entity.SysRoleUser;
 import com.hawk.mybatis.common.BaseService;
 

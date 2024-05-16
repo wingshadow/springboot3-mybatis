@@ -1,7 +1,7 @@
-package com.hawk.admin.orm.dao;
+package com.hawk.system.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.hawk.common.core.domain.entity.SysRoleDept;
+import com.hawk.common.core.domain.entity.SysRoleUser;
 
 /**
  * @program: springboot3-mybatis
@@ -9,5 +9,5 @@ import com.hawk.common.core.domain.entity.SysRoleDept;
  * @author: zhb
  * @create: 2024-04-26 15:09
  */
-public interface SysRoleDeptMapper extends BaseMapper<SysRoleDept> {
+public interface SysRoleUserMapper extends BaseMapper<SysRoleUser> {
 }
