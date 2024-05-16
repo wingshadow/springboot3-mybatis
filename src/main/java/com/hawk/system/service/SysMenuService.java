@@ -140,5 +140,4 @@ public interface SysMenuService extends BaseService<SysMenuMapper, SysMenu> {
 
     Set<String> getMenuPermission(SysUser user);
 
-    Set<String> getRolePermission(SysUser user);
 }

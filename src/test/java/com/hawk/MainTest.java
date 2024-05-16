@@ -8,8 +8,8 @@ import com.hawk.admin.orm.entity.*;
 import com.hawk.admin.orm.service.*;
 import com.hawk.common.core.domain.entity.SysDept;
 import com.hawk.common.core.domain.entity.SysRole;
-import com.hawk.common.core.domain.entity.SysRoleUser;
 import com.hawk.common.core.domain.entity.SysUser;
+import com.hawk.common.core.domain.entity.SysUserRole;
 import com.hawk.framework.service.DeptService;
 import com.hawk.system.service.*;
 import com.hawk.utils.StreamUtils;
@@ -90,7 +90,7 @@ public class MainTest {
 
     @Test
     public void test5(){
-        SysRoleUser roleUser = new SysRoleUser();
+        SysUserRole roleUser = new SysUserRole();
         roleUser.setRoleId(1784409023771230210L);
         roleUser.setUserId(1787008978792910849L);
         sysUserRoleService.save(roleUser);

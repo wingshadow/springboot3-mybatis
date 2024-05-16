@@ -313,21 +313,6 @@ public class SysMenuServiceImpl extends BaseServiceImpl<SysMenuMapper, SysMenu> 
         return perms;
     }
 
-    @Override
-    public Set<String> getRolePermission(SysUser user) {
-        Set<String> roles = new HashSet<>();
-        // 管理员拥有所有权限
-        if (user.isAdmin()) {
-            roles.add("admin");
-        } else {
-            roles.addAll(roleMapper.selectRolePermissionByUserId(user.getUserId()));
-            // 默认---角色
-            if (CollUtil.isEmpty(roles)) {
-                roles.add("workflowDefault");
-            }
-        }
-        return roles;
-    }
 
     /**
      * 获取路由名称
