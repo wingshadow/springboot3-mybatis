@@ -1,5 +1,6 @@
 package com.hawk.system.service;
 
+import com.hawk.common.core.domain.entity.SysRole;
 import com.hawk.system.mapper.SysUserMapper;
 import com.hawk.common.core.domain.entity.SysUser;
 import com.hawk.mybatis.common.BaseService;
@@ -14,4 +15,6 @@ import java.util.List;
  */
 public interface SysUserService extends BaseService<SysUserMapper, SysUser> {
     List<SysUser> getAllUser(SysUser sysUser);
+
+    List<SysRole> selectRoleByUserId(Long userId);
 }

@@ -44,7 +44,7 @@ public class SysLoginService {
         return StpUtil.getTokenValue();
     }
 
-    private LoginUser build(SysUser sysUser){
+    private LoginUser build(SysUser sysUser) {
         LoginUser loginUser = new LoginUser();
         loginUser.setUserId(sysUser.getUserId());
         loginUser.setUserAccount(sysUser.getUserAccount());
@@ -52,9 +52,10 @@ public class SysLoginService {
         loginUser.setUserType(sysUser.getUserType());
         loginUser.setRoles(sysUser.getRoles());
         loginUser.setDeptId(sysUser.getDeptId());
-        loginUser.setDeptName(sysUser.getDept().getDeptName());
+        loginUser.setDeptName(ObjectUtil.isNotEmpty(sysUser.getDept()) ? sysUser.getDept().getDeptName() : "");
         loginUser.setDept(sysUser.getDept());
         loginUser.setRoles(sysUser.getRoles());
+        loginUser.setPhone(sysUser.getMobile());
         return loginUser;
     }
 

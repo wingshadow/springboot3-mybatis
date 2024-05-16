@@ -23,6 +23,7 @@ public class SysUserServiceImpl extends BaseServiceImpl<SysUserMapper, SysUser> 
         return baseMapper.getAllUser(sysUser);
     }
 
+    @Override
     public List<SysRole> selectRoleByUserId(Long userId) {
         return baseMapper.selectRoleByUserId(userId);
     }

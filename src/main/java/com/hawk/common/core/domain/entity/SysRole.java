@@ -26,6 +26,16 @@ public class SysRole extends BaseEntity {
 
     private String dataScope;
 
+    /**
+     * 菜单树选择项是否关联显示（ 0：父子不互相关联显示 1：父子互相关联显示）
+     */
+    private Boolean menuCheckStrictly;
+
+    /**
+     * 部门树选择项是否关联显示（0：父子不互相关联显示 1：父子互相关联显示 ）
+     */
+    private Boolean deptCheckStrictly;
+
     private Integer sort;
 
     private Integer status;
