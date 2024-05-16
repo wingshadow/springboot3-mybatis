@@ -57,10 +57,10 @@ public class MainTest {
     public void test2(){
         SysUser sysUser = new SysUser();
         sysUser.setUserName("郭嘉");
-        sysUser.setAccount("guojia");
+        sysUser.setUserAccount("guojia");
         sysUser.setPassword(BCrypt.hashpw("123456"));
         sysUser.setDeptId(1784406554567671810L);
-        sysUser.setDelFlag(0);
+        sysUser.setDelFlag((short) 0);
         sysUserService.save(sysUser);
     }
 

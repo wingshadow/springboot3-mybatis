@@ -57,7 +57,7 @@ public class SysUser extends BaseDataEntity {
     @Size(min = 0, max = 30, message = "用户昵称长度不能超过{max}个字符")
     private String userName;
 
-    private short gender;
+    private Integer gender;
 
     @Sensitive(strategy = SensitiveStrategy.PHONE)
     private String mobile;
@@ -71,9 +71,9 @@ public class SysUser extends BaseDataEntity {
 
     private String userType;
 
-    private short status;
+    private Integer status;
 
-    private short delFlag;
+    private Integer delFlag;
 
     @JsonIgnore
     @TableField(exist = false)
