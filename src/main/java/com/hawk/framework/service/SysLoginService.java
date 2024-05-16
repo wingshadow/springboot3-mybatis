@@ -14,6 +14,7 @@ import com.hawk.common.enums.UserType;
 import com.hawk.framework.helper.LoginHelper;
 import com.hawk.framework.model.LoginUser;
 import com.hawk.system.service.SysMenuService;
+import com.hawk.system.service.SysRoleService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,6 +36,9 @@ public class SysLoginService {
 
     @Autowired
     private SysMenuService menuService;
+
+    @Autowired
+    private SysRoleService roleService;
 
     public String login(String userAccount, String password) {
         SysUser sysUser = loadUserByAccount(userAccount);
@@ -61,6 +65,7 @@ public class SysLoginService {
         loginUser.setRoles(sysUser.getRoles());
         loginUser.setPhone(sysUser.getMobile());
         loginUser.setMenuPermission(menuService.getMenuPermission(sysUser));
+        loginUser.setRolePermission(roleService.getRolePermission(sysUser));
         return loginUser;
     }
 

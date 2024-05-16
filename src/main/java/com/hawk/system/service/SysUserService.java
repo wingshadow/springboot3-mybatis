@@ -17,4 +17,5 @@ public interface SysUserService extends BaseService<SysUserMapper, SysUser> {
     List<SysUser> getAllUser(SysUser sysUser);
 
     List<SysRole> selectRoleByUserId(Long userId);
+
 }

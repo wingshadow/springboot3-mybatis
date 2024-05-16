@@ -7,15 +7,24 @@
                  LEFT JOIN sys_user_role sur ON sr.role_id = sur.role_id
                  LEFT JOIN sys_user u ON sur.user_id = u.user_id
                  LEFT JOIN sys_dept d ON u.dept_id = d.dept_id
-        WHERE 1=1
+        WHERE 1 = 1
             ${params.data_scope}
     </select>
 
     <select id="selectDeptByRoleId" resultType="com.hawk.common.core.domain.entity.SysDept">
         select *
-        from  sys_dept d
-            left join sys_role_dept rd on rd.dept_id = d.dept_id
-            left join sys_role r on r.role_id = rd.role_id
+        from sys_dept d
+                 left join sys_role_dept rd on rd.dept_id = d.dept_id
+                 left join sys_role r on r.role_id = rd.role_id
         where r.role_id = #{roleId}
+    </select>
+
+    <select id="selectRoleByUserId" resultType="com.hawk.common.core.domain.entity.SysRole">
+        SELECT r.*
+        FROM sys_role r
+                 LEFT JOIN sys_user_role sur ON r.role_id = sur.role_id
+                 LEFT JOIN sys_user u ON sur.user_id = u.user_id
+        WHERE r.del_flag = '0'
+          and sur.user_id = #{userId}
     </select>
 </mapper>
