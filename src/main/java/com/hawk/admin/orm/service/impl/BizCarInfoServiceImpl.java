@@ -23,24 +23,27 @@ import java.util.List;
 @Service
 public class BizCarInfoServiceImpl extends BaseServiceImpl<BizCarInfoMapper, BizCarInfo> implements BizCarInfoService {
 
+    @Override
     @DataScope(deptAlias = "d")
     public List<BizCarInfo> getCarInfoList(BizCarInfo carInfo) {
         return baseMapper.getCarInfoList(carInfo);
     }
 
 
+    @Override
     @DataScope(deptAlias = "d")
     public List<BizCarInfo> getCarInfoPage(BizCarInfo carInfo, int pageSize, int pageNum) {
         return baseMapper.getCarInfoPage(carInfo);
     }
 
 
+    @Override
     public PageInfo<BizCarInfo> getCarInfoPage2(BizCarInfo bizCarInfo, int pageSize, int pageNum) {
         Page<BizCarInfo> page = new Page<>(pageNum,pageSize);
         QueryWrapper<BizCarInfo> query = Wrappers.query();
         query.eq(StringUtils.isNotBlank(bizCarInfo.getCarNum()),"car_num",bizCarInfo.getCarNum());
         page = baseMapper.getCarInfoPage2(query,page);
-        return new PageInfo<>(page);
+        return PageInfo.build(page);
     }
 
 }
