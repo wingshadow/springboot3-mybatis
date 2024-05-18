@@ -1,6 +1,7 @@
 package com.hawk.system.service;
 
 import com.hawk.common.core.domain.entity.SysRole;
+import com.hawk.common.web.page.PageInfo;
 import com.hawk.system.mapper.SysUserMapper;
 import com.hawk.common.core.domain.entity.SysUser;
 import com.hawk.mybatis.common.BaseService;
@@ -18,4 +19,5 @@ public interface SysUserService extends BaseService<SysUserMapper, SysUser> {
 
     List<SysRole> selectRoleByUserId(Long userId);
 
+    PageInfo<SysUser> selectPageUserList(SysUser params, int pageSize, int pageNum);
 }

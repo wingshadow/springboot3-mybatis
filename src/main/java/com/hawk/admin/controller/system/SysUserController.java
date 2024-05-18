@@ -1,6 +1,8 @@
 package com.hawk.admin.controller.system;
 
 import com.hawk.common.core.domain.entity.SysUser;
+import com.hawk.common.web.page.PageInfo;
+import com.hawk.common.web.page.PageQuery;
 import com.hawk.common.web.resp.R;
 import com.hawk.system.service.SysUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,15 +19,15 @@ import java.util.List;
  * @create: 2023-02-14 15:06
  */
 @RestController
-@RequestMapping(value = "user")
-public class UserController {
+@RequestMapping(value = "/system/user")
+public class SysUserController {
 
     @Autowired
     private SysUserService userService;
 
-    @GetMapping(value = "list")
-    private R<List<SysUser>> list() {
-        return R.ok(userService.list());
+    @GetMapping(value = "/list")
+    private PageInfo<SysUser> list(SysUser user, int pageSize, int pageNum) {
+        return userService.selectPageUserList(user, pageSize, pageNum);
     }
 
 }
