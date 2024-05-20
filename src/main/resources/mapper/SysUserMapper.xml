@@ -95,7 +95,7 @@
         #{userAccount})
     </select>
 
-    <select id="selectPageUserList" resultMap="SysUserResult">
+    <select id="selectUserList" resultMap="SysUserResult">
         select u.user_id,
                u.dept_id,
                u.user_name,

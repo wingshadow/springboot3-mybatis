@@ -40,7 +40,8 @@ public class SysUserServiceImpl extends BaseServiceImpl<SysUserMapper, SysUser> 
         QueryWrapper<SysUser> query = Wrappers.query();
         query.likeRight(StringUtils.isNotBlank(params.getUserName()),"u.user_name",params.getUserName())
                 .likeRight(StringUtils.isNotBlank(params.getMobile()),"u.mobile",params.getMobile());
-        page = baseMapper.selectPageUserList(query,page);
+        page = baseMapper.selectUserList(query,page);
+//        baseMapper.selectPageUserList(query);
         return PageInfo.build(page);
     }
 }
