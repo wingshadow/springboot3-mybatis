@@ -1,5 +1,6 @@
 package com.hawk.system.service;
 
+import cn.hutool.core.lang.tree.Tree;
 import com.hawk.system.mapper.SysDeptMapper;
 import com.hawk.common.core.domain.entity.SysDept;
 import com.hawk.mybatis.common.BaseService;
@@ -17,4 +18,9 @@ public interface SysDeptService extends BaseService<SysDeptMapper, SysDept> {
     List<SysDept> getAllDeptList(SysDept sysDept);
     String getDeptAndChild(Long deptId);
 
+    List<SysDept> selectDeptList(SysDept dept);
+
+    List<Tree<Long>> selectDeptTreeList(SysDept dept);
+
+    List<Tree<Long>> buildDeptTreeSelect(List<SysDept> depts);
 }

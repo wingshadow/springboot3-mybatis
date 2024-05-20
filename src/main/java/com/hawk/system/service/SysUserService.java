@@ -25,4 +25,20 @@ public interface SysUserService extends BaseService<SysUserMapper, SysUser> {
 
     void checkUserDataScope(Long userId);
 
+    boolean checkUserAccountUnique(SysUser user);
+
+    boolean checkPhoneUnique(SysUser user);
+
+    boolean checkEmailUnique(SysUser user);
+
+    void checkUserAllowed(SysUser user);
+
+    int resetPwd(SysUser user);
+
+    int updateUserStatus(SysUser user);
+
+    void insertUserAuth(Long userId, Long[] roleIds);
+
+    void insertUserRole(Long userId, Long[] roleIds);
+
 }
