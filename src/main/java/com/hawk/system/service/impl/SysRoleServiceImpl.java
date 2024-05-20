@@ -38,7 +38,7 @@ public class SysRoleServiceImpl extends BaseServiceImpl<SysRoleMapper, SysRole> 
         if (user.isAdmin()) {
             roles.add("admin");
         } else {
-            List<SysRole> perms = baseMapper.selectRoleByUserId(user.getUserId());
+            List<SysRole> perms = this.getRoleByUserId(user.getUserId());
             for (SysRole perm : perms) {
                 if (ObjectUtil.isNotNull(perm)) {
                     roles.addAll(StringUtils.splitList(perm.getRoleName().trim()));
@@ -46,5 +46,10 @@ public class SysRoleServiceImpl extends BaseServiceImpl<SysRoleMapper, SysRole> 
             }
         }
         return roles;
+    }
+
+    @Override
+    public List<SysRole> getRoleByUserId(Long userId) {
+        return baseMapper.selectRoleByUserId(userId);
     }
 }

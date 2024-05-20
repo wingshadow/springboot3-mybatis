@@ -22,4 +22,6 @@ public interface SysRoleService extends BaseService<SysRoleMapper, SysRole> {
     List<SysDept> selectDeptByRoleId(Long roleId);
 
     Set<String> getRolePermission(SysUser user);
+
+    List<SysRole> getRoleByUserId(Long userId);
 }

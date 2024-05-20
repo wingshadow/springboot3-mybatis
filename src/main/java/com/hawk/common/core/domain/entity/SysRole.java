@@ -3,6 +3,7 @@ package com.hawk.common.core.domain.entity;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.hawk.common.constant.UserConstants;
 import com.hawk.common.entity.BaseEntity;
 import lombok.Getter;
 import lombok.Setter;
@@ -39,4 +40,8 @@ public class SysRole extends BaseEntity {
     private Integer sort;
 
     private Integer status;
+
+    public boolean isAdmin() {
+        return UserConstants.ADMIN_ID.equals(this.roleId);
+    }
 }
