@@ -3,9 +3,11 @@ package com.hawk.framework.config;
 import cn.hutool.core.net.NetUtil;
 import com.baomidou.mybatisplus.core.incrementer.DefaultIdentifierGenerator;
 import com.baomidou.mybatisplus.core.incrementer.IdentifierGenerator;
+import com.baomidou.mybatisplus.core.injector.ISqlInjector;
 import com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.inner.OptimisticLockerInnerInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.inner.PaginationInnerInterceptor;
+import com.hawk.mybatis.batch.CustomizedSqlInjector;
 import com.hawk.mybatis.interceptor.PermissionInterceptor;
 import jakarta.annotation.PostConstruct;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -43,6 +45,11 @@ public class MybatisConfig {
         // 乐观锁插件
         interceptor.addInnerInterceptor(optimisticLockerInnerInterceptor());
         return interceptor;
+    }
+
+    @Bean
+    public ISqlInjector iSqlInjector(){
+        return new CustomizedSqlInjector();
     }
 
     private PermissionInterceptor permissionInterceptor(){

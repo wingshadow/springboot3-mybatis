@@ -1,10 +1,16 @@
 package com.hawk.system.service;
 
+import com.baomidou.mybatisplus.core.conditions.Wrapper;
+import com.baomidou.mybatisplus.core.toolkit.Constants;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.hawk.common.core.domain.entity.SysUser;
+import com.hawk.common.core.domain.entity.SysUserRole;
+import com.hawk.common.web.page.PageInfo;
 import com.hawk.system.mapper.SysRoleMapper;
 import com.hawk.common.core.domain.entity.SysDept;
 import com.hawk.common.core.domain.entity.SysRole;
 import com.hawk.mybatis.common.BaseService;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 import java.util.Set;
@@ -24,4 +30,65 @@ public interface SysRoleService extends BaseService<SysRoleMapper, SysRole> {
     Set<String> getRolePermission(SysUser user);
 
     List<SysRole> getRoleByUserId(Long userId);
+
+    PageInfo<SysRole> selectRoleList(SysRole sysRole , int pageSize, int pageNum);
+
+    List<SysRole> selectRoleList(SysRole sysRole);
+
+    void checkRoleDataScope(Long roleId);
+
+    boolean checkRoleNameUnique(SysRole role);
+
+    boolean checkRoleKeyUnique(SysRole role);
+
+    void checkRoleAllowed(SysRole role);
+
+    int insertRole(SysRole role);
+
+    int updateRole(SysRole role);
+
+    int updateRoleStatus(SysRole role);
+
+    int authDataScope(SysRole role);
+
+    int deleteRoleById(Long roleId);
+
+    /**
+     * 批量删除角色信息
+     *
+     * @param roleIds 需要删除的角色ID
+     * @return 结果
+     */
+    int deleteRoleByIds(Long[] roleIds);
+
+    /**
+     * 取消授权用户角色
+     *
+     * @param userRole 用户和角色关联信息
+     * @return 结果
+     */
+    int deleteAuthUser(SysUserRole userRole);
+
+    /**
+     * 批量取消授权用户角色
+     *
+     * @param roleId  角色ID
+     * @param userIds 需要取消授权的用户数据ID
+     * @return 结果
+     */
+    int deleteAuthUsers(Long roleId, Long[] userIds);
+
+    /**
+     * 批量选择授权用户角色
+     *
+     * @param roleId  角色ID
+     * @param userIds 需要删除的用户数据ID
+     * @return 结果
+     */
+    int insertAuthUsers(Long roleId, Long[] userIds);
+
+    void cleanOnlineUserByRole(Long roleId);
+
+    long countUserRoleByRoleId(Long roleId);
+
 }

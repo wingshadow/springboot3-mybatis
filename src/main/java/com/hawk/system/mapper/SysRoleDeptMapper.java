@@ -2,6 +2,7 @@ package com.hawk.system.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.hawk.common.core.domain.entity.SysRoleDept;
+import com.hawk.mybatis.mapper.BaseMapperPlus;
 
 /**
  * @program: springboot3-mybatis
@@ -9,5 +10,5 @@ import com.hawk.common.core.domain.entity.SysRoleDept;
  * @author: zhb
  * @create: 2024-04-26 15:09
  */
-public interface SysRoleDeptMapper extends BaseMapper<SysRoleDept> {
+public interface SysRoleDeptMapper extends BaseMapperPlus<SysRoleDept> {
 }

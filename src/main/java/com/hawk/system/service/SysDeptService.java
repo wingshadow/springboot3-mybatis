@@ -23,4 +23,19 @@ public interface SysDeptService extends BaseService<SysDeptMapper, SysDept> {
     List<Tree<Long>> selectDeptTreeList(SysDept dept);
 
     List<Tree<Long>> buildDeptTreeSelect(List<SysDept> depts);
+
+    void checkDeptDataScope(Long deptId);
+
+    boolean checkDeptNameUnique(SysDept dept);
+
+    int insertDept(SysDept dept);
+
+    long selectNormalChildrenDeptById(Long deptId);
+
+    int updateDept(SysDept dept);
+
+    boolean hasChildByDeptId(Long deptId);
+
+    boolean checkDeptExistUser(Long deptId);
+
 }

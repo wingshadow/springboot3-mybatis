@@ -11,6 +11,7 @@ import com.hawk.common.core.domain.entity.SysRole;
 import com.hawk.common.core.domain.entity.SysUser;
 import com.hawk.common.core.domain.entity.SysUserRole;
 import com.hawk.framework.service.DeptService;
+import com.hawk.system.mapper.SysUserMapper;
 import com.hawk.system.service.*;
 import com.hawk.utils.StreamUtils;
 import jakarta.annotation.Resource;
@@ -20,6 +21,7 @@ import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Slf4j
@@ -47,6 +49,9 @@ public class MainTest {
 
     @Resource
     private DeptService deptService;
+
+    @Resource
+    private SysUserMapper userMapper;
 
     @Test
     public void test1() {
@@ -111,5 +116,25 @@ public class MainTest {
         carInfo.setDeptName("规划处");
         carInfo.setCarNum("鲁A28R21");
         bizCarInfoService.save(carInfo);
+    }
+
+    @Test
+    public void insertBatch(){
+        List<SysUser> list = new ArrayList<>();
+        SysUser user1 = new SysUser();
+        user1.setUserAccount("lisi");
+
+        SysUser user2 = new SysUser();
+        user2.setUserAccount("zhangsan");
+
+        list.add(user1);
+        list.add(user2);
+        userMapper.insertBatch(list);
+
+    }
+
+    public static void main(String[] args) {
+        Integer status = 1;
+        System.out.println(status.toString());
     }
 }

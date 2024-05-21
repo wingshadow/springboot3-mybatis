@@ -1,11 +1,13 @@
 package com.hawk.common.core.domain.entity;
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.hawk.common.constant.UserConstants;
 import com.hawk.common.entity.BaseEntity;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 /**
@@ -16,6 +18,7 @@ import lombok.Setter;
  */
 @Getter
 @Setter
+@NoArgsConstructor
 @TableName("sys_role")
 public class SysRole extends BaseEntity {
 
@@ -41,6 +44,15 @@ public class SysRole extends BaseEntity {
 
     private Integer status;
 
+    @TableField(exist = false)
+    private Long[] menuIds;
+
+    @TableField(exist = false)
+    private Long[] deptIds;
+
+    public SysRole(Long roleId){
+        this.roleId = roleId;
+    }
     public boolean isAdmin() {
         return UserConstants.ADMIN_ID.equals(this.roleId);
     }

@@ -5,8 +5,16 @@ import cn.hutool.core.convert.Convert;
 import cn.hutool.core.lang.tree.Tree;
 import cn.hutool.core.util.ObjectUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
+import com.hawk.common.constant.CacheNames;
+import com.hawk.common.constant.UserConstants;
+import com.hawk.common.core.domain.entity.SysUser;
+import com.hawk.common.exception.ServiceException;
+import com.hawk.common.utils.CacheUtils;
+import com.hawk.framework.helper.LoginHelper;
 import com.hawk.system.mapper.SysDeptMapper;
 import com.hawk.common.core.domain.entity.SysDept;
+import com.hawk.system.mapper.SysUserMapper;
 import com.hawk.system.service.SysDeptService;
 import com.hawk.framework.helper.DataBaseHelper;
 import com.hawk.framework.service.DeptService;
@@ -15,9 +23,11 @@ import com.hawk.common.utils.SpringUtils;
 import com.hawk.utils.StreamUtils;
 import com.hawk.utils.StringUtils;
 import com.hawk.utils.TreeBuildUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -29,6 +39,9 @@ import java.util.stream.Collectors;
  */
 @Service
 public class SysDeptServiceImpl extends BaseServiceImpl<SysDeptMapper, SysDept> implements SysDeptService, DeptService {
+
+    @Autowired
+    private SysUserMapper userMapper;
 
     @Override
     public String selectDeptNameByIds(String deptIds) {
@@ -141,4 +154,98 @@ public class SysDeptServiceImpl extends BaseServiceImpl<SysDeptMapper, SysDept> 
                         .setWeight(dept.getOrderNum()));
     }
 
+    @Override
+    public void checkDeptDataScope(Long deptId) {
+        if (!LoginHelper.isAdmin()) {
+            SysDept dept = new SysDept();
+            dept.setDeptId(deptId);
+            List<SysDept> depts = this.selectDeptList(dept);
+            if (CollUtil.isEmpty(depts)) {
+                throw new ServiceException("没有权限访问部门数据！");
+            }
+        }
+    }
+
+    @Override
+    public boolean checkDeptNameUnique(SysDept dept) {
+        boolean exist = baseMapper.exists(new LambdaQueryWrapper<SysDept>()
+                .eq(SysDept::getDeptName, dept.getDeptName())
+                .eq(SysDept::getParentId, dept.getParentId())
+                .ne(ObjectUtil.isNotNull(dept.getDeptId()), SysDept::getDeptId, dept.getDeptId()));
+        return !exist;
+    }
+
+    @Override
+    public int insertDept(SysDept dept) {
+        SysDept info = baseMapper.selectById(dept.getParentId());
+        // 如果父节点不为正常状态,则不允许新增子节点
+        if (!UserConstants.DEPT_NORMAL.equals(info.getStatus().toString())) {
+            throw new ServiceException("部门停用，不允许新增");
+        }
+        dept.setAncestors(info.getAncestors() + StringUtils.SEPARATOR + dept.getParentId());
+        return baseMapper.insert(dept);
+    }
+
+    @Override
+    public long selectNormalChildrenDeptById(Long deptId) {
+        return baseMapper.selectCount(new LambdaQueryWrapper<SysDept>()
+                .eq(SysDept::getStatus, UserConstants.DEPT_NORMAL)
+                .apply(DataBaseHelper.findInSet(deptId, "ancestors")));
+    }
+
+    @Override
+    public int updateDept(SysDept dept) {
+        SysDept newParentDept = baseMapper.selectById(dept.getParentId());
+        SysDept oldDept = baseMapper.selectById(dept.getDeptId());
+        if (ObjectUtil.isNotNull(newParentDept) && ObjectUtil.isNotNull(oldDept)) {
+            String newAncestors = newParentDept.getAncestors() + StringUtils.SEPARATOR + newParentDept.getDeptId();
+            String oldAncestors = oldDept.getAncestors();
+            dept.setAncestors(newAncestors);
+            updateDeptChildren(dept.getDeptId(), newAncestors, oldAncestors);
+        }
+        int result = baseMapper.updateById(dept);
+        if (UserConstants.DEPT_NORMAL.equals(dept.getStatus().toString()) && StringUtils.isNotEmpty(dept.getAncestors())
+                && !StringUtils.equals(UserConstants.DEPT_NORMAL, dept.getAncestors())) {
+            // 如果该部门是启用状态，则启用该部门的所有上级部门
+            updateParentDeptStatusNormal(dept);
+        }
+        return result;
+    }
+
+    private void updateParentDeptStatusNormal(SysDept dept) {
+        String ancestors = dept.getAncestors();
+        Long[] deptIds = Convert.toLongArray(ancestors);
+        baseMapper.update(null, new LambdaUpdateWrapper<SysDept>()
+                .set(SysDept::getStatus, UserConstants.DEPT_NORMAL)
+                .in(SysDept::getDeptId, Arrays.asList(deptIds)));
+    }
+
+    public void updateDeptChildren(Long deptId, String newAncestors, String oldAncestors) {
+        List<SysDept> children = baseMapper.selectList(new LambdaQueryWrapper<SysDept>()
+                .apply(DataBaseHelper.findInSet(deptId, "ancestors")));
+        List<SysDept> list = new ArrayList<>();
+        for (SysDept child : children) {
+            SysDept dept = new SysDept();
+            dept.setDeptId(child.getDeptId());
+            dept.setAncestors(child.getAncestors().replaceFirst(oldAncestors, newAncestors));
+            list.add(dept);
+        }
+        if (CollUtil.isNotEmpty(list)) {
+            if (baseMapper.updateBatchById(list)) {
+                list.forEach(dept -> CacheUtils.evict(CacheNames.SYS_DEPT, dept.getDeptId()));
+            }
+        }
+    }
+
+    @Override
+    public boolean hasChildByDeptId(Long deptId) {
+        return baseMapper.exists(new LambdaQueryWrapper<SysDept>()
+                .eq(SysDept::getParentId, deptId));
+    }
+
+    @Override
+    public boolean checkDeptExistUser(Long deptId) {
+        return userMapper.exists(new LambdaQueryWrapper<SysUser>()
+                .eq(SysUser::getDeptId, deptId));
+    }
 }

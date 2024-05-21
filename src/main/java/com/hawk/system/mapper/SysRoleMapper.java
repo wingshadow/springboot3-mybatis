@@ -1,8 +1,13 @@
 package com.hawk.system.mapper;
 
+import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.baomidou.mybatisplus.core.toolkit.Constants;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.hawk.common.core.domain.entity.SysDept;
 import com.hawk.common.core.domain.entity.SysRole;
+import com.hawk.mybatis.annotation.DataScope;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -18,4 +23,8 @@ public interface SysRoleMapper extends BaseMapper<SysRole> {
     List<SysDept> selectDeptByRoleId(Long roleId);
 
     List<SysRole> selectRoleByUserId(Long userId);
+
+    Page<SysRole> selectRoleList(@Param(Constants.WRAPPER) Wrapper<SysRole> queryWrapper,@Param("page") Page<SysRole> page);
+
+    List<SysRole> selectRoleList(@Param(Constants.WRAPPER) Wrapper<SysRole> queryWrapper);
 }

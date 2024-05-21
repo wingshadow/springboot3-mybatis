@@ -7,6 +7,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.hawk.common.core.domain.entity.SysDept;
 import com.hawk.common.core.domain.entity.SysUser;
 import com.hawk.mybatis.annotation.DataScope;
+import com.hawk.mybatis.mapper.BaseMapperPlus;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -17,7 +18,7 @@ import java.util.List;
  * @author: zhb
  * @create: 2024-04-26 15:09
  */
-public interface SysDeptMapper extends BaseMapper<SysDept> {
+public interface SysDeptMapper extends BaseMapperPlus<SysDept> {
 
     List<SysDept> getAllDeptList();
 

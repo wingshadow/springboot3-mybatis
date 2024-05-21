@@ -157,9 +157,7 @@ public class SysUserServiceImpl extends BaseServiceImpl<SysUserMapper, SysUser> 
                 ur.setRoleId(roleId);
                 return ur;
             });
-            list.forEach(r->{
-                userRoleMapper.insert(r);
-            });
+            userRoleMapper.insertBatch(list);
         }
     }
 
