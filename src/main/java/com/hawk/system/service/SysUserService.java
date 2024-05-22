@@ -21,6 +21,10 @@ public interface SysUserService extends BaseService<SysUserMapper, SysUser> {
 
     PageInfo<SysUser> selectPageUserList(SysUser params, int pageSize, int pageNum);
 
+    PageInfo<SysUser> selectAllocatedList(SysUser params, int pageSize, int pageNum);
+
+    PageInfo<SysUser>  selectUnallocatedList(SysUser params, int pageSize, int pageNum);
+
     List<SysUser> selectUserList(SysUser user);
 
     void checkUserDataScope(Long userId);

@@ -38,4 +38,6 @@ public interface SysDeptService extends BaseService<SysDeptMapper, SysDept> {
 
     boolean checkDeptExistUser(Long deptId);
 
+    List<Long> selectDeptListByRoleId(Long roleId);
+
 }

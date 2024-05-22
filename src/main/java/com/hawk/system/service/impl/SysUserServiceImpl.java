@@ -81,6 +81,33 @@ public class SysUserServiceImpl extends BaseServiceImpl<SysUserMapper, SysUser> 
     }
 
     @Override
+    public PageInfo<SysUser> selectAllocatedList(SysUser user, int pageSize, int pageNum) {
+        Page<SysUser> page = new Page<>(pageNum, pageSize);
+        QueryWrapper<SysUser> wrapper = Wrappers.query();
+        wrapper.eq("u.del_flag", UserConstants.USER_NORMAL)
+                .eq(ObjectUtil.isNotNull(user.getRoleId()), "r.role_id", user.getRoleId())
+                .like(StringUtils.isNotBlank(user.getUserName()), "u.user_name", user.getUserName())
+                .eq(ObjectUtil.isNotEmpty(user.getStatus()), "u.status", user.getStatus())
+                .like(StringUtils.isNotBlank(user.getMobile()), "u.mobile", user.getMobile());
+        page = baseMapper.selectAllocatedList(wrapper, page);
+        return PageInfo.build(page);
+    }
+
+    @Override
+    public PageInfo<SysUser> selectUnallocatedList(SysUser user, int pageSize, int pageNum) {
+        Page<SysUser> page = new Page<>(pageNum, pageSize);
+        List<Long> userIds = userRoleMapper.selectUserIdsByRoleId(user.getRoleId());
+        QueryWrapper<SysUser> wrapper = Wrappers.query();
+        wrapper.eq("u.del_flag", UserConstants.USER_NORMAL)
+                .and(w -> w.ne("r.role_id", user.getRoleId()).or().isNull("r.role_id"))
+                .notIn(CollUtil.isNotEmpty(userIds), "u.user_id", userIds)
+                .like(StringUtils.isNotBlank(user.getUserAccount()), "u.user_account", user.getUserAccount())
+                .like(StringUtils.isNotBlank(user.getMobile()), "u.mobile", user.getMobile());
+        page = baseMapper.selectUnallocatedList(wrapper, page);
+        return PageInfo.build(page);
+    }
+
+    @Override
     public List<SysUser> selectUserList(SysUser user) {
         return baseMapper.selectUserList(this.buildQueryWrapper(user));
     }

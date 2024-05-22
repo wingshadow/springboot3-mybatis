@@ -28,4 +28,6 @@ public interface SysDeptMapper extends BaseMapperPlus<SysDept> {
 
     @DataScope(deptAlias = "d")
     List<SysDept> selectDeptList(@Param(Constants.WRAPPER) Wrapper<SysDept> queryWrapper);
+
+    List<Long> selectDeptListByRoleId(@Param("roleId") Long roleId, @Param("deptCheckStrictly") boolean deptCheckStrictly);
 }

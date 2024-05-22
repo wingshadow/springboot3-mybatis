@@ -8,12 +8,14 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.hawk.common.constant.CacheNames;
 import com.hawk.common.constant.UserConstants;
+import com.hawk.common.core.domain.entity.SysRole;
 import com.hawk.common.core.domain.entity.SysUser;
 import com.hawk.common.exception.ServiceException;
 import com.hawk.common.utils.CacheUtils;
 import com.hawk.framework.helper.LoginHelper;
 import com.hawk.system.mapper.SysDeptMapper;
 import com.hawk.common.core.domain.entity.SysDept;
+import com.hawk.system.mapper.SysRoleMapper;
 import com.hawk.system.mapper.SysUserMapper;
 import com.hawk.system.service.SysDeptService;
 import com.hawk.framework.helper.DataBaseHelper;
@@ -42,6 +44,9 @@ public class SysDeptServiceImpl extends BaseServiceImpl<SysDeptMapper, SysDept> 
 
     @Autowired
     private SysUserMapper userMapper;
+
+    @Autowired
+    private SysRoleMapper roleMapper;
 
     @Override
     public String selectDeptNameByIds(String deptIds) {
@@ -247,5 +252,11 @@ public class SysDeptServiceImpl extends BaseServiceImpl<SysDeptMapper, SysDept> 
     public boolean checkDeptExistUser(Long deptId) {
         return userMapper.exists(new LambdaQueryWrapper<SysUser>()
                 .eq(SysUser::getDeptId, deptId));
+    }
+
+    @Override
+    public List<Long> selectDeptListByRoleId(Long roleId){
+        SysRole role = roleMapper.selectById(roleId);
+        return baseMapper.selectDeptListByRoleId(roleId, role.getDeptCheckStrictly());
     }
 }

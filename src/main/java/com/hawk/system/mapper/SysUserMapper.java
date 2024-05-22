@@ -30,4 +30,12 @@ public interface SysUserMapper extends BaseMapperPlus<SysUser> {
 
     @DataScope(deptAlias = "d")
     List<SysUser> selectUserList(@Param(Constants.WRAPPER) Wrapper<SysUser> queryWrapper);
+
+    @DataScope(deptAlias = "d")
+    Page<SysUser> selectAllocatedList(@Param(Constants.WRAPPER) Wrapper<SysUser> queryWrapper,
+                                      @Param("page") Page<SysUser> page);
+
+    @DataScope(deptAlias = "d")
+    Page<SysUser> selectUnallocatedList(@Param(Constants.WRAPPER) Wrapper<SysUser> queryWrapper,
+                                      @Param("page") Page<SysUser> page);
 }
