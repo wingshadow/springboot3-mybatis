@@ -3,9 +3,9 @@ package ${packageName}.service.impl;
 import cn.hutool.core.bean.BeanUtil;
 import com.ruoyi.common.utils.StringUtils;
 #if($table.crud || $table.sub)
-import com.ruoyi.common.core.page.TableDataInfo;
-import com.ruoyi.common.core.domain.PageQuery;
-import com.ruoyi.common.mybatis.service.impl.BaseServiceImpl;
+import com.hawk.common.core.page.PageInfo;
+import com.hawk.common.core.domain.PageQuery;
+import com.hawk.common.mybatis.service.impl.BaseServiceImpl;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 #end
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
@@ -48,9 +48,9 @@ public class ${ClassName}ServiceImpl extends BaseServiceImpl<${ClassName}Mapper,
      * 查询${functionName}列表
      */
     @Override
-    public TableDataInfo<${ClassName}Vo> queryPageList(${ClassName}Bo bo, PageQuery pageQuery) {
+    public PageInfo<${ClassName}VO> queryPageList(${ClassName}BO bo, PageQuery pageQuery) {
         LambdaQueryWrapper<${ClassName}> lqw = buildQueryWrapper(bo);
-        Page<${ClassName}Vo> result = baseMapper.selectVoPage(pageQuery.build(), lqw);
+        Page<${ClassName}VO> result = baseMapper.selectVoPage(pageQuery.build(), lqw);
         return TableDataInfo.build(result);
     }
 #end

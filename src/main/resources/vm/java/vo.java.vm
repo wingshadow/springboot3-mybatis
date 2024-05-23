@@ -5,8 +5,8 @@ import ${import};
 #end
 import com.alibaba.excel.annotation.ExcelIgnoreUnannotated;
 import com.alibaba.excel.annotation.ExcelProperty;
-import com.ruoyi.common.annotation.ExcelDictFormat;
-import com.ruoyi.common.convert.ExcelDictConvert;
+import com.hawk.common.annotation.ExcelDictFormat;
+import com.hawk.common.convert.ExcelDictConvert;
 import lombok.Data;
 import java.util.Date;
 
@@ -20,7 +20,7 @@ import java.util.Date;
  */
 @Data
 @ExcelIgnoreUnannotated
-public class ${ClassName}Vo {
+public class ${ClassName}VO {
 
     private static final long serialVersionUID = 1L;
 

@@ -5,8 +5,8 @@ import ${import};
 #end
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
-import com.ruoyi.common.annotation.Excel;
-import com.ruoyi.common.core.domain.BaseEntity;
+import com.hawk.common.annotation.Excel;
+import com.hawk.common.core.domain.BaseDataEntity;
 
 /**
  * ${subTable.functionName}对象 ${subTableName}
@@ -14,7 +14,7 @@ import com.ruoyi.common.core.domain.BaseEntity;
  * @author ${author}
  * @date ${datetime}
  */
-public class ${subClassName} extends BaseEntity
+public class ${subClassName} extends BaseDataEntity
 {
     private static final long serialVersionUID = 1L;
 

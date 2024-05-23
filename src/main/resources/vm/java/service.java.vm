@@ -4,8 +4,8 @@ import ${packageName}.domain.${ClassName};
 import ${packageName}.domain.vo.${ClassName}Vo;
 import ${packageName}.domain.bo.${ClassName}Bo;
 #if($table.crud || $table.sub)
-import com.ruoyi.common.core.page.TableDataInfo;
-import com.ruoyi.common.core.domain.PageQuery;
+import com.hawk.common.core.page.PageInfo;
+import com.hawk.common.core.domain.PageQuery;
 #end
 import com.ruoyi.common.mybatis.service.BaseService;
 
@@ -29,7 +29,7 @@ public interface I${ClassName}Service extends BaseService<${ClassName}>  {
     /**
      * 查询${functionName}列表
      */
-    TableDataInfo<${ClassName}Vo> queryPageList(${ClassName}Bo bo, PageQuery pageQuery);
+    PageInfo<${ClassName}Vo> queryPageList(${ClassName}Bo bo, PageQuery pageQuery);
 #end
 
     /**
