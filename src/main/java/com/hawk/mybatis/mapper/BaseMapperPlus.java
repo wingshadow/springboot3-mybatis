@@ -12,6 +12,7 @@ import java.util.Collection;
  * @create: 2024-05-21 14:21
  */
 public interface BaseMapperPlus<T> extends BaseMapper<T> {
+
     default boolean insertBatch(Collection<T> entityList) {
         return Db.saveBatch(entityList);
     }
@@ -21,5 +22,9 @@ public interface BaseMapperPlus<T> extends BaseMapper<T> {
      */
     default boolean updateBatchById(Collection<T> entityList) {
         return Db.updateBatchById(entityList);
+    }
+
+    default boolean insertOrUpdateBatch(Collection<T> entityList) {
+        return Db.saveOrUpdateBatch(entityList);
     }
 }

@@ -4,8 +4,6 @@ package com.hawk;
 import cn.hutool.core.convert.Convert;
 import cn.hutool.crypto.digest.BCrypt;
 import cn.hutool.json.JSONUtil;
-import com.hawk.admin.orm.entity.*;
-import com.hawk.admin.orm.service.*;
 import com.hawk.common.core.domain.entity.SysDept;
 import com.hawk.common.core.domain.entity.SysRole;
 import com.hawk.common.core.domain.entity.SysUser;
@@ -44,8 +42,6 @@ public class MainTest {
     @Resource
     private SysUserRoleService sysUserRoleService;
 
-    @Resource
-    private BizCarInfoService bizCarInfoService;
 
     @Resource
     private DeptService deptService;
@@ -107,15 +103,6 @@ public class MainTest {
         List<Long> ids2 = deptService.deptByParent(1L);
         log.info("ids1:{}", ids1);
         log.info("ids2:{}", Convert.toStr(StreamUtils.join(ids2, Convert::toStr)));
-    }
-
-    @Test
-    public void test7(){
-        BizCarInfo carInfo = new BizCarInfo();
-        carInfo.setDeptId(1784407217880092673L);
-        carInfo.setDeptName("规划处");
-        carInfo.setCarNum("鲁A28R21");
-        bizCarInfoService.save(carInfo);
     }
 
     @Test
