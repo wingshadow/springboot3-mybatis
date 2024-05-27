@@ -7,6 +7,7 @@ import com.hawk.common.core.domain.entity.SysDictData;
 import com.hawk.common.exception.ServiceException;
 import com.hawk.common.utils.CacheUtils;
 import com.hawk.common.web.page.PageInfo;
+import com.hawk.mybatis.common.impl.BaseServiceImpl;
 import com.hawk.system.mapper.SysDictDataMapper;
 import com.hawk.system.service.SysDictDataService;
 import com.hawk.utils.StringUtils;
@@ -23,7 +24,7 @@ import java.util.List;
  */
 @RequiredArgsConstructor
 @Service
-public class SysDictDataServiceImpl implements SysDictDataService {
+public class SysDictDataServiceImpl extends BaseServiceImpl<SysDictDataMapper,SysDictData> implements SysDictDataService {
 
     private final SysDictDataMapper baseMapper;
 

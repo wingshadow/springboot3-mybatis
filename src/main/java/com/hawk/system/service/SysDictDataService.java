@@ -3,6 +3,8 @@ package com.hawk.system.service;
 
 import com.hawk.common.core.domain.entity.SysDictData;
 import com.hawk.common.web.page.PageInfo;
+import com.hawk.mybatis.common.BaseService;
+import com.hawk.system.mapper.SysDictDataMapper;
 
 import java.util.List;
 
@@ -11,7 +13,7 @@ import java.util.List;
  *
  * @author Lion Li
  */
-public interface SysDictDataService {
+public interface SysDictDataService extends BaseService<SysDictDataMapper, SysDictData> {
 
 
     PageInfo<SysDictData> selectPageDictDataList(SysDictData dictData, int pageSize, int pageNum);

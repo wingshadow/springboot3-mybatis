@@ -2,6 +2,7 @@ package com.hawk.common.excel;
 
 import com.alibaba.excel.metadata.Head;
 import com.alibaba.excel.write.merge.AbstractMergeStrategy;
+import com.hawk.common.annotation.CellMerge;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.SneakyThrows;

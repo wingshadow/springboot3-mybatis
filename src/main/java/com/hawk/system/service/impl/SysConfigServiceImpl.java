@@ -14,6 +14,7 @@ import com.hawk.common.utils.CacheUtils;
 import com.hawk.common.utils.SpringUtils;
 import com.hawk.common.web.page.PageInfo;
 import com.hawk.framework.service.ConfigService;
+import com.hawk.mybatis.common.impl.BaseServiceImpl;
 import com.hawk.system.mapper.SysConfigMapper;
 import com.hawk.system.service.SysConfigService;
 import com.hawk.utils.StringUtils;
@@ -33,7 +34,7 @@ import java.util.Map;
  */
 @RequiredArgsConstructor
 @Service
-public class SysConfigServiceImpl implements SysConfigService, ConfigService {
+public class SysConfigServiceImpl extends BaseServiceImpl<SysConfigMapper,SysConfig> implements SysConfigService, ConfigService {
 
     private final SysConfigMapper baseMapper;
 

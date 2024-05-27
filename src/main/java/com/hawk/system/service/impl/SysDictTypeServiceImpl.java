@@ -16,6 +16,7 @@ import com.hawk.common.utils.CacheUtils;
 import com.hawk.common.utils.SpringUtils;
 import com.hawk.common.web.page.PageInfo;
 import com.hawk.framework.service.DictService;
+import com.hawk.mybatis.common.impl.BaseServiceImpl;
 import com.hawk.system.mapper.SysDictDataMapper;
 import com.hawk.system.mapper.SysDictTypeMapper;
 import com.hawk.system.service.SysDictTypeService;
@@ -37,7 +38,7 @@ import java.util.stream.Collectors;
  */
 @RequiredArgsConstructor
 @Service
-public class SysDictTypeServiceImpl implements SysDictTypeService, DictService {
+public class SysDictTypeServiceImpl extends BaseServiceImpl<SysDictTypeMapper, SysDictType> implements SysDictTypeService, DictService {
 
     private final SysDictTypeMapper baseMapper;
     private final SysDictDataMapper dictDataMapper;
@@ -80,7 +81,7 @@ public class SysDictTypeServiceImpl implements SysDictTypeService, DictService {
      */
     @Override
     public List<SysDictType> selectDictTypeAll() {
-        return baseMapper.selectList();
+        return listAll();
     }
 
     /**

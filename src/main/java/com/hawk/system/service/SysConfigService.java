@@ -3,6 +3,8 @@ package com.hawk.system.service;
 
 import com.hawk.common.core.domain.entity.SysConfig;
 import com.hawk.common.web.page.PageInfo;
+import com.hawk.mybatis.common.BaseService;
+import com.hawk.system.mapper.SysConfigMapper;
 
 import java.util.List;
 
@@ -11,7 +13,7 @@ import java.util.List;
  *
  * @author Lion Li
  */
-public interface SysConfigService {
+public interface SysConfigService extends BaseService<SysConfigMapper,SysConfig> {
 
 
     PageInfo<SysConfig> selectPageConfigList(SysConfig config, int pageSize, int pageNum);
