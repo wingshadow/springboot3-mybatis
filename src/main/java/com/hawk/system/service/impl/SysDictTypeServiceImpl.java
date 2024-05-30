@@ -52,7 +52,7 @@ public class SysDictTypeServiceImpl extends BaseServiceImpl<SysDictTypeMapper, S
                 .like(StringUtils.isNotBlank(dictType.getDictType()), SysDictType::getDictType, dictType.getDictType())
                 .between(params.get("beginTime") != null && params.get("endTime") != null,
                         SysDictType::getCreateTime, params.get("beginTime"), params.get("endTime"));
-        Page<SysDictType> page = new Page<>(pageSize, pageNum);
+        Page<SysDictType> page = new Page<>(pageNum,pageSize);
         page = baseMapper.selectPage(page, lqw);
         return PageInfo.build(page);
     }

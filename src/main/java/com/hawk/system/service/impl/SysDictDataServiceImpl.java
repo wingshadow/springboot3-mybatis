@@ -35,7 +35,7 @@ public class SysDictDataServiceImpl extends BaseServiceImpl<SysDictDataMapper,Sy
             .like(StringUtils.isNotBlank(dictData.getDictLabel()), SysDictData::getDictLabel, dictData.getDictLabel())
             .eq(StringUtils.isNotBlank(dictData.getStatus()), SysDictData::getStatus, dictData.getStatus())
             .orderByAsc(SysDictData::getDictSort);
-        Page<SysDictData> page = new Page<>(pageSize,pageNum);
+        Page<SysDictData> page = new Page<>(pageNum,pageSize);
         page = baseMapper.selectPage(page, lqw);
         return PageInfo.build(page);
     }

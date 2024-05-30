@@ -59,6 +59,7 @@ public class SysUser extends BaseDataEntity {
 
     private String nickName;
 
+    @JsonFormat(shape = JsonFormat.Shape.STRING)
     private Integer gender;
 
     @Sensitive(strategy = SensitiveStrategy.PHONE)
@@ -73,8 +74,10 @@ public class SysUser extends BaseDataEntity {
 
     private String userType;
 
+    @JsonFormat(shape = JsonFormat.Shape.STRING)
     private Integer status;
 
+    @JsonFormat(shape = JsonFormat.Shape.STRING)
     private Integer delFlag;
 
     @JsonIgnore
