@@ -20,9 +20,9 @@ public interface SysDeptService extends BaseService<SysDeptMapper, SysDept> {
 
     List<SysDept> selectDeptList(SysDept dept);
 
-    List<Tree<Long>> selectDeptTreeList(SysDept dept);
+    List<Tree<String>> selectDeptTreeList(SysDept dept);
 
-    List<Tree<Long>> buildDeptTreeSelect(List<SysDept> depts);
+    List<Tree<String>> buildDeptTreeSelect(List<SysDept> depts);
 
     void checkDeptDataScope(Long deptId);
 

@@ -142,7 +142,7 @@ public class SysUserController extends BaseController {
     }
 
     @GetMapping("/deptTree")
-    public R<List<Tree<Long>>> deptTree(SysDept dept) {
+    public R<List<Tree<String>>> deptTree(SysDept dept) {
         if (dept == null) {
             dept = LoginHelper.getLoginUser().getDept();
         }

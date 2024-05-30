@@ -12,7 +12,13 @@ import lombok.Data;
 @Data
 public class SysUserForm extends BasePageForm {
 
+    private String userAccount;
+
     private String userName;
 
     private String mobile;
+
+    private String deptId;
+
+    private String status;
 }

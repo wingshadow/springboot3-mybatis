@@ -9,13 +9,16 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.hawk.common.constant.UserConstants;
+import com.hawk.common.core.domain.entity.SysDept;
 import com.hawk.common.core.domain.entity.SysRole;
 import com.hawk.common.core.domain.entity.SysUser;
 import com.hawk.common.core.domain.entity.SysUserRole;
 import com.hawk.common.exception.ServiceException;
 import com.hawk.common.web.page.PageInfo;
+import com.hawk.framework.helper.DataBaseHelper;
 import com.hawk.framework.helper.LoginHelper;
 import com.hawk.mybatis.common.impl.BaseServiceImpl;
+import com.hawk.system.mapper.SysDeptMapper;
 import com.hawk.system.mapper.SysUserMapper;
 import com.hawk.system.mapper.SysUserRoleMapper;
 import com.hawk.system.service.SysUserService;
@@ -43,6 +46,9 @@ public class SysUserServiceImpl extends BaseServiceImpl<SysUserMapper, SysUser> 
     @Autowired
     private SysUserRoleMapper userRoleMapper;
 
+    @Autowired
+    private SysDeptMapper deptMapper;
+
     @Override
     public List<SysUser> getAllUser(SysUser sysUser) {
         return baseMapper.getAllUser(sysUser);
@@ -62,7 +68,15 @@ public class SysUserServiceImpl extends BaseServiceImpl<SysUserMapper, SysUser> 
                 .eq(ObjectUtil.isNotEmpty(user.getStatus()), "u.status", user.getStatus())
                 .like(StringUtils.isNotBlank(user.getMobile()), "u.mobile", user.getMobile())
                 .between(params.get("beginTime") != null && params.get("endTime") != null,
-                        "u.create_time", params.get("beginTime"), params.get("endTime"));
+                        "u.create_time", params.get("beginTime"), params.get("endTime"))
+                .and(ObjectUtil.isNotNull(user.getDeptId()), w -> {
+                    List<SysDept> deptList = deptMapper.selectList(new LambdaQueryWrapper<SysDept>()
+                            .select(SysDept::getDeptId)
+                            .apply(DataBaseHelper.findInSet(user.getDeptId(), "ancestors")));
+                    List<Long> ids = StreamUtils.toList(deptList, SysDept::getDeptId);
+                    ids.add(user.getDeptId());
+                    w.in("u.dept_id", ids);
+                });
         return wrapper;
     }
 

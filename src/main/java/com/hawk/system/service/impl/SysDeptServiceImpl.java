@@ -1,5 +1,6 @@
 package com.hawk.system.service.impl;
 
+import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.convert.Convert;
 import cn.hutool.core.lang.tree.Tree;
@@ -10,6 +11,7 @@ import com.hawk.common.constant.CacheNames;
 import com.hawk.common.constant.UserConstants;
 import com.hawk.common.core.domain.entity.SysRole;
 import com.hawk.common.core.domain.entity.SysUser;
+import com.hawk.common.core.domain.vo.SysDeptVO;
 import com.hawk.common.exception.ServiceException;
 import com.hawk.common.utils.CacheUtils;
 import com.hawk.framework.helper.LoginHelper;
@@ -136,8 +138,9 @@ public class SysDeptServiceImpl extends BaseServiceImpl<SysDeptMapper, SysDept> 
     }
 
     @Override
-    public List<Tree<Long>> selectDeptTreeList(SysDept dept) {
+    public List<Tree<String>> selectDeptTreeList(SysDept dept) {
         List<SysDept> depts = this.selectDeptList(dept);
+
         return buildDeptTreeSelect(depts);
     }
 
@@ -148,15 +151,18 @@ public class SysDeptServiceImpl extends BaseServiceImpl<SysDeptMapper, SysDept> 
      * @return 下拉树结构列表
      */
     @Override
-    public List<Tree<Long>> buildDeptTreeSelect(List<SysDept> depts) {
+    public List<Tree<String>> buildDeptTreeSelect(List<SysDept> depts) {
         if (CollUtil.isEmpty(depts)) {
             return CollUtil.newArrayList();
         }
-        return TreeBuildUtils.build(depts, (dept, tree) ->
-                tree.setId(dept.getDeptId())
-                        .setParentId(dept.getParentId())
-                        .setName(dept.getDeptName())
-                        .setWeight(dept.getOrderNum()));
+        // 解决ID超过16位精度不足的问题
+        List<SysDeptVO> list = BeanUtil.copyToList(depts, SysDeptVO.class);
+
+        return TreeBuildUtils.build(list, (deptVO, tree) ->
+                tree.setId(deptVO.getDeptId())
+                        .setParentId(deptVO.getParentId())
+                        .setName(deptVO.getDeptName())
+                        .setWeight(deptVO.getOrderNum()));
     }
 
     @Override
