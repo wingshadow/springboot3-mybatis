@@ -6,7 +6,7 @@ import com.baomidou.mybatisplus.core.handlers.MetaObjectHandler;
 import com.hawk.common.entity.BaseDataEntity;
 import com.hawk.common.exception.ServiceException;
 import com.hawk.framework.helper.LoginHelper;
-import com.hawk.framework.model.LoginUser;
+import com.hawk.common.core.domain.model.LoginUser;
 import com.hawk.utils.StringUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.reflection.MetaObject;

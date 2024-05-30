@@ -4,22 +4,19 @@ import cn.dev33.satoken.secure.BCrypt;
 import cn.dev33.satoken.stp.StpUtil;
 import cn.hutool.core.util.ObjectUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.hawk.common.enums.LoginType;
+import com.hawk.common.enums.LoginMsgCode;
+import com.hawk.common.enums.LoginWay;
 import com.hawk.common.enums.UserStatus;
 import com.hawk.common.exception.UserException;
 import com.hawk.system.mapper.SysUserMapper;
-import com.hawk.common.core.domain.entity.SysRole;
 import com.hawk.common.core.domain.entity.SysUser;
-import com.hawk.common.enums.UserType;
 import com.hawk.framework.helper.LoginHelper;
-import com.hawk.framework.model.LoginUser;
+import com.hawk.common.core.domain.model.LoginUser;
 import com.hawk.system.service.SysMenuService;
 import com.hawk.system.service.SysRoleService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 /**
  * @program: springboot3-mybatis
@@ -44,11 +41,11 @@ public class SysLoginService {
         SysUser sysUser = loadUserByAccount(userAccount);
         assert sysUser != null;
         if (!BCrypt.checkpw(password, sysUser.getPassword())) {
-            return null;
+            throw new UserException("user.password.error");
         }
 //        List<SysRole> roleList = userMapper.selectRoleByUserId(sysUser.getUserId());
         LoginUser loginUser = build(sysUser);
-        LoginHelper.loginByDevice(loginUser, LoginType.PC);
+        LoginHelper.loginByDevice(loginUser, LoginWay.PC);
         return StpUtil.getTokenValue();
     }
 

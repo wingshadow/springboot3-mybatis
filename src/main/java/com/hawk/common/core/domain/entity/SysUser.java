@@ -57,6 +57,8 @@ public class SysUser extends BaseDataEntity {
     @Size(min = 0, max = 30, message = "用户昵称长度不能超过{max}个字符")
     private String userName;
 
+    private String nickName;
+
     private Integer gender;
 
     @Sensitive(strategy = SensitiveStrategy.PHONE)

@@ -1,4 +1,4 @@
-package com.hawk.framework.model;
+package com.hawk.common.core.domain.model;
 
 import com.hawk.common.core.domain.entity.SysDept;
 import com.hawk.common.core.domain.entity.SysRole;

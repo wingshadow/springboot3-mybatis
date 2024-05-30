@@ -9,9 +9,9 @@ import cn.hutool.core.convert.Convert;
 import cn.hutool.core.util.ObjectUtil;
 import com.hawk.common.core.domain.entity.SysDept;
 import com.hawk.common.constant.UserConstants;
-import com.hawk.common.enums.LoginType;
+import com.hawk.common.enums.LoginWay;
 import com.hawk.common.enums.UserType;
-import com.hawk.framework.model.LoginUser;
+import com.hawk.common.core.domain.model.LoginUser;
 import com.hawk.framework.service.DeptService;
 import com.hawk.common.utils.SpringUtils;
 import lombok.AccessLevel;
@@ -56,13 +56,13 @@ public class LoginHelper {
      *
      * @param loginUser 登录用户信息
      */
-    public static void loginByDevice(LoginUser loginUser, LoginType loginType) {
+    public static void loginByDevice(LoginUser loginUser, LoginWay loginWay) {
         SaStorage storage = SaHolder.getStorage();
         storage.set(LOGIN_USER_KEY, loginUser);
         storage.set(USER_KEY, loginUser.getUserId());
         SaLoginModel model = new SaLoginModel();
-        if (loginType != null) {
-            model.setDevice(loginType.getLoginType());
+        if (loginWay != null) {
+            model.setDevice(loginWay.getLoginType());
         }
         StpUtil.login(loginUser.getLoginId(), model.setExtra(USER_KEY, loginUser.getUserId()));
         StpUtil.getTokenSession().set(LOGIN_USER_KEY, loginUser);

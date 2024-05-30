@@ -1,6 +1,5 @@
 package com.hawk.common.enums;
 
-import com.hawk.utils.StringUtils;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -12,7 +11,7 @@ import lombok.Getter;
  */
 @Getter
 @AllArgsConstructor
-public enum LoginType {
+public enum LoginWay {
 
     PC("PC"),
 

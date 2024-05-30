@@ -184,4 +184,11 @@ public class SysUserServiceImpl extends BaseServiceImpl<SysUserMapper, SysUser> 
         }
     }
 
+    @Override
+    public boolean registerUser(SysUser user){
+        user.setCreateBy(user.getUserAccount());
+        user.setUpdateBy(user.getUserAccount());
+        return baseMapper.insert(user) > 0;
+    }
+
 }

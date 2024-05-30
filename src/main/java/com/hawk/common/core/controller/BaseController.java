@@ -3,7 +3,7 @@ package com.hawk.common.core.controller;
 
 import com.hawk.common.web.resp.R;
 import com.hawk.framework.helper.LoginHelper;
-import com.hawk.framework.model.LoginUser;
+import com.hawk.common.core.domain.model.LoginUser;
 import com.hawk.utils.StringUtils;
 
 /**

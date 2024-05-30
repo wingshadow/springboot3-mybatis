@@ -45,4 +45,6 @@ public interface SysUserService extends BaseService<SysUserMapper, SysUser> {
 
     void insertUserRole(Long userId, Long[] roleIds);
 
+    boolean registerUser(SysUser user);
+
 }

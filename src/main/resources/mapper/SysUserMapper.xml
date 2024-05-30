@@ -6,6 +6,7 @@
         <result property="deptId" column="dept_id"/>
         <result property="userAccount" column="user_account"/>
         <result property="userName" column="user_name"/>
+        <result property="nickName" column="nick_name"/>
         <result property="userType" column="user_type"/>
         <result property="email" column="email"/>
         <result property="mobile" column="mobile"/>
@@ -44,6 +45,7 @@
                u.dept_id,
                u.user_account,
                u.user_name,
+               u.nick_name,
                u.user_type,
                u.email,
                u.avatar,
@@ -99,6 +101,7 @@
         select u.user_id,
                u.dept_id,
                u.user_name,
+               u.nick_name,
                u.user_account,
                u.email,
                u.avatar,

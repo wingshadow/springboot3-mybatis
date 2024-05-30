@@ -6,7 +6,7 @@ import com.hawk.common.core.domain.entity.SysMenu;
 import com.hawk.common.core.domain.entity.SysUser;
 import com.hawk.framework.helper.LoginHelper;
 import com.hawk.framework.model.LoginBody;
-import com.hawk.framework.model.LoginUser;
+import com.hawk.common.core.domain.model.LoginUser;
 import com.hawk.framework.service.SysLoginService;
 import com.hawk.common.web.resp.R;
 import com.hawk.system.domain.vo.RouterVo;
@@ -22,7 +22,6 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 /**
  * @program: springboot3-mybatis

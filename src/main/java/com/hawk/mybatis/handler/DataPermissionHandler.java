@@ -11,7 +11,7 @@ import com.hawk.common.core.domain.entity.SysDept;
 import com.hawk.common.core.domain.entity.SysRole;
 import com.hawk.system.service.SysRoleService;
 import com.hawk.framework.helper.LoginHelper;
-import com.hawk.framework.model.LoginUser;
+import com.hawk.common.core.domain.model.LoginUser;
 import com.hawk.framework.service.DeptService;
 import com.hawk.mybatis.annotation.DataScope;
 import com.hawk.common.utils.SpringUtils;
