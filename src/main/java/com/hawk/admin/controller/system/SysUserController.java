@@ -57,15 +57,12 @@ public class SysUserController extends BaseController {
     public R<Map<String, Object>> getInfo(@PathVariable(value = "userId", required = false) Long userId) {
         Map<String, Object> ajax = new HashMap<>();
         userService.checkUserDataScope(userId);
+        List<SysRole> roles = roleService.getAllRoleList();
+        ajax.put("roles", LoginHelper.isAdmin(userId) ? roles : StreamUtils.filter(roles, r -> !r.isAdmin()));
         if (ObjectUtil.isNotNull(userId)) {
-            if (LoginHelper.isAdmin(userId)) {
-                List<SysRole> roles = roleService.getAllRoleList();
-                ajax.put("roles", LoginHelper.isAdmin(userId) ? roles : StreamUtils.filter(roles, r -> !r.isAdmin()));
-            } else {
-                SysUser sysUser = userService.getByPrimaryKey(userId);
-                ajax.put("user", sysUser);
-                ajax.put("roleIds", StreamUtils.toList(roleService.getRoleByUserId(userId), SysRole::getRoleId));
-            }
+            SysUser sysUser = userService.getByPrimaryKey(userId);
+            ajax.put("user", sysUser);
+            ajax.put("roleIds", StreamUtils.toList(roleService.getRoleByUserId(userId), SysRole::getRoleId));
         }
         return R.ok(ajax);
     }

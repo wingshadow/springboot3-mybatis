@@ -81,8 +81,13 @@ public class PageInfo<T> implements Serializable {
         return pageInfo;
     }
 
-    public static <R, T> PageInfo<R> build(PageInfo<T> tableDataInfo, Class<R> type) {
-        return build(tableDataInfo, t -> BeanUtil.toBean(t, type));
+    public static <R, T> PageInfo<R> build(PageInfo<T> pageInfo, Class<R> type) {
+        return build(pageInfo, t -> BeanUtil.toBean(t, type));
+    }
+
+    public static <R, T> PageInfo<R> build(IPage<T> page, Class<R> type) {
+        PageInfo pageInfo = build(page);
+        return build(pageInfo, t -> BeanUtil.toBean(t, type));
     }
 
     public static <R, T> PageInfo<R> build(PageInfo<T> tableDataInfo, Function<T, R> function) {

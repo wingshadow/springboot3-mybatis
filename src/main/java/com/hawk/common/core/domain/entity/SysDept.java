@@ -31,6 +31,9 @@ public class SysDept extends TreeEntity<SysDept> {
 
     private Integer orderNum;
 
+    @JsonFormat(shape = JsonFormat.Shape.STRING)
     private Integer status;
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING)
     private Integer delFlag;
 }
