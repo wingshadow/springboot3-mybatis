@@ -1,6 +1,7 @@
 package com.hawk.framework.config;
 
 import cn.hutool.core.net.NetUtil;
+import com.baomidou.mybatisplus.core.handlers.MetaObjectHandler;
 import com.baomidou.mybatisplus.core.incrementer.DefaultIdentifierGenerator;
 import com.baomidou.mybatisplus.core.incrementer.IdentifierGenerator;
 import com.baomidou.mybatisplus.core.injector.ISqlInjector;
@@ -8,16 +9,12 @@ import com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.inner.OptimisticLockerInnerInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.inner.PaginationInnerInterceptor;
 import com.hawk.mybatis.batch.CustomizedSqlInjector;
+import com.hawk.mybatis.handler.FillInsertAndUpdateMetaObjectHandler;
 import com.hawk.mybatis.interceptor.PermissionInterceptor;
-import jakarta.annotation.PostConstruct;
-import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.annotation.MapperScan;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
-
-import java.util.List;
 
 /**
  * @program: springboot3-mybatis
@@ -70,6 +67,14 @@ public class MybatisConfig {
      */
     public OptimisticLockerInnerInterceptor optimisticLockerInnerInterceptor() {
         return new OptimisticLockerInnerInterceptor();
+    }
+
+    /**
+     * 元对象字段填充控制器
+     */
+    @Bean
+    public MetaObjectHandler metaObjectHandler() {
+        return new FillInsertAndUpdateMetaObjectHandler();
     }
 
 

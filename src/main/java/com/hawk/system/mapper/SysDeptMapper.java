@@ -9,6 +9,7 @@ import com.hawk.common.core.domain.entity.SysUser;
 import com.hawk.mybatis.annotation.DataScope;
 import com.hawk.mybatis.mapper.BaseMapperPlus;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
 
@@ -23,10 +24,11 @@ public interface SysDeptMapper extends BaseMapperPlus<SysDept> {
     List<SysDept> getAllDeptList();
 
     @DataScope(deptAlias = "d")
-    Page<SysDept> selectDeptList(@Param(Constants.WRAPPER) Wrapper<SysDept> queryWrapper,
+    Page<SysDept> selectPageDeptList(@Param(Constants.WRAPPER) Wrapper<SysDept> queryWrapper,
                                  @Param("page") Page<SysDept> page);
 
     @DataScope(deptAlias = "d")
+    @Select("select * from sys_dept d ${ew.getCustomSqlSegment}")
     List<SysDept> selectDeptList(@Param(Constants.WRAPPER) Wrapper<SysDept> queryWrapper);
 
     List<Long> selectDeptListByRoleId(@Param("roleId") Long roleId, @Param("deptCheckStrictly") boolean deptCheckStrictly);

@@ -12,7 +12,7 @@
             ${params.data_scope}
     </select>
 
-    <select id="selectDeptList" resultType="com.hawk.common.core.domain.entity.SysDept">
+    <select id="selectPageDeptList" resultType="com.hawk.common.core.domain.entity.SysDept">
         select *
         from sys_dept ${ew.getCustomSqlSegment}
     </select>

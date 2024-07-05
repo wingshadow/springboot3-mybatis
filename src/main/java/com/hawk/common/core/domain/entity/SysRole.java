@@ -26,6 +26,8 @@ public class SysRole extends BaseEntity {
     @TableId(value = "role_id")
     private Long roleId;
 
+    private String roleKey;
+
     private String roleName;
 
     private String dataScope;
@@ -42,7 +44,7 @@ public class SysRole extends BaseEntity {
 
     private Integer sort;
 
-    private Integer status;
+    private String status;
 
     @TableField(exist = false)
     private Long[] menuIds;
