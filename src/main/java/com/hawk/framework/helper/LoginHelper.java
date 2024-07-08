@@ -72,13 +72,23 @@ public class LoginHelper {
      * 获取用户(多级缓存)
      */
     public static LoginUser getLoginUser() {
-        LoginUser loginUser = (LoginUser) SaHolder.getStorage().get(LOGIN_USER_KEY);
-        if (loginUser != null) {
+        try {
+            LoginUser loginUser = (LoginUser) SaHolder.getStorage().get(LOGIN_USER_KEY);
+            if (loginUser != null) {
+                return loginUser;
+            }
+            loginUser = (LoginUser) StpUtil.getTokenSession().get(LOGIN_USER_KEY);
+            if (loginUser == null) {
+                return null;
+            }
+            SaHolder.getStorage().set(LOGIN_USER_KEY, loginUser);
             return loginUser;
+        } catch (Exception e) {
+            if (!StpUtil.isLogin()) {
+                return null;
+            }
         }
-        loginUser = (LoginUser) StpUtil.getTokenSession().get(LOGIN_USER_KEY);
-        SaHolder.getStorage().set(LOGIN_USER_KEY, loginUser);
-        return loginUser;
+        return null;
     }
 
     /**

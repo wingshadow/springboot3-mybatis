@@ -37,21 +37,21 @@ public class DataBaseHelper {
 //        }
 //    }
 
-//    public static boolean isMySql() {
-//        return DataBaseType.MY_SQL == getDataBaseType();
-//    }
-//
-//    public static boolean isOracle() {
-//        return DataBaseType.ORACLE == getDataBaseType();
-//    }
-//
-//    public static boolean isPostgerSql() {
-//        return DataBaseType.POSTGRE_SQL == getDataBaseType();
-//    }
-//
-//    public static boolean isSqlServer() {
-//        return DataBaseType.SQL_SERVER == getDataBaseType();
-//    }
+    public static boolean isMySql() {
+        return true;
+    }
+
+    public static boolean isOracle() {
+        return false;
+    }
+
+    public static boolean isPostgerSql() {
+        return false;
+    }
+
+    public static boolean isSqlServer() {
+        return false;
+    }
 
     public static String findInSet(Object var1, String var2) {
 //        DataBaseType dataBasyType = getDataBaseType();

@@ -2,12 +2,9 @@ package com.hawk.generator.util;
 
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.convert.Convert;
-import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.lang.Dict;
 import cn.hutool.core.util.ObjectUtil;
 import com.hawk.common.constant.GenConstants;
-
-import com.hawk.framework.helper.DataBaseHelper;
 import com.hawk.generator.domain.GenTable;
 import com.hawk.generator.domain.GenTableColumn;
 import com.hawk.utils.DateUtils;
