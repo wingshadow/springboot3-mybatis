@@ -34,7 +34,6 @@ public class SysLoginController {
 
     @Autowired
     private SysLoginService loginService;
-
     @Autowired
     private SysUserService userService;
     @Autowired
@@ -64,9 +63,6 @@ public class SysLoginController {
     @GetMapping("getInfo")
     public R<Map<String, Object>> getInfo() {
         LoginUser loginUser = LoginHelper.getLoginUser();
-        if(loginUser == null){
-            return R.fail("请重新登陆");
-        }
         SysUser user = new SysUser();
         user.setUserId(loginUser.getUserId());
         user = userService.listOne(user);
