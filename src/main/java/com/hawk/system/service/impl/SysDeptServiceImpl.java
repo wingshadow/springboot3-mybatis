@@ -67,6 +67,7 @@ public class SysDeptServiceImpl extends BaseServiceImpl<SysDeptMapper, SysDept> 
         if (ObjectUtil.isNull(dept)) {
             return null;
         }
+        // 结果返回deptName的sql，例如：select dept_name from dept
         SysDept parentDept = baseMapper.selectOne(new LambdaQueryWrapper<SysDept>()
                 .select(SysDept::getDeptName).eq(SysDept::getDeptId, dept.getParentId()));
         dept.setParentName(ObjectUtil.isNotNull(parentDept) ? parentDept.getDeptName() : null);
