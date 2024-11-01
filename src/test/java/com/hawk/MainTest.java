@@ -99,10 +99,11 @@ public class MainTest {
 
     @Test
     public void test6(){
-        String ids1 = sysDeptService.getDeptAndChild(1L);
-        List<Long> ids2 = deptService.deptByParent(1L);
-        log.info("ids1:{}", ids1);
-        log.info("ids2:{}", Convert.toStr(StreamUtils.join(ids2, Convert::toStr)));
+//        String ids1 = sysDeptService.getDeptAndChild(1L);
+//        List<Long> ids2 = deptService.deptByParent(1L);
+//        log.info("ids1:{}", ids1);
+//        log.info("ids2:{}", Convert.toStr(StreamUtils.join(ids2, Convert::toStr)));
+        sysDeptService.selectNormalChildrenDeptById(1L);
     }
 
     @Test
