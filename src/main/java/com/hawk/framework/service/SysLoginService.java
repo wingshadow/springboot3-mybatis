@@ -68,7 +68,7 @@ public class SysLoginService {
 
     private SysUser loadUserByAccount(String userAccount) {
         SysUser user = userMapper.selectOne(new LambdaQueryWrapper<SysUser>()
-                .select(SysUser::getUserId, SysUser::getUserAccount, SysUser::getDelFlag, SysUser::getPassword, SysUser::getStatus)
+                .select(SysUser::getUserId, SysUser::getUserAccount, SysUser::getIsDeleted, SysUser::getPassword, SysUser::getStatus)
                 .eq(SysUser::getUserAccount, userAccount));
         if (ObjectUtil.isNull(user)) {
             log.info("登录用户：{} 不存在.", userAccount);

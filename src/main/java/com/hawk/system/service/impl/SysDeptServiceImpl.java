@@ -78,7 +78,7 @@ public class SysDeptServiceImpl extends BaseServiceImpl<SysDeptMapper, SysDept> 
     public List<Long> deptByParent(Long parentDeptId) {
         List<Long> deptList = CollUtil.newArrayList(parentDeptId);
         LambdaQueryWrapper<SysDept> lqw = new LambdaQueryWrapper<SysDept>()
-                .eq(SysDept::getParentId, parentDeptId).eq(SysDept::getDelFlag, "0");
+                .eq(SysDept::getParentId, parentDeptId).eq(SysDept::getIsDeleted, "0");
         deptList.addAll(CollUtil.emptyIfNull(baseMapper.selectList(lqw)).stream().map(SysDept::getDeptId)
                 .toList());
         return deptList;
@@ -87,7 +87,7 @@ public class SysDeptServiceImpl extends BaseServiceImpl<SysDeptMapper, SysDept> 
     @Override
     public List<Long> deptByAncestors(String ancestors) {
         LambdaQueryWrapper<SysDept> lqw = new LambdaQueryWrapper<SysDept>()
-                .likeLeft(SysDept::getAncestors, ancestors).eq(SysDept::getDelFlag, "0");
+                .likeLeft(SysDept::getAncestors, ancestors).eq(SysDept::getIsDeleted, "0");
         return CollUtil.emptyIfNull(baseMapper.selectList(lqw)).stream().map(SysDept::getDeptId)
                 .collect(Collectors.toList());
     }
@@ -128,7 +128,7 @@ public class SysDeptServiceImpl extends BaseServiceImpl<SysDeptMapper, SysDept> 
     @Override
     public List<SysDept> selectDeptList(SysDept dept) {
         LambdaQueryWrapper<SysDept> lqw = new LambdaQueryWrapper<>();
-        lqw.eq(SysDept::getDelFlag, "0")
+        lqw.eq(SysDept::getIsDeleted, "0")
                 .eq(ObjectUtil.isNotNull(dept.getDeptId()), SysDept::getDeptId, dept.getDeptId())
                 .eq(ObjectUtil.isNotNull(dept.getParentId()), SysDept::getParentId, dept.getParentId())
                 .like(StringUtils.isNotBlank(dept.getDeptName()), SysDept::getDeptName, dept.getDeptName())

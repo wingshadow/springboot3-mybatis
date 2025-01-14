@@ -78,7 +78,7 @@ public class SysUser extends BaseDataEntity {
     private Integer status;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING)
-    private Integer delFlag;
+    private Integer isDeleted;
 
     @JsonIgnore
     @TableField(exist = false)

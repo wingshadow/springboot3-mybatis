@@ -79,7 +79,7 @@ public class SysRoleServiceImpl extends BaseServiceImpl<SysRoleMapper, SysRole> 
     private Wrapper<SysRole> buildQueryWrapper(SysRole role) {
         Map<String, Object> params = role.getParams();
         QueryWrapper<SysRole> wrapper = Wrappers.query();
-        wrapper.eq("r.del_flag", UserConstants.USER_RETAIN)
+        wrapper.eq("r.is_deleted", UserConstants.USER_RETAIN)
                 .eq(ObjectUtil.isNotNull(role.getRoleId()), "r.role_id", role.getRoleId())
                 .like(StringUtils.isNotBlank(role.getRoleName()), "r.role_name", role.getRoleName());
         return wrapper;
