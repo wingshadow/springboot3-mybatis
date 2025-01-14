@@ -36,7 +36,6 @@ public class DataBaseHelper {
 //            throw new RuntimeException(e.getMessage());
 //        }
 //    }
-
     public static boolean isMySql() {
         return true;
     }
@@ -67,6 +66,7 @@ public class DataBaseHelper {
 //            return "instr(','||" + var2 + "||',' , '," + var + ",') <> 0";
 //        }
         // find_in_set('100' , '0,100,101')
+//        return "(select array_position(string_to_array('" + var + "', ','), '" + var2 + "'))";
         return "find_in_set('" + var + "' , " + var2 + ") <> 0";
     }
 }

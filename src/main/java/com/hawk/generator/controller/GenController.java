@@ -80,7 +80,7 @@ public class GenController extends BaseController {
     public PageInfo<GenTableColumn> columnList(Long tableId) {
         PageInfo<GenTableColumn> dataInfo = new PageInfo<>();
         List<GenTableColumn> list = genTableService.selectGenTableColumnListByTableId(tableId);
-        dataInfo.setRows(list);
+        dataInfo.setList(list);
         dataInfo.setTotal(list.size());
         return dataInfo;
     }

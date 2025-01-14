@@ -33,7 +33,7 @@ public class PageInfo<T> implements Serializable {
     /**
      * 列表数据
      */
-    private List<T> rows;
+    private List<T> list;
 
     /**
      * 消息状态码
@@ -52,7 +52,7 @@ public class PageInfo<T> implements Serializable {
      * @param total 总记录数
      */
     public PageInfo(List<T> list, long total) {
-        this.rows = list;
+        this.list = list;
         this.total = total;
     }
 
@@ -60,7 +60,7 @@ public class PageInfo<T> implements Serializable {
         PageInfo<T> pageInfo = new PageInfo<>();
         pageInfo.setCode(HttpStatus.HTTP_OK);
         pageInfo.setMsg("查询成功");
-        pageInfo.setRows(page.getRecords());
+        pageInfo.setList(page.getRecords());
         pageInfo.setTotal(page.getTotal());
         return pageInfo;
     }
@@ -69,7 +69,7 @@ public class PageInfo<T> implements Serializable {
         PageInfo<T> pageInfo = new PageInfo<>();
         pageInfo.setCode(HttpStatus.HTTP_OK);
         pageInfo.setMsg("查询成功");
-        pageInfo.setRows(list);
+        pageInfo.setList(list);
         pageInfo.setTotal(list.size());
         return pageInfo;
     }
@@ -94,7 +94,7 @@ public class PageInfo<T> implements Serializable {
         PageInfo<R> pageInfo = new PageInfo<>();
         pageInfo.setCode(tableDataInfo.getCode());
         pageInfo.setMsg(tableDataInfo.getMsg());
-        pageInfo.setRows(DefUtil.def(tableDataInfo.getRows()).stream().map(function).collect(Collectors.toList()));
+        pageInfo.setList(DefUtil.def(tableDataInfo.getList()).stream().map(function).collect(Collectors.toList()));
         pageInfo.setTotal(tableDataInfo.getTotal());
         return pageInfo;
     }

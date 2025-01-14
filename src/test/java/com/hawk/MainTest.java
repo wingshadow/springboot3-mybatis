@@ -4,10 +4,7 @@ package com.hawk;
 import cn.hutool.core.convert.Convert;
 import cn.hutool.crypto.digest.BCrypt;
 import cn.hutool.json.JSONUtil;
-import com.hawk.common.core.domain.entity.SysDept;
-import com.hawk.common.core.domain.entity.SysRole;
-import com.hawk.common.core.domain.entity.SysUser;
-import com.hawk.common.core.domain.entity.SysUserRole;
+import com.hawk.common.core.domain.entity.*;
 import com.hawk.framework.service.DeptService;
 import com.hawk.system.mapper.SysUserMapper;
 import com.hawk.system.service.*;
@@ -48,6 +45,9 @@ public class MainTest {
 
     @Resource
     private SysUserMapper userMapper;
+
+    @Resource
+    private SysConfigService configService;
 
     @Test
     public void test1() {
@@ -119,6 +119,12 @@ public class MainTest {
         list.add(user2);
         userMapper.insertBatch(list);
 
+    }
+
+    @Test
+    public void test7(){
+        List<SysConfig> list = configService.listAll();
+        log.info("{}", JSONUtil.toJsonStr(list));
     }
 
     public static void main(String[] args) {
