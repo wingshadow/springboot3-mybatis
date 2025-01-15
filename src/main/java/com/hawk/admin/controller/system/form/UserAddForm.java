@@ -85,5 +85,5 @@ public class UserAddForm extends BaseForm {
      */
     private Long[] roleIds;
 
-
+    private String status;
 }

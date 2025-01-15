@@ -77,6 +77,7 @@ public class SysUserServiceImpl extends BaseServiceImpl<SysUserMapper, SysUser> 
                     ids.add(user.getDeptId());
                     w.in("u.dept_id", ids);
                 });
+        wrapper.orderByAsc("u.create_time");
         return wrapper;
     }
 

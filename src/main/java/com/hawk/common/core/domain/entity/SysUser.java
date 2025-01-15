@@ -75,10 +75,10 @@ public class SysUser extends BaseDataEntity {
     private String userType;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING)
-    private Integer status;
+    private String status;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING)
-    private Integer isDeleted;
+    private String isDeleted;
 
     @JsonIgnore
     @TableField(exist = false)

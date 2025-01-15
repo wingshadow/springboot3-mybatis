@@ -7,6 +7,7 @@ import cn.hutool.core.util.ArrayUtil;
 import cn.hutool.core.util.ObjectUtil;
 import com.hawk.admin.controller.system.form.SysUserForm;
 import com.hawk.admin.controller.system.form.UserAddForm;
+import com.hawk.common.constant.UserConstants;
 import com.hawk.common.core.controller.BaseController;
 import com.hawk.common.core.domain.entity.SysDept;
 import com.hawk.common.core.domain.entity.SysRole;
@@ -77,6 +78,9 @@ public class SysUserController extends BaseController {
         } else if (StringUtils.isNotEmpty(user.getEmail()) && !userService.checkEmailUnique(user)) {
             return R.fail("新增用户'" + user.getUserName() + "'失败，邮箱账号已存在");
         }
+        user.setIsDeleted(UserConstants.USER_RETAIN);
+        user.setUserType(UserConstants.SYS_USER);
+        user.setNickName(user.getUserName());
         user.setPassword(BCrypt.hashpw(user.getPassword()));
         return toAjax(userService.insert(user));
     }

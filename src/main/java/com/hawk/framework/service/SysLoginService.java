@@ -73,7 +73,7 @@ public class SysLoginService {
         if (ObjectUtil.isNull(user)) {
             log.info("登录用户：{} 不存在.", userAccount);
             throw new UserException("user.not.exists", userAccount);
-        } else if (UserStatus.DISABLE.getCode() == user.getStatus()) {
+        } else if (UserStatus.DISABLE.getCode() == Integer.parseInt(user.getStatus())) {
             log.info("登录用户：{} 已被停用.", userAccount);
             throw new UserException("user.blocked", userAccount);
         }
