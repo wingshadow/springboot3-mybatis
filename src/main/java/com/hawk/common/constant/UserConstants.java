@@ -84,7 +84,7 @@ public interface UserConstants {
     /**
      * 菜单停用状态
      */
-    String MENU_DISABLE = "10";
+    String MENU_DISABLE = "1";
 
     /**
      * 菜单类型（目录）
