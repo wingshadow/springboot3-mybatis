@@ -1,35 +1,47 @@
 package com.hawk.framework.exception.base;
 
-import com.hawk.common.utils.MessageUtils;
+import com.hawk.utils.MessageUtils;
 import com.hawk.utils.StringUtils;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 /**
- * @program: springboot3-mybatis
- * @description:
- * @author: zhb
- * @create: 2024-05-06 14:39
+ * 基础异常
+ *
+ * @author ruoyi
  */
 @Data
 @EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
 public class BaseException extends RuntimeException {
+    private static final long serialVersionUID = 1L;
 
+    /**
+     * 所属模块
+     */
     private String module;
 
+    /**
+     * 错误码
+     */
     private String code;
 
+    /**
+     * 错误码对应的参数
+     */
     private Object[] args;
 
-    private String message;
+    /**
+     * 错误消息
+     */
+    private String defaultMessage;
 
-    public BaseException(String module, String code, Object[] args, String message) {
+    public BaseException(String module, String code, Object[] args, String defaultMessage) {
         this.module = module;
         this.code = code;
         this.args = args;
-        this.message = message;
+        this.defaultMessage = defaultMessage;
     }
 
     public BaseException(String module, String code, Object[] args) {
@@ -54,6 +66,10 @@ public class BaseException extends RuntimeException {
         if (!StringUtils.isEmpty(code)) {
             message = MessageUtils.message(code, args);
         }
+        if (message == null) {
+            message = defaultMessage;
+        }
         return message;
     }
+
 }

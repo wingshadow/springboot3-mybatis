@@ -1,7 +1,5 @@
 package com.hawk.framework.exception.user;
 
-import com.hawk.common.exception.UserException;
-
 /**
  * 验证码失效异常类
  *
