@@ -1,6 +1,6 @@
 package com.hawk.framework.exception.base;
 
-import com.hawk.utils.MessageUtils;
+import com.hawk.common.utils.MessageUtils;
 import com.hawk.utils.StringUtils;
 import lombok.Data;
 import lombok.EqualsAndHashCode;

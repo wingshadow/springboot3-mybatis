@@ -1,4 +1,4 @@
-package com.hawk.admin.controller.system;
+package com.hawk.controller.system;
 
 import cn.hutool.core.convert.Convert;
 import com.hawk.common.constant.UserConstants;

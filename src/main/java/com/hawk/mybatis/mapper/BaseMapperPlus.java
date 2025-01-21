@@ -16,14 +16,9 @@ public interface BaseMapperPlus<T> extends BaseMapper<T> {
     default boolean insertBatch(Collection<T> entityList) {
         return Db.saveBatch(entityList);
     }
-
-    /**
-     * 批量更新
-     */
     default boolean updateBatchById(Collection<T> entityList) {
         return Db.updateBatchById(entityList);
     }
-
     default boolean insertOrUpdateBatch(Collection<T> entityList) {
         return Db.saveOrUpdateBatch(entityList);
     }

@@ -1,4 +1,4 @@
-package com.hawk.framework.config;
+package com.hawk.config;
 
 import cn.dev33.satoken.dao.SaTokenDao;
 import cn.dev33.satoken.interceptor.SaInterceptor;

@@ -1,8 +1,8 @@
-package com.hawk.admin.controller.system;
+package com.hawk.controller.system;
 
 import cn.hutool.core.bean.BeanUtil;
-import com.hawk.admin.controller.system.form.SysRoleForm;
-import com.hawk.admin.controller.system.form.SysUserForm;
+import com.hawk.controller.system.form.SysRoleForm;
+import com.hawk.controller.system.form.SysUserForm;
 import com.hawk.common.core.controller.BaseController;
 import com.hawk.system.entity.SysDept;
 import com.hawk.system.entity.SysRole;

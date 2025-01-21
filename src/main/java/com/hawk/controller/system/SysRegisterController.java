@@ -1,4 +1,4 @@
-package com.hawk.admin.controller.system;
+package com.hawk.controller.system;
 
 import cn.dev33.satoken.annotation.SaIgnore;
 import com.hawk.common.core.controller.BaseController;

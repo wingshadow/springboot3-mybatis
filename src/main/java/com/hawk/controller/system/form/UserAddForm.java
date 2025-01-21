@@ -1,4 +1,4 @@
-package com.hawk.admin.controller.system.form;
+package com.hawk.controller.system.form;
 
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.hawk.common.annotation.Sensitive;

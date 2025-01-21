@@ -1,4 +1,4 @@
-package com.hawk.admin.controller.common;
+package com.hawk.controller.common;
 
 import cn.dev33.satoken.annotation.SaIgnore;
 import cn.hutool.captcha.AbstractCaptcha;

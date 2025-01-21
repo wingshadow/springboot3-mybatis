@@ -1,4 +1,4 @@
-package com.hawk.framework.config;
+package com.hawk.config;
 
 import cn.hutool.core.net.NetUtil;
 import com.baomidou.mybatisplus.core.handlers.MetaObjectHandler;

@@ -1,12 +1,12 @@
-package com.hawk.admin.controller.system;
+package com.hawk.controller.system;
 
 import cn.dev33.satoken.secure.BCrypt;
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.lang.tree.Tree;
 import cn.hutool.core.util.ArrayUtil;
 import cn.hutool.core.util.ObjectUtil;
-import com.hawk.admin.controller.system.form.SysUserForm;
-import com.hawk.admin.controller.system.form.UserAddForm;
+import com.hawk.controller.system.form.SysUserForm;
+import com.hawk.controller.system.form.UserAddForm;
 import com.hawk.common.constant.UserConstants;
 import com.hawk.common.core.controller.BaseController;
 import com.hawk.system.entity.SysDept;

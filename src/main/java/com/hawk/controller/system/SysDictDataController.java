@@ -1,10 +1,10 @@
-package com.hawk.admin.controller.system;
+package com.hawk.controller.system;
 
 import cn.dev33.satoken.annotation.SaCheckPermission;
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.util.ObjectUtil;
 
-import com.hawk.admin.controller.system.form.SysDictDataForm;
+import com.hawk.controller.system.form.SysDictDataForm;
 import com.hawk.common.core.controller.BaseController;
 import com.hawk.system.entity.SysDictData;
 import com.hawk.common.web.page.PageInfo;
