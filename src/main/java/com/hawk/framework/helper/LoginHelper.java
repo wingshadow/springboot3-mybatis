@@ -7,7 +7,7 @@ import cn.dev33.satoken.stp.StpUtil;
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.convert.Convert;
 import cn.hutool.core.util.ObjectUtil;
-import com.hawk.common.core.domain.entity.SysDept;
+import com.hawk.system.entity.SysDept;
 import com.hawk.common.constant.UserConstants;
 import com.hawk.common.enums.LoginWay;
 import com.hawk.common.enums.UserType;

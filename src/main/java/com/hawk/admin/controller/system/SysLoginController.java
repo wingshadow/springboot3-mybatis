@@ -2,14 +2,14 @@ package com.hawk.admin.controller.system;
 
 import cn.dev33.satoken.annotation.SaIgnore;
 import com.hawk.common.constant.Constants;
-import com.hawk.common.core.domain.entity.SysMenu;
-import com.hawk.common.core.domain.entity.SysUser;
+import com.hawk.system.entity.SysMenu;
+import com.hawk.system.entity.SysUser;
 import com.hawk.framework.helper.LoginHelper;
 import com.hawk.framework.model.LoginBody;
 import com.hawk.common.core.domain.model.LoginUser;
 import com.hawk.framework.service.SysLoginService;
 import com.hawk.common.web.resp.R;
-import com.hawk.system.domain.vo.RouterVo;
+import com.hawk.system.vo.RouterVo;
 import com.hawk.system.service.SysMenuService;
 import com.hawk.system.service.SysUserService;
 import org.springframework.beans.factory.annotation.Autowired;

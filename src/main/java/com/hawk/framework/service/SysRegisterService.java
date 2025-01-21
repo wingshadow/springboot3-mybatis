@@ -3,7 +3,7 @@ package com.hawk.framework.service;
 import cn.dev33.satoken.secure.BCrypt;
 import com.hawk.common.constant.CacheConstants;
 import com.hawk.common.constant.Constants;
-import com.hawk.common.core.domain.entity.SysUser;
+import com.hawk.system.entity.SysUser;
 import com.hawk.common.core.domain.model.RegisterBody;
 import com.hawk.common.enums.UserType;
 import com.hawk.common.exception.UserException;

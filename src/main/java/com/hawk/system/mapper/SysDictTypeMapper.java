@@ -1,7 +1,7 @@
 package com.hawk.system.mapper;
 
 
-import com.hawk.common.core.domain.entity.SysDictType;
+import com.hawk.system.entity.SysDictType;
 import com.hawk.mybatis.mapper.BaseMapperPlus;
 
 /**

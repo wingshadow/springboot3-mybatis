@@ -1,8 +1,8 @@
 package com.hawk.system.service;
 
 
-import com.hawk.common.core.domain.entity.SysDictData;
-import com.hawk.common.core.domain.entity.SysDictType;
+import com.hawk.system.entity.SysDictData;
+import com.hawk.system.entity.SysDictType;
 import com.hawk.common.web.page.PageInfo;
 import com.hawk.mybatis.common.BaseService;
 import com.hawk.system.mapper.SysDictTypeMapper;

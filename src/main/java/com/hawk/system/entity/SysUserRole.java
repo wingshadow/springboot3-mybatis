@@ -1,32 +1,28 @@
-package com.hawk.common.core.domain.entity;
+package com.hawk.system.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import lombok.Data;
+import com.hawk.common.entity.BaseEntity;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
- * 角色和菜单关联 sys_role_menu
- *
- * @author Lion Li
+ * @program: springboot3-mybatis
+ * @description:
+ * @author: zhb
+ * @create: 2024-04-26 15:20
  */
+@Getter
+@Setter
+@TableName("sys_user_role")
+public class SysUserRole extends BaseEntity {
 
-@Data
-@TableName("sys_role_menu")
-public class SysRoleMenu {
-
-    /**
-     * 角色ID
-     */
     @JsonFormat(shape = JsonFormat.Shape.STRING)
     @TableId(type = IdType.INPUT)
     private Long roleId;
 
-    /**
-     * 菜单ID
-     */
     @JsonFormat(shape = JsonFormat.Shape.STRING)
-    private Long menuId;
-
+    private Long userId;
 }

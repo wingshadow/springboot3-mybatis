@@ -1,7 +1,7 @@
 package com.hawk.system.mapper;
 
 
-import com.hawk.common.core.domain.entity.SysConfig;
+import com.hawk.system.entity.SysConfig;
 import com.hawk.mybatis.mapper.BaseMapperPlus;
 
 /**

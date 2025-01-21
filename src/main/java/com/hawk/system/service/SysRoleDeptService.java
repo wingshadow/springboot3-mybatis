@@ -1,7 +1,7 @@
 package com.hawk.system.service;
 
 import com.hawk.system.mapper.SysRoleDeptMapper;
-import com.hawk.common.core.domain.entity.SysRoleDept;
+import com.hawk.system.entity.SysRoleDept;
 import com.hawk.mybatis.common.BaseService;
 
 /**

@@ -1,4 +1,4 @@
-package com.hawk.common.core.domain.entity;
+package com.hawk.system.entity;
 
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;

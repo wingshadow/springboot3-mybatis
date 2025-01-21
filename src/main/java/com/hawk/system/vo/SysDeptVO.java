@@ -1,4 +1,4 @@
-package com.hawk.common.core.domain.vo;
+package com.hawk.system.vo;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;

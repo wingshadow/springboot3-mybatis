@@ -1,10 +1,10 @@
 package com.hawk.system.service;
 
 import cn.hutool.core.lang.tree.Tree;
-import com.hawk.common.core.domain.entity.SysMenu;
-import com.hawk.common.core.domain.entity.SysUser;
+import com.hawk.system.entity.SysMenu;
+import com.hawk.system.entity.SysUser;
 import com.hawk.mybatis.common.BaseService;
-import com.hawk.system.domain.vo.RouterVo;
+import com.hawk.system.vo.RouterVo;
 import com.hawk.system.mapper.SysMenuMapper;
 
 import java.util.List;

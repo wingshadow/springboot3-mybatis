@@ -1,16 +1,12 @@
 package com.hawk.system.service;
 
-import com.baomidou.mybatisplus.core.conditions.Wrapper;
-import com.baomidou.mybatisplus.core.toolkit.Constants;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.hawk.common.core.domain.entity.SysUser;
-import com.hawk.common.core.domain.entity.SysUserRole;
+import com.hawk.system.entity.SysUser;
+import com.hawk.system.entity.SysUserRole;
 import com.hawk.common.web.page.PageInfo;
 import com.hawk.system.mapper.SysRoleMapper;
-import com.hawk.common.core.domain.entity.SysDept;
-import com.hawk.common.core.domain.entity.SysRole;
+import com.hawk.system.entity.SysDept;
+import com.hawk.system.entity.SysRole;
 import com.hawk.mybatis.common.BaseService;
-import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 import java.util.Set;

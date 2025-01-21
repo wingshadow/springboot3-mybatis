@@ -1,6 +1,6 @@
 package com.hawk.system.service;
 
-import com.hawk.common.core.domain.entity.SysUserRole;
+import com.hawk.system.entity.SysUserRole;
 import com.hawk.system.mapper.SysUserRoleMapper;
 import com.hawk.mybatis.common.BaseService;
 

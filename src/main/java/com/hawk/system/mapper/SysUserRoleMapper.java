@@ -1,6 +1,6 @@
 package com.hawk.system.mapper;
 
-import com.hawk.common.core.domain.entity.SysUserRole;
+import com.hawk.system.entity.SysUserRole;
 import com.hawk.mybatis.mapper.BaseMapperPlus;
 
 import java.util.List;

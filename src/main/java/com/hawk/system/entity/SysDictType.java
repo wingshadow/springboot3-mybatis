@@ -1,4 +1,4 @@
-package com.hawk.common.core.domain.entity;
+package com.hawk.system.entity;
 
 import com.alibaba.excel.annotation.ExcelIgnoreUnannotated;
 import com.alibaba.excel.annotation.ExcelProperty;

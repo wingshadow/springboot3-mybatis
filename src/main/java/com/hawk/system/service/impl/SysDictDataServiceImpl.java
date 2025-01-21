@@ -3,7 +3,7 @@ package com.hawk.system.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.hawk.common.constant.CacheNames;
-import com.hawk.common.core.domain.entity.SysDictData;
+import com.hawk.system.entity.SysDictData;
 import com.hawk.common.exception.ServiceException;
 import com.hawk.common.utils.CacheUtils;
 import com.hawk.common.web.page.PageInfo;

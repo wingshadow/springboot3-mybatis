@@ -6,7 +6,7 @@ import cn.hutool.core.util.ObjectUtil;
 
 import com.hawk.admin.controller.system.form.SysDictDataForm;
 import com.hawk.common.core.controller.BaseController;
-import com.hawk.common.core.domain.entity.SysDictData;
+import com.hawk.system.entity.SysDictData;
 import com.hawk.common.web.page.PageInfo;
 import com.hawk.common.web.resp.R;
 import com.hawk.system.service.SysDictDataService;

@@ -1,4 +1,4 @@
-package com.hawk.common.core.domain.entity;
+package com.hawk.system.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
@@ -12,17 +12,17 @@ import lombok.Setter;
  * @program: springboot3-mybatis
  * @description:
  * @author: zhb
- * @create: 2024-04-26 15:20
+ * @create: 2024-04-26 15:19
  */
 @Getter
 @Setter
-@TableName("sys_user_role")
-public class SysUserRole extends BaseEntity {
+@TableName("sys_role_dept")
+public class SysRoleDept extends BaseEntity {
 
     @JsonFormat(shape = JsonFormat.Shape.STRING)
     @TableId(type = IdType.INPUT)
     private Long roleId;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING)
-    private Long userId;
+    private Long deptId;
 }

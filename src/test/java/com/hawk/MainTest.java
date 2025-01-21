@@ -1,15 +1,14 @@
 package com.hawk;
 
 
-import cn.hutool.core.convert.Convert;
 import cn.hutool.crypto.digest.BCrypt;
 import cn.hutool.json.JSONUtil;
 import com.hawk.common.constant.UserConstants;
 import com.hawk.common.core.domain.entity.*;
 import com.hawk.framework.service.DeptService;
+import com.hawk.system.entity.*;
 import com.hawk.system.mapper.SysUserMapper;
 import com.hawk.system.service.*;
-import com.hawk.utils.StreamUtils;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;

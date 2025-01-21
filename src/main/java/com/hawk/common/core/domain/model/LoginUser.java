@@ -1,7 +1,7 @@
 package com.hawk.common.core.domain.model;
 
-import com.hawk.common.core.domain.entity.SysDept;
-import com.hawk.common.core.domain.entity.SysRole;
+import com.hawk.system.entity.SysDept;
+import com.hawk.system.entity.SysRole;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 

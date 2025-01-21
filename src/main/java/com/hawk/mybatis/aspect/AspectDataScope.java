@@ -2,8 +2,8 @@ package com.hawk.mybatis.aspect;
 
 import cn.hutool.core.convert.Convert;
 import cn.hutool.core.util.ObjectUtil;
-import com.hawk.common.core.domain.entity.SysDept;
-import com.hawk.common.core.domain.entity.SysRole;
+import com.hawk.system.entity.SysDept;
+import com.hawk.system.entity.SysRole;
 import com.hawk.system.service.SysRoleService;
 import com.hawk.framework.helper.LoginHelper;
 import com.hawk.common.core.domain.model.LoginUser;

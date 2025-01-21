@@ -1,4 +1,4 @@
-package com.hawk.system.domain.vo;
+package com.hawk.system.vo;
 
 import com.hawk.utils.StringUtils;
 import lombok.Data;
