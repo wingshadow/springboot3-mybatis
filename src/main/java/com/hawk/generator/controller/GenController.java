@@ -82,7 +82,7 @@ public class GenController extends BaseController {
         List<GenTableColumn> list = genTableService.selectGenTableColumnListByTableId(tableId);
         dataInfo.setList(list);
         dataInfo.setTotal(list.size());
-        return R.ok(dataInfo>;
+        return R.ok(dataInfo);
     }
 
     /**
