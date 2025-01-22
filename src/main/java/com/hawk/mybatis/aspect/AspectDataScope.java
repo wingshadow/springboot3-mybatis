@@ -2,14 +2,15 @@ package com.hawk.mybatis.aspect;
 
 import cn.hutool.core.convert.Convert;
 import cn.hutool.core.util.ObjectUtil;
+import com.hawk.framework.dto.RoleDTO;
+import com.hawk.framework.model.LoginUser;
 import com.hawk.system.entity.SysDept;
 import com.hawk.system.entity.SysRole;
 import com.hawk.system.service.SysRoleService;
 import com.hawk.framework.helper.LoginHelper;
-import com.hawk.common.core.domain.model.LoginUser;
 import com.hawk.framework.service.DeptService;
 import com.hawk.mybatis.annotation.DataScope;
-import com.hawk.common.entity.BaseEntity;
+import com.hawk.framework.common.core.entity.BaseEntity;
 import com.hawk.mybatis.constant.DataScopeType;
 import com.hawk.utils.StreamUtils;
 import com.hawk.utils.StringUtils;
@@ -52,10 +53,10 @@ public class AspectDataScope {
             return;
         }
         StringBuilder sb = new StringBuilder();
-        List<SysRole> sysRoleList = loginUser.getRoles();
+        List<RoleDTO> sysRoleList = loginUser.getRoles();
 
         //获取用户每个角色能够访问的部门信息
-        for (SysRole sysRole : sysRoleList) {
+        for (RoleDTO sysRole : sysRoleList) {
             //查询每个角色的数据范围 1：全部数据权限 2：自定数据权限 3：本部门数据权限 4：本部门及以下数据权限
             String sysRoleDataScope = sysRole.getDataScope();
             if (DataScopeType.DATA_SCOPE_ALL.equals(sysRoleDataScope)) {

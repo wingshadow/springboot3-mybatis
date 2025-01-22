@@ -1,6 +1,6 @@
 package com.hawk.generator.util;
 
-import com.hawk.common.constant.GenConstants;
+import com.hawk.framework.common.constant.GenConstants;
 import com.hawk.generator.config.GenConfig;
 import com.hawk.generator.domain.GenTable;
 import com.hawk.generator.domain.GenTableColumn;

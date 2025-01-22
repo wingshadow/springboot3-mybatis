@@ -8,7 +8,7 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.hawk.common.constant.UserConstants;
+import com.hawk.framework.common.constant.UserConstants;
 import com.hawk.system.entity.SysDept;
 import com.hawk.system.entity.SysRole;
 import com.hawk.system.entity.SysUser;

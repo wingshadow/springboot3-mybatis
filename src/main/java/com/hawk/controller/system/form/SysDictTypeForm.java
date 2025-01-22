@@ -1,19 +1,7 @@
 package com.hawk.controller.system.form;
 
-import com.alibaba.excel.annotation.ExcelIgnoreUnannotated;
-import com.alibaba.excel.annotation.ExcelProperty;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
-import com.hawk.common.annotation.ExcelDictFormat;
-import com.hawk.common.convert.ExcelDictConvert;
-import com.hawk.common.core.form.BasePageForm;
-import com.hawk.common.entity.BaseDataEntity;
+import com.hawk.framework.common.core.form.BasePageForm;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
-
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
 
 /**
  * 字典类型表 sys_dict_type

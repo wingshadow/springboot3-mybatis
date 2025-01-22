@@ -3,7 +3,7 @@ package com.hawk.controller.system;
 import cn.hutool.core.bean.BeanUtil;
 import com.hawk.controller.system.form.SysRoleForm;
 import com.hawk.controller.system.form.SysUserForm;
-import com.hawk.common.core.controller.BaseController;
+import com.hawk.framework.base.BaseController;
 import com.hawk.system.entity.SysDept;
 import com.hawk.system.entity.SysRole;
 import com.hawk.system.entity.SysUser;

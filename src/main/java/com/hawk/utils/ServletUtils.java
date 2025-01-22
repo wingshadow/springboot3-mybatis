@@ -3,7 +3,7 @@ package com.hawk.utils;
 import cn.hutool.core.convert.Convert;
 import cn.hutool.extra.servlet.JakartaServletUtil;
 import cn.hutool.http.HttpStatus;
-import com.hawk.common.constant.Constants;
+import com.hawk.framework.common.constant.Constants;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;

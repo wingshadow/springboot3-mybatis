@@ -1,12 +1,12 @@
 package com.hawk.controller.system;
 
 import cn.dev33.satoken.annotation.SaIgnore;
-import com.hawk.common.constant.Constants;
+import com.hawk.framework.common.constant.Constants;
+import com.hawk.framework.model.LoginUser;
 import com.hawk.system.entity.SysMenu;
 import com.hawk.system.entity.SysUser;
 import com.hawk.framework.helper.LoginHelper;
 import com.hawk.framework.model.LoginBody;
-import com.hawk.common.core.domain.model.LoginUser;
 import com.hawk.framework.service.SysLoginService;
 import com.hawk.common.web.resp.R;
 import com.hawk.system.vo.RouterVo;

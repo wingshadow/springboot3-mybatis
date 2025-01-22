@@ -4,7 +4,7 @@ import cn.dev33.satoken.annotation.SaCheckPermission;
 
 import cn.hutool.core.bean.BeanUtil;
 import com.hawk.controller.system.form.SysConfigForm;
-import com.hawk.common.core.controller.BaseController;
+import com.hawk.framework.base.BaseController;
 import com.hawk.system.entity.SysConfig;
 import com.hawk.common.web.page.PageInfo;
 import com.hawk.common.web.resp.R;

@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.hawk.common.entity.BaseEntity;
+import com.hawk.framework.common.core.entity.BaseEntity;
 import lombok.Getter;
 import lombok.Setter;
 

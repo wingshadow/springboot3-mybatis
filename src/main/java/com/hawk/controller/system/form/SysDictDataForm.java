@@ -1,14 +1,7 @@
 package com.hawk.controller.system.form;
 
-import com.alibaba.excel.annotation.ExcelProperty;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.hawk.common.annotation.ExcelDictFormat;
-import com.hawk.common.convert.ExcelDictConvert;
-import com.hawk.common.core.form.BasePageForm;
+import com.hawk.framework.common.core.form.BasePageForm;
 import lombok.Data;
-
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
 
 /**
  * @program: springboot3-mybatis

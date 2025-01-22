@@ -2,7 +2,7 @@ package com.hawk.mybatis.common;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.hawk.common.entity.BaseEntity;
+import com.hawk.framework.common.core.entity.BaseEntity;
 
 import java.util.List;
 

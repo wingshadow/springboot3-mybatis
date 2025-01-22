@@ -3,8 +3,7 @@ package com.hawk;
 
 import cn.hutool.crypto.digest.BCrypt;
 import cn.hutool.json.JSONUtil;
-import com.hawk.common.constant.UserConstants;
-import com.hawk.common.core.domain.entity.*;
+import com.hawk.framework.common.constant.UserConstants;
 import com.hawk.framework.service.DeptService;
 import com.hawk.system.entity.*;
 import com.hawk.system.mapper.SysUserMapper;

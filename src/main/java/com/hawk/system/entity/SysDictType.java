@@ -6,7 +6,7 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.hawk.common.annotation.ExcelDictFormat;
 import com.hawk.common.convert.ExcelDictConvert;
-import com.hawk.common.entity.BaseDataEntity;
+import com.hawk.framework.common.core.entity.BaseDataEntity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 

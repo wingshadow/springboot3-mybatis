@@ -2,20 +2,24 @@ package com.hawk.framework.service;
 
 import cn.dev33.satoken.secure.BCrypt;
 import cn.dev33.satoken.stp.StpUtil;
+import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.util.ObjectUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.hawk.common.enums.LoginWay;
 import com.hawk.common.enums.UserStatus;
 import com.hawk.common.exception.UserException;
+import com.hawk.framework.dto.RoleDTO;
+import com.hawk.framework.enums.LoginWay;
+import com.hawk.framework.model.LoginUser;
 import com.hawk.system.mapper.SysUserMapper;
 import com.hawk.system.entity.SysUser;
 import com.hawk.framework.helper.LoginHelper;
-import com.hawk.common.core.domain.model.LoginUser;
 import com.hawk.system.service.SysMenuService;
 import com.hawk.system.service.SysRoleService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * @program: springboot3-mybatis
@@ -54,14 +58,15 @@ public class SysLoginService {
         loginUser.setUserAccount(sysUser.getUserAccount());
         loginUser.setUserName(sysUser.getUserName());
         loginUser.setUserType(sysUser.getUserType());
-        loginUser.setRoles(sysUser.getRoles());
         loginUser.setDeptId(sysUser.getDeptId());
         loginUser.setDeptName(ObjectUtil.isNotEmpty(sysUser.getDept()) ? sysUser.getDept().getDeptName() : "");
         loginUser.setDept(sysUser.getDept());
-        loginUser.setRoles(sysUser.getRoles());
         loginUser.setPhone(sysUser.getMobile());
         loginUser.setMenuPermission(menuService.getMenuPermission(sysUser));
         loginUser.setRolePermission(roleService.getRolePermission(sysUser));
+        List<RoleDTO> roles = BeanUtil.copyToList(sysUser.getRoles(), RoleDTO.class);
+        loginUser.setRoles(roles);
+
         return loginUser;
     }
 

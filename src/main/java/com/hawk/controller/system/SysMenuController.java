@@ -1,8 +1,8 @@
 package com.hawk.controller.system;
 
 import cn.hutool.core.lang.tree.Tree;
-import com.hawk.common.constant.UserConstants;
-import com.hawk.common.core.controller.BaseController;
+import com.hawk.framework.base.BaseController;
+import com.hawk.framework.common.constant.UserConstants;
 import com.hawk.system.entity.SysMenu;
 import com.hawk.common.web.resp.R;
 import com.hawk.system.service.SysMenuService;

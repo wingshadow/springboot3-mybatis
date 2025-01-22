@@ -3,7 +3,7 @@ package com.hawk.system.entity;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.hawk.framework.model.TreeEntity;
+import com.hawk.framework.common.core.entity.TreeEntity;
 import lombok.Getter;
 import lombok.Setter;
 

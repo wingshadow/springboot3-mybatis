@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.hawk.common.entity.BaseEntity;
+import com.hawk.framework.common.core.entity.BaseEntity;
 import com.hawk.mybatis.common.BaseService;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;

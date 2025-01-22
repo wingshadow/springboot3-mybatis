@@ -7,11 +7,12 @@ import cn.hutool.core.convert.Convert;
 import cn.hutool.core.util.ArrayUtil;
 import cn.hutool.core.util.ClassUtil;
 import cn.hutool.core.util.ObjectUtil;
+import com.hawk.framework.dto.RoleDTO;
+import com.hawk.framework.model.LoginUser;
 import com.hawk.system.entity.SysDept;
 import com.hawk.system.entity.SysRole;
 import com.hawk.system.service.SysRoleService;
 import com.hawk.framework.helper.LoginHelper;
-import com.hawk.common.core.domain.model.LoginUser;
 import com.hawk.framework.service.DeptService;
 import com.hawk.mybatis.annotation.DataScope;
 import com.hawk.common.utils.SpringUtils;
@@ -89,10 +90,10 @@ public class DataPermissionHandler {
         LoginUser loginUser = LoginHelper.getLoginUser();
 
         StringBuilder sb = new StringBuilder();
-        List<SysRole> sysRoleList = loginUser.getRoles();
+        List<RoleDTO> sysRoleList = loginUser.getRoles();
 
         Set<String> conditions = new HashSet<>();
-        for (SysRole sysRole : sysRoleList) {
+        for (RoleDTO sysRole : sysRoleList) {
             String sysRoleDataScope = sysRole.getDataScope();
             if (DATA_SCOPE_ALL.equals(sysRoleDataScope)) {
                 // 1-全部权限

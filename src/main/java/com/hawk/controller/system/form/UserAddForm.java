@@ -2,7 +2,7 @@ package com.hawk.controller.system.form;
 
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.hawk.common.annotation.Sensitive;
-import com.hawk.common.core.form.BaseForm;
+import com.hawk.framework.common.core.form.BaseForm;
 import com.hawk.common.enums.SensitiveStrategy;
 import com.hawk.common.xss.Xss;
 import lombok.Data;

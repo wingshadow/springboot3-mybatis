@@ -1,17 +1,8 @@
 package com.hawk.framework.helper;
 
 import cn.hutool.core.convert.Convert;
-
-import com.baomidou.dynamic.datasource.DynamicRoutingDataSource;
-import com.hawk.common.utils.SpringUtils;
-import com.hawk.mybatis.enums.DataBaseType;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
-
-import javax.sql.DataSource;
-import java.sql.Connection;
-import java.sql.DatabaseMetaData;
-import java.sql.SQLException;
 
 /**
  * 数据库助手
@@ -36,8 +27,9 @@ public class DataBaseHelper {
 //            throw new RuntimeException(e.getMessage());
 //        }
 //    }
+
     public static boolean isMySql() {
-        return true;
+        return false;
     }
 
     public static boolean isOracle() {
@@ -66,7 +58,6 @@ public class DataBaseHelper {
 //            return "instr(','||" + var2 + "||',' , '," + var + ",') <> 0";
 //        }
         // find_in_set('100' , '0,100,101')
-//        return "(select array_position(string_to_array('" + var + "', ','), '" + var2 + "'))";
         return "find_in_set('" + var + "' , " + var2 + ") <> 0";
     }
 }

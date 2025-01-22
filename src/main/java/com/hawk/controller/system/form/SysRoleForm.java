@@ -1,6 +1,6 @@
 package com.hawk.controller.system.form;
 
-import com.hawk.common.core.form.BasePageForm;
+import com.hawk.framework.common.core.form.BasePageForm;
 import lombok.Data;
 
 /**

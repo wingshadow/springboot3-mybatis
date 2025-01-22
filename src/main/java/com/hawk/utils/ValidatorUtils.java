@@ -1,6 +1,5 @@
 package com.hawk.utils;
 
-import com.hawk.common.utils.SpringUtils;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 

@@ -1,8 +1,8 @@
 package com.hawk.controller.system;
 
 import cn.hutool.core.convert.Convert;
-import com.hawk.common.constant.UserConstants;
-import com.hawk.common.core.controller.BaseController;
+import com.hawk.framework.base.BaseController;
+import com.hawk.framework.common.constant.UserConstants;
 import com.hawk.system.entity.SysDept;
 import com.hawk.common.web.resp.R;
 import com.hawk.system.service.SysDeptService;

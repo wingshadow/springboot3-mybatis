@@ -1,6 +1,6 @@
 package com.hawk.generator.util;
 
-import com.hawk.common.constant.Constants;
+import com.hawk.framework.common.constant.Constants;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import org.apache.velocity.app.Velocity;

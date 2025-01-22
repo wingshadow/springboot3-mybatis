@@ -5,7 +5,7 @@ import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.util.ObjectUtil;
 
 import com.hawk.controller.system.form.SysDictDataForm;
-import com.hawk.common.core.controller.BaseController;
+import com.hawk.framework.base.BaseController;
 import com.hawk.system.entity.SysDictData;
 import com.hawk.common.web.page.PageInfo;
 import com.hawk.common.web.resp.R;
@@ -41,7 +41,7 @@ public class SysDictDataController extends BaseController {
     @GetMapping("/list")
     public R<PageInfo<SysDictData>> list(SysDictDataForm form) {
         SysDictData sysDictData = BeanUtil.copyProperties(form,SysDictData.class);
-        return R.ok(ictDataService.selectPageDictDataList(sysDictData, form.getPageSize(),form.getPageNum()));
+        return R.ok(dictDataService.selectPageDictDataList(sysDictData, form.getPageSize(),form.getPageNum()));
     }
 
     /**

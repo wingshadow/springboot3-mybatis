@@ -1,9 +1,9 @@
 package com.hawk.controller.system;
 
 import cn.dev33.satoken.annotation.SaIgnore;
-import com.hawk.common.core.controller.BaseController;
-import com.hawk.common.core.domain.model.RegisterBody;
 import com.hawk.common.web.resp.R;
+import com.hawk.framework.base.BaseController;
+import com.hawk.framework.model.RegisterBody;
 import com.hawk.framework.service.SysRegisterService;
 import com.hawk.system.service.SysConfigService;
 import lombok.RequiredArgsConstructor;

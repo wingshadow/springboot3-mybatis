@@ -4,10 +4,10 @@ import cn.dev33.satoken.annotation.SaCheckPermission;
 import cn.hutool.core.convert.Convert;
 import cn.hutool.core.io.IoUtil;
 
-import com.hawk.common.core.controller.BaseController;
 import com.hawk.common.web.page.PageInfo;
 import com.hawk.common.web.page.PageQuery;
 import com.hawk.common.web.resp.R;
+import com.hawk.framework.base.BaseController;
 import com.hawk.generator.domain.GenTable;
 import com.hawk.generator.domain.GenTableColumn;
 import com.hawk.generator.service.IGenTableService;
