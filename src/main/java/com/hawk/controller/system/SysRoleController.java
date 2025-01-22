@@ -39,9 +39,9 @@ public class SysRoleController extends BaseController {
     private SysDeptService deptService;
 
     @GetMapping("/list")
-    public PageInfo<SysRole> list(SysRoleForm form) {
+    public R<PageInfo<SysRole>> list(SysRoleForm form) {
         SysRole sysRole = BeanUtil.copyProperties(form, SysRole.class);
-        return roleService.selectRoleList(sysRole, form.getPageSize(),form.getPageNum());
+        return R.ok(roleService.selectRoleList(sysRole, form.getPageSize(),form.getPageNum()));
     }
 
     @GetMapping(value = "/{roleId}")
@@ -103,15 +103,15 @@ public class SysRoleController extends BaseController {
     }
 
     @GetMapping("/authUser/allocatedList")
-    public PageInfo<SysUser> allocatedList(SysUserForm form) {
+    public R<PageInfo<SysUser>> allocatedList(SysUserForm form) {
         SysUser sysUser = BeanUtil.copyProperties(form, SysUser.class);
-        return userService.selectAllocatedList(sysUser,form.getPageSize(),form.getPageNum());
+        return R.ok(userService.selectAllocatedList(sysUser,form.getPageSize(),form.getPageNum()));
     }
 
     @GetMapping("/authUser/unallocatedList")
-    public PageInfo<SysUser> unallocatedList(SysUserForm form) {
+    public R<PageInfo<SysUser>> unallocatedList(SysUserForm form) {
         SysUser sysUser = BeanUtil.copyProperties(form, SysUser.class);
-        return userService.selectUnallocatedList(sysUser,form.getPageSize(),form.getPageNum());
+        return R.ok(userService.selectUnallocatedList(sysUser,form.getPageSize(),form.getPageNum()));
     }
 
     @PutMapping("/authUser/cancel")

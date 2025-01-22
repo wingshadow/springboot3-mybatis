@@ -39,9 +39,9 @@ public class SysDictDataController extends BaseController {
      */
     @SaCheckPermission("system:dict:list")
     @GetMapping("/list")
-    public PageInfo<SysDictData> list(SysDictDataForm form) {
+    public R<PageInfo<SysDictData>> list(SysDictDataForm form) {
         SysDictData sysDictData = BeanUtil.copyProperties(form,SysDictData.class);
-        return dictDataService.selectPageDictDataList(sysDictData, form.getPageSize(),form.getPageNum());
+        return R.ok(ictDataService.selectPageDictDataList(sysDictData, form.getPageSize(),form.getPageNum()));
     }
 
     /**

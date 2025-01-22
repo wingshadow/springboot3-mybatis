@@ -39,8 +39,8 @@ public class GenController extends BaseController {
      */
     @SaCheckPermission("tool:gen:list")
     @GetMapping("/list")
-    public PageInfo<GenTable> genList(GenTable genTable, PageQuery pageQuery) {
-        return genTableService.selectPageGenTableList(genTable, pageQuery);
+    public R<PageInfo<GenTable>> genList(GenTable genTable, PageQuery pageQuery) {
+        return R.ok(genTableService.selectPageGenTableList(genTable, pageQuery));
     }
 
     /**
@@ -66,8 +66,8 @@ public class GenController extends BaseController {
      */
     @SaCheckPermission("tool:gen:list")
     @GetMapping("/db/list")
-    public PageInfo<GenTable> dataList(GenTable genTable, PageQuery pageQuery) {
-        return genTableService.selectPageDbTableList(genTable, pageQuery);
+    public R<PageInfo<GenTable>> dataList(GenTable genTable, PageQuery pageQuery) {
+        return R.ok(genTableService.selectPageDbTableList(genTable, pageQuery));
     }
 
     /**
@@ -77,12 +77,12 @@ public class GenController extends BaseController {
      */
     @SaCheckPermission("tool:gen:list")
     @GetMapping(value = "/column/{tableId}")
-    public PageInfo<GenTableColumn> columnList(Long tableId) {
+    public R<PageInfo<GenTableColumn>> columnList(Long tableId) {
         PageInfo<GenTableColumn> dataInfo = new PageInfo<>();
         List<GenTableColumn> list = genTableService.selectGenTableColumnListByTableId(tableId);
         dataInfo.setList(list);
         dataInfo.setTotal(list.size());
-        return dataInfo;
+        return R.ok(dataInfo>;
     }
 
     /**
