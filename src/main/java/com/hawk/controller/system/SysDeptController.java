@@ -4,7 +4,7 @@ import cn.hutool.core.convert.Convert;
 import com.hawk.framework.base.BaseController;
 import com.hawk.framework.common.constant.UserConstants;
 import com.hawk.system.entity.SysDept;
-import com.hawk.common.web.resp.R;
+import com.hawk.framework.web.resp.R;
 import com.hawk.system.service.SysDeptService;
 import com.hawk.utils.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,7 +1,7 @@
 package com.hawk.framework.base;
 
 
-import com.hawk.common.web.resp.R;
+import com.hawk.framework.web.resp.R;
 import com.hawk.framework.helper.LoginHelper;
 import com.hawk.framework.model.LoginUser;
 import com.hawk.utils.StringUtils;

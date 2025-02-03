@@ -1,4 +1,4 @@
-package com.hawk.common.web.page;
+package com.hawk.framework.web.page;
 
 import cn.hutool.core.util.ObjectUtil;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;

@@ -2,7 +2,7 @@ package com.hawk.system.service;
 
 import com.hawk.system.entity.SysUser;
 import com.hawk.system.entity.SysUserRole;
-import com.hawk.common.web.page.PageInfo;
+import com.hawk.framework.web.page.PageInfo;
 import com.hawk.system.mapper.SysRoleMapper;
 import com.hawk.system.entity.SysDept;
 import com.hawk.system.entity.SysRole;

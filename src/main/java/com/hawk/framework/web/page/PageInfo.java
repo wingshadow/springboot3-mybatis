@@ -1,4 +1,4 @@
-package com.hawk.common.web.page;
+package com.hawk.framework.web.page;
 
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.http.HttpStatus;
@@ -9,7 +9,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Collectors;

@@ -4,7 +4,7 @@ import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.http.HttpStatus;
 import com.baomidou.mybatisplus.core.handlers.MetaObjectHandler;
 import com.hawk.framework.common.core.entity.BaseDataEntity;
-import com.hawk.common.exception.ServiceException;
+import com.hawk.framework.exception.ServiceException;
 import com.hawk.framework.helper.LoginHelper;
 import com.hawk.framework.model.LoginUser;
 import com.hawk.utils.StringUtils;

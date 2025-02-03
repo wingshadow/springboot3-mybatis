@@ -15,7 +15,7 @@ import com.hawk.system.service.SysRoleService;
 import com.hawk.framework.helper.LoginHelper;
 import com.hawk.framework.service.DeptService;
 import com.hawk.mybatis.annotation.DataScope;
-import com.hawk.common.utils.SpringUtils;
+import com.hawk.utils.SpringUtils;
 import com.hawk.utils.StreamUtils;
 import com.hawk.utils.StringUtils;
 import lombok.extern.slf4j.Slf4j;

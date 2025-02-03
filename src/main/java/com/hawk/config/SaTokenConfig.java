@@ -11,7 +11,7 @@ import com.hawk.framework.config.properites.SecurityProperties;
 import com.hawk.framework.handler.WebAllUrlHandler;
 import com.hawk.framework.satoken.PlusSaTokenDao;
 import com.hawk.framework.satoken.SaPermissionImpl;
-import com.hawk.common.utils.SpringUtils;
+import com.hawk.utils.SpringUtils;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;

@@ -5,11 +5,11 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.hawk.common.annotation.Sensitive;
+import com.hawk.framework.annotation.sensitive.Sensitive;
+import com.hawk.framework.annotation.xss.Xss;
 import com.hawk.framework.common.constant.UserConstants;
 import com.hawk.framework.common.core.entity.BaseDataEntity;
-import com.hawk.common.enums.SensitiveStrategy;
-import com.hawk.common.xss.Xss;
+import com.hawk.framework.enums.SensitiveStrategy;
 import lombok.Getter;
 import lombok.Setter;
 

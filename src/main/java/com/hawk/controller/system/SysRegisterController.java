@@ -1,7 +1,7 @@
 package com.hawk.controller.system;
 
 import cn.dev33.satoken.annotation.SaIgnore;
-import com.hawk.common.web.resp.R;
+import com.hawk.framework.web.resp.R;
 import com.hawk.framework.base.BaseController;
 import com.hawk.framework.model.RegisterBody;
 import com.hawk.framework.service.SysRegisterService;

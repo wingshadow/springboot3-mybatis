@@ -1,4 +1,4 @@
-package com.hawk.common.web.resp;
+package com.hawk.framework.web.resp;
 
 import lombok.Data;
 

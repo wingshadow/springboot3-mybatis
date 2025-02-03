@@ -1,12 +1,12 @@
-package com.hawk.framework.web;
+package com.hawk.framework.exception;
 
 import cn.dev33.satoken.exception.NotLoginException;
 import cn.dev33.satoken.exception.NotPermissionException;
 import cn.dev33.satoken.exception.NotRoleException;
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.http.HttpStatus;
-import com.hawk.common.exception.ServiceException;
-import com.hawk.common.web.resp.R;
+import com.hawk.framework.web.resp.R;
+import com.hawk.framework.exception.ServiceException;
 import com.hawk.utils.StreamUtils;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;

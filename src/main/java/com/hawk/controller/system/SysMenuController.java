@@ -4,7 +4,7 @@ import cn.hutool.core.lang.tree.Tree;
 import com.hawk.framework.base.BaseController;
 import com.hawk.framework.common.constant.UserConstants;
 import com.hawk.system.entity.SysMenu;
-import com.hawk.common.web.resp.R;
+import com.hawk.framework.web.resp.R;
 import com.hawk.system.service.SysMenuService;
 import com.hawk.utils.StringUtils;
 import lombok.RequiredArgsConstructor;

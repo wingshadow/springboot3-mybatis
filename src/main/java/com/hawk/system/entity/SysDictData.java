@@ -4,10 +4,10 @@ import com.alibaba.excel.annotation.ExcelIgnoreUnannotated;
 import com.alibaba.excel.annotation.ExcelProperty;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.hawk.common.annotation.ExcelDictFormat;
+import com.hawk.framework.annotation.excel.ExcelDictFormat;
 import com.hawk.framework.common.constant.UserConstants;
-import com.hawk.common.convert.ExcelDictConvert;
 import com.hawk.framework.common.core.entity.BaseDataEntity;
+import com.hawk.framework.excel.convert.ExcelDictConvert;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
