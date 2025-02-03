@@ -6,7 +6,7 @@ import com.hawk.framework.common.constant.CacheNames;
 import com.hawk.framework.exception.ServiceException;
 import com.hawk.system.entity.SysDictData;
 import com.hawk.framework.web.page.PageInfo;
-import com.hawk.mybatis.common.impl.BaseServiceImpl;
+import com.hawk.framework.mybatis.common.impl.BaseServiceImpl;
 import com.hawk.system.mapper.SysDictDataMapper;
 import com.hawk.system.service.SysDictDataService;
 import com.hawk.utils.StringUtils;

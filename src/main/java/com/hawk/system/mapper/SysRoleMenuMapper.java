@@ -2,7 +2,7 @@ package com.hawk.system.mapper;
 
 
 import com.hawk.system.entity.SysRoleMenu;
-import com.hawk.mybatis.mapper.BaseMapperPlus;
+import com.hawk.framework.mybatis.mapper.BaseMapperPlus;
 
 /**
  * 角色与菜单关联表 数据层

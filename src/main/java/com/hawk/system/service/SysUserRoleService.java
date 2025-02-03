@@ -2,7 +2,7 @@ package com.hawk.system.service;
 
 import com.hawk.system.entity.SysUserRole;
 import com.hawk.system.mapper.SysUserRoleMapper;
-import com.hawk.mybatis.common.BaseService;
+import com.hawk.framework.mybatis.common.BaseService;
 
 /**
  * @program: springboot3-mybatis

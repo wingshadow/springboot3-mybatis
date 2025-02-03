@@ -1,4 +1,4 @@
-package com.hawk.mybatis.constant;
+package com.hawk.framework.mybatis.constant;
 
 /**
  * @program: springboot3-mybatis

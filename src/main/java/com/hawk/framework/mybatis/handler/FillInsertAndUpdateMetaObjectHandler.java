@@ -1,4 +1,4 @@
-package com.hawk.mybatis.handler;
+package com.hawk.framework.mybatis.handler;
 
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.http.HttpStatus;

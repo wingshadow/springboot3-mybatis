@@ -3,7 +3,7 @@ package com.hawk.system.mapper;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.hawk.framework.common.constant.UserConstants;
 import com.hawk.system.entity.SysDictData;
-import com.hawk.mybatis.mapper.BaseMapperPlus;
+import com.hawk.framework.mybatis.mapper.BaseMapperPlus;
 
 import java.util.List;
 

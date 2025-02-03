@@ -1,4 +1,4 @@
-package com.hawk.mybatis.common;
+package com.hawk.framework.mybatis.common;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.extension.service.IService;

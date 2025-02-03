@@ -14,7 +14,7 @@ import com.hawk.system.entity.SysDictData;
 import com.hawk.system.entity.SysDictType;
 import com.hawk.framework.web.page.PageInfo;
 import com.hawk.framework.service.DictService;
-import com.hawk.mybatis.common.impl.BaseServiceImpl;
+import com.hawk.framework.mybatis.common.impl.BaseServiceImpl;
 import com.hawk.system.mapper.SysDictDataMapper;
 import com.hawk.system.mapper.SysDictTypeMapper;
 import com.hawk.system.service.SysDictTypeService;

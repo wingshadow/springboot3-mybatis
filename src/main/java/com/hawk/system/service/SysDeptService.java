@@ -3,7 +3,7 @@ package com.hawk.system.service;
 import cn.hutool.core.lang.tree.Tree;
 import com.hawk.system.mapper.SysDeptMapper;
 import com.hawk.system.entity.SysDept;
-import com.hawk.mybatis.common.BaseService;
+import com.hawk.framework.mybatis.common.BaseService;
 
 import java.util.List;
 

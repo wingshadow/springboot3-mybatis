@@ -3,7 +3,7 @@ package com.hawk.system.service.impl;
 import com.hawk.system.mapper.SysRoleDeptMapper;
 import com.hawk.system.entity.SysRoleDept;
 import com.hawk.system.service.SysRoleDeptService;
-import com.hawk.mybatis.common.impl.BaseServiceImpl;
+import com.hawk.framework.mybatis.common.impl.BaseServiceImpl;
 import org.springframework.stereotype.Service;
 
 /**

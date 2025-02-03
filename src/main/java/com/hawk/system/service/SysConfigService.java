@@ -3,7 +3,7 @@ package com.hawk.system.service;
 
 import com.hawk.system.entity.SysConfig;
 import com.hawk.framework.web.page.PageInfo;
-import com.hawk.mybatis.common.BaseService;
+import com.hawk.framework.mybatis.common.BaseService;
 import com.hawk.system.mapper.SysConfigMapper;
 
 import java.util.List;

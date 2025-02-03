@@ -21,7 +21,7 @@ import com.hawk.system.mapper.SysUserMapper;
 import com.hawk.system.service.SysDeptService;
 import com.hawk.framework.helper.DataBaseHelper;
 import com.hawk.framework.service.DeptService;
-import com.hawk.mybatis.common.impl.BaseServiceImpl;
+import com.hawk.framework.mybatis.common.impl.BaseServiceImpl;
 import com.hawk.utils.SpringUtils;
 import com.hawk.utils.StreamUtils;
 import com.hawk.utils.StringUtils;

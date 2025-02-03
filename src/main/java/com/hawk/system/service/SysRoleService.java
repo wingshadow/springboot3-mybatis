@@ -6,7 +6,7 @@ import com.hawk.framework.web.page.PageInfo;
 import com.hawk.system.mapper.SysRoleMapper;
 import com.hawk.system.entity.SysDept;
 import com.hawk.system.entity.SysRole;
-import com.hawk.mybatis.common.BaseService;
+import com.hawk.framework.mybatis.common.BaseService;
 
 import java.util.List;
 import java.util.Set;

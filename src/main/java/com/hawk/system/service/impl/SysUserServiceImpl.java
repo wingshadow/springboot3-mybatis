@@ -17,7 +17,7 @@ import com.hawk.system.entity.SysUserRole;
 import com.hawk.framework.web.page.PageInfo;
 import com.hawk.framework.helper.DataBaseHelper;
 import com.hawk.framework.helper.LoginHelper;
-import com.hawk.mybatis.common.impl.BaseServiceImpl;
+import com.hawk.framework.mybatis.common.impl.BaseServiceImpl;
 import com.hawk.system.mapper.SysDeptMapper;
 import com.hawk.system.mapper.SysUserMapper;
 import com.hawk.system.mapper.SysUserRoleMapper;

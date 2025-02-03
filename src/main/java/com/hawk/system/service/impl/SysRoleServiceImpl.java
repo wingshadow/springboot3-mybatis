@@ -20,7 +20,7 @@ import com.hawk.system.mapper.SysRoleMapper;
 import com.hawk.system.mapper.SysRoleMenuMapper;
 import com.hawk.system.mapper.SysUserRoleMapper;
 import com.hawk.system.service.SysRoleService;
-import com.hawk.mybatis.common.impl.BaseServiceImpl;
+import com.hawk.framework.mybatis.common.impl.BaseServiceImpl;
 import com.hawk.utils.StreamUtils;
 import com.hawk.utils.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,10 +1,10 @@
-package com.hawk.mybatis.interceptor;
+package com.hawk.framework.mybatis.interceptor;
 
 import com.baomidou.mybatisplus.core.plugins.InterceptorIgnoreHelper;
 import com.baomidou.mybatisplus.core.toolkit.PluginUtils;
 import com.baomidou.mybatisplus.extension.parser.JsqlParserSupport;
 import com.baomidou.mybatisplus.extension.plugins.inner.InnerInterceptor;
-import com.hawk.mybatis.handler.DataPermissionHandler;
+import com.hawk.framework.mybatis.handler.DataPermissionHandler;
 import lombok.extern.slf4j.Slf4j;
 import net.sf.jsqlparser.expression.Expression;
 import net.sf.jsqlparser.statement.select.PlainSelect;

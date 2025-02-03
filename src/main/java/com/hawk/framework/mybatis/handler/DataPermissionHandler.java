@@ -1,4 +1,4 @@
-package com.hawk.mybatis.handler;
+package com.hawk.framework.mybatis.handler;
 
 import cn.hutool.core.annotation.AnnotationUtil;
 import cn.hutool.core.collection.CollUtil;
@@ -11,7 +11,6 @@ import com.hawk.framework.annotation.scope.DataScope;
 import com.hawk.framework.dto.RoleDTO;
 import com.hawk.framework.model.LoginUser;
 import com.hawk.system.entity.SysDept;
-import com.hawk.system.entity.SysRole;
 import com.hawk.system.service.SysRoleService;
 import com.hawk.framework.helper.LoginHelper;
 import com.hawk.framework.service.DeptService;
@@ -31,7 +30,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-import static com.hawk.mybatis.constant.DataScopeType.*;
+import static com.hawk.framework.mybatis.constant.DataScopeType.*;
 
 
 /**

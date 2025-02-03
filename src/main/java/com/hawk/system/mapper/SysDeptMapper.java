@@ -5,7 +5,7 @@ import com.baomidou.mybatisplus.core.toolkit.Constants;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.hawk.framework.annotation.scope.DataScope;
 import com.hawk.system.entity.SysDept;
-import com.hawk.mybatis.mapper.BaseMapperPlus;
+import com.hawk.framework.mybatis.mapper.BaseMapperPlus;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 

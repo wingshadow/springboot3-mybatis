@@ -11,7 +11,7 @@ import com.hawk.framework.exception.ServiceException;
 import com.hawk.system.entity.SysConfig;
 import com.hawk.framework.web.page.PageInfo;
 import com.hawk.framework.service.ConfigService;
-import com.hawk.mybatis.common.impl.BaseServiceImpl;
+import com.hawk.framework.mybatis.common.impl.BaseServiceImpl;
 import com.hawk.system.mapper.SysConfigMapper;
 import com.hawk.system.service.SysConfigService;
 import com.hawk.utils.SpringUtils;

@@ -2,7 +2,7 @@ package com.hawk.generator.mapper;
 
 import com.baomidou.mybatisplus.annotation.InterceptorIgnore;
 import com.hawk.generator.domain.GenTableColumn;
-import com.hawk.mybatis.mapper.BaseMapperPlus;
+import com.hawk.framework.mybatis.mapper.BaseMapperPlus;
 
 import java.util.List;
 

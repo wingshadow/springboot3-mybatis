@@ -13,7 +13,7 @@ import com.hawk.system.entity.SysRole;
 import com.hawk.system.entity.SysRoleMenu;
 import com.hawk.system.entity.SysUser;
 import com.hawk.framework.helper.LoginHelper;
-import com.hawk.mybatis.common.impl.BaseServiceImpl;
+import com.hawk.framework.mybatis.common.impl.BaseServiceImpl;
 import com.hawk.system.vo.MetaVo;
 import com.hawk.system.vo.RouterVo;
 import com.hawk.system.mapper.SysMenuMapper;

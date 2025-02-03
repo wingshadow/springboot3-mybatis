@@ -1,4 +1,4 @@
-package com.hawk.mybatis.batch;
+package com.hawk.framework.batch;
 
 import com.baomidou.mybatisplus.core.injector.AbstractMethod;
 import com.baomidou.mybatisplus.core.injector.DefaultSqlInjector;

@@ -3,7 +3,7 @@ package com.hawk.system.service;
 import cn.hutool.core.lang.tree.Tree;
 import com.hawk.system.entity.SysMenu;
 import com.hawk.system.entity.SysUser;
-import com.hawk.mybatis.common.BaseService;
+import com.hawk.framework.mybatis.common.BaseService;
 import com.hawk.system.vo.RouterVo;
 import com.hawk.system.mapper.SysMenuMapper;
 

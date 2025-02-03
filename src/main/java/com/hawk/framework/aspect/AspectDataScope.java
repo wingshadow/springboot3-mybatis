@@ -1,4 +1,4 @@
-package com.hawk.mybatis.aspect;
+package com.hawk.framework.aspect;
 
 import cn.hutool.core.convert.Convert;
 import cn.hutool.core.util.ObjectUtil;
@@ -6,12 +6,11 @@ import com.hawk.framework.annotation.scope.DataScope;
 import com.hawk.framework.dto.RoleDTO;
 import com.hawk.framework.model.LoginUser;
 import com.hawk.system.entity.SysDept;
-import com.hawk.system.entity.SysRole;
 import com.hawk.system.service.SysRoleService;
 import com.hawk.framework.helper.LoginHelper;
 import com.hawk.framework.service.DeptService;
 import com.hawk.framework.common.core.entity.BaseEntity;
-import com.hawk.mybatis.constant.DataScopeType;
+import com.hawk.framework.mybatis.constant.DataScopeType;
 import com.hawk.utils.StreamUtils;
 import com.hawk.utils.StringUtils;
 import jakarta.annotation.Resource;

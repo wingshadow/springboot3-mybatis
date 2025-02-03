@@ -1,4 +1,4 @@
-package com.hawk.mybatis.enums;
+package com.hawk.framework.mybatis.enums;
 
 import com.hawk.utils.StringUtils;
 import lombok.AllArgsConstructor;
