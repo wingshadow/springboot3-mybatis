@@ -1,5 +1,6 @@
 package com.hawk.utils;
 
+import cn.hutool.core.date.DateUtil;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import org.apache.commons.lang3.time.DateFormatUtils;
@@ -160,5 +161,30 @@ public class DateUtils extends org.apache.commons.lang3.time.DateUtils {
         LocalDateTime localDateTime = LocalDateTime.of(temporalAccessor, LocalTime.of(0, 0, 0));
         ZonedDateTime zdt = localDateTime.atZone(ZoneId.systemDefault());
         return Date.from(zdt.toInstant());
+    }
+
+    public static boolean withinTimePeriod(Date now, String mealLimitTime) {
+        String[] limits = mealTimeSplit(mealLimitTime);
+        Date startTime = mealFormat(limits[0]);
+        Date endTime = mealFormat(limits[1]);
+        String nowStr = DateUtil.format(now, "HH:mm");
+        return isEffectiveDate(mealFormat(nowStr), startTime, endTime);
+    }
+
+    private static String[] mealTimeSplit(String timeStr) {
+        return StringUtils.split(timeStr, "-");
+    }
+
+    private static Date mealFormat(String time) {
+        String format = "HH:mm";
+        return DateUtil.parse(time, format);
+    }
+
+    private static boolean isEffectiveDate(Date nowTime, Date startTime, Date endTime) {
+        return nowTime.getTime() >= startTime.getTime() && nowTime.getTime() <= endTime.getTime();
+    }
+
+    public static void main(String[] args) {
+        System.out.println(DateUtils.withinTimePeriod(new Date(), "14:00-16:00"));
     }
 }

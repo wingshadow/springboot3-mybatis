@@ -4,58 +4,36 @@ import cn.dev33.satoken.context.SaHolder;
 import cn.dev33.satoken.context.model.SaStorage;
 import cn.dev33.satoken.stp.SaLoginModel;
 import cn.dev33.satoken.stp.StpUtil;
-import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.convert.Convert;
 import cn.hutool.core.util.ObjectUtil;
-import com.hawk.common.core.domain.entity.SysDept;
-import com.hawk.common.constant.UserConstants;
-import com.hawk.common.enums.LoginWay;
-import com.hawk.common.enums.UserType;
-import com.hawk.common.core.domain.model.LoginUser;
-import com.hawk.framework.service.DeptService;
-import com.hawk.common.utils.SpringUtils;
-import lombok.AccessLevel;
-import lombok.NoArgsConstructor;
+import cn.hutool.json.JSONObject;
+import cn.hutool.json.JSONUtil;
+import com.hawk.framework.common.constant.UserConstants;
+import com.hawk.framework.enums.LoginWay;
+import com.hawk.framework.enums.UserType;
+import com.hawk.framework.model.LoginUser;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 /**
- * 登录鉴权助手
- * <p>
- * user_type 为 用户类型 同一个用户表 可以有多种用户类型 例如 pc,app
- * deivce 为 设备类型 同一个用户类型 可以有 多种设备类型 例如 web,ios
- * 可以组成 用户类型与设备类型多对多的 权限灵活控制
- * <p>
- * 多用户体系 针对 多种用户类型 但权限控制不一致
- * 可以组成 多用户类型表与多设备类型 分别控制权限
- *
- * @author Lion Li
+ * @program: springboot3-tk-data-auth
+ * @description:
+ * @author: zhb
+ * @create: 2024-10-22 14:44
  */
-@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class LoginHelper {
 
     public static final String LOGIN_USER_KEY = "loginUser";
     public static final String USER_KEY = "userId";
-
     private static final Map<Long, List<Long>> deptList = new HashMap<>();
 
-    /**
-     * 登录系统
-     *
-     * @param loginUser 登录用户信息
-     */
-    public static void login(LoginUser loginUser) {
-        loginByDevice(loginUser, null);
+    public static List<Long> getUserDeptId(String jti) {
+        // 从登陆用户信息获取用户管理部门ID,超级管理员不返回
+        return null;
     }
 
-    /**
-     * 登录系统 基于 设备类型
-     * 针对相同用户体系不同设备
-     *
-     * @param loginUser 登录用户信息
-     */
     public static void loginByDevice(LoginUser loginUser, LoginWay loginWay) {
         SaStorage storage = SaHolder.getStorage();
         storage.set(LOGIN_USER_KEY, loginUser);
@@ -69,31 +47,33 @@ public class LoginHelper {
     }
 
     /**
-     * 获取用户(多级缓存)
+     * 登录系统
+     *
+     * @param loginUser 登录用户信息
      */
-    public static LoginUser getLoginUser() {
-        try {
-            LoginUser loginUser = (LoginUser) SaHolder.getStorage().get(LOGIN_USER_KEY);
-            if (loginUser != null) {
-                return loginUser;
-            }
-            loginUser = (LoginUser) StpUtil.getTokenSession().get(LOGIN_USER_KEY);
-            if (loginUser == null) {
-                return null;
-            }
-            SaHolder.getStorage().set(LOGIN_USER_KEY, loginUser);
-            return loginUser;
-        } catch (Exception e) {
-            if (!StpUtil.isLogin()) {
-                return null;
-            }
-        }
-        return null;
+    public static void login(LoginUser loginUser) {
+        loginByDevice(loginUser, null);
     }
 
     /**
-     * 获取用户基于token
+     * 获取用户(多级缓存)
      */
+    public static LoginUser getLoginUser() {
+        LoginUser loginUser = (LoginUser) SaHolder.getStorage().get(LOGIN_USER_KEY);
+        if (loginUser != null) {
+            return loginUser;
+        }
+        Object user = StpUtil.getTokenSession().get(LOGIN_USER_KEY);
+        if (user != null && user instanceof LoginUser) {
+            loginUser = (LoginUser) user;
+            SaHolder.getStorage().set(LOGIN_USER_KEY, loginUser);
+            return loginUser;
+        }
+        loginUser = JSONUtil.toBean((JSONObject) user, LoginUser.class);
+        SaHolder.getStorage().set(LOGIN_USER_KEY, loginUser);
+        return loginUser;
+    }
+
     public static LoginUser getLoginUser(String token) {
         return (LoginUser) StpUtil.getTokenSessionByToken(token).get(LOGIN_USER_KEY);
     }
@@ -136,9 +116,6 @@ public class LoginHelper {
         return getLoginUser().getUserName();
     }
 
-    /**
-     * 获取用户类型
-     */
     public static UserType getUserType() {
         String loginId = StpUtil.getLoginIdAsString();
         return UserType.getUserType(loginId);
@@ -156,33 +133,6 @@ public class LoginHelper {
 
     public static boolean isAdmin() {
         return isAdmin(getUserId());
-    }
-
-    /**
-     * 当前用户部门权限范围
-     *
-     * @return 当前登录用户允许查看或操作的部门Id范围  空表示全部部门
-     */
-    public static List<Long> deptScope() {
-        if ("admin".equals(getUserAccount())) {
-            return null;
-        }
-        SysDept userDept = getLoginUser().getDept();
-        long deptParent = userDept.getDeptId() < 1000000 ? userDept.getDeptId() : userDept.getDeptId() / 100;
-        if (!deptList.containsKey(deptParent)) {
-            List<Long> deptIdList;
-            try {
-                DeptService deptService = SpringUtils.getBean(DeptService.class);
-                deptIdList = deptService.deptByParent(deptParent);
-            } catch (Exception e) {
-                deptIdList = CollUtil.newArrayList(deptParent);
-                for (int i = 0; i <= 20; i++) {
-                    deptIdList.add(deptParent * 100 + i);
-                }
-            }
-            deptList.put(deptParent, deptIdList);
-        }
-        return deptList.get(deptParent);
     }
 
 }

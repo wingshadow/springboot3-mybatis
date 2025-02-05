@@ -2,15 +2,15 @@ package com.hawk.system.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.hawk.common.constant.CacheNames;
-import com.hawk.common.core.domain.entity.SysDictData;
-import com.hawk.common.exception.ServiceException;
-import com.hawk.common.utils.CacheUtils;
-import com.hawk.common.web.page.PageInfo;
-import com.hawk.mybatis.common.impl.BaseServiceImpl;
+import com.hawk.framework.common.constant.CacheNames;
+import com.hawk.framework.exception.ServiceException;
+import com.hawk.framework.mybatis.common.impl.BaseServiceImpl;
+import com.hawk.framework.web.page.PageInfo;
+import com.hawk.system.entity.SysDictData;
 import com.hawk.system.mapper.SysDictDataMapper;
 import com.hawk.system.service.SysDictDataService;
 import com.hawk.utils.StringUtils;
+import com.hawk.utils.redis.CacheUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.stereotype.Service;
@@ -24,12 +24,12 @@ import java.util.List;
  */
 @RequiredArgsConstructor
 @Service
-public class SysDictDataServiceImpl extends BaseServiceImpl<SysDictDataMapper,SysDictData> implements SysDictDataService {
+public class SysDictDataServiceImpl extends BaseServiceImpl<SysDictDataMapper, SysDictData> implements SysDictDataService {
 
     private final SysDictDataMapper baseMapper;
 
     @Override
-    public PageInfo<SysDictData> selectPageDictDataList(SysDictData dictData, int pageSize,int pageNum) {
+    public PageInfo<SysDictData> selectPageDictDataList(SysDictData dictData, int pageSize, int pageNum) {
         LambdaQueryWrapper<SysDictData> lqw = new LambdaQueryWrapper<SysDictData>()
             .eq(StringUtils.isNotBlank(dictData.getDictType()), SysDictData::getDictType, dictData.getDictType())
             .like(StringUtils.isNotBlank(dictData.getDictLabel()), SysDictData::getDictLabel, dictData.getDictLabel())

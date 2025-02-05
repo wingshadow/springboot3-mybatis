@@ -4,8 +4,8 @@ package com.hawk;
 import cn.hutool.core.convert.Convert;
 import cn.hutool.crypto.digest.BCrypt;
 import cn.hutool.json.JSONUtil;
-import com.hawk.common.core.domain.entity.*;
 import com.hawk.framework.service.DeptService;
+import com.hawk.system.entity.*;
 import com.hawk.system.mapper.SysUserMapper;
 import com.hawk.system.service.*;
 import com.hawk.utils.StreamUtils;
@@ -61,7 +61,7 @@ public class MainTest {
         sysUser.setUserAccount("guojia");
         sysUser.setPassword(BCrypt.hashpw("123456"));
         sysUser.setDeptId(1784406554567671810L);
-        sysUser.setDelFlag(0);
+        sysUser.setIsDeleted("0");
         sysUserService.save(sysUser);
     }
 
@@ -71,7 +71,7 @@ public class MainTest {
         sysDept.setDeptName("综合处");
         sysDept.setParentId(1784405825652178946L);
         sysDept.setAncestors("0,1,1784405825652178946");
-        sysDept.setDelFlag(0);
+        sysDept.setIsDeleted("0");
         sysDeptService.save(sysDept);
     }
     @Test

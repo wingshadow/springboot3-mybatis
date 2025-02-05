@@ -2,8 +2,8 @@ package com.hawk.generator.mapper;
 
 import com.baomidou.mybatisplus.annotation.InterceptorIgnore;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.hawk.framework.mybatis.mapper.BaseMapperPlus;
 import com.hawk.generator.domain.GenTable;
-import com.hawk.mybatis.mapper.BaseMapperPlus;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;

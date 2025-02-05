@@ -1,8 +1,7 @@
 package com.hawk.framework.model;
 
 import com.baomidou.mybatisplus.annotation.TableField;
-import com.hawk.common.entity.BaseDataEntity;
-import com.hawk.common.entity.BaseEntity;
+import com.hawk.framework.common.core.entity.BaseDataEntity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 

@@ -3,7 +3,9 @@ package com.hawk.utils;
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.convert.Convert;
 import cn.hutool.core.lang.Validator;
+import cn.hutool.core.lang.func.LambdaUtil;
 import cn.hutool.core.util.StrUtil;
+import com.hawk.system.entity.SysConfig;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import org.springframework.util.AntPathMatcher;
@@ -322,4 +324,7 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils {
             .collect(Collectors.toList());
     }
 
+    public static void main(String[] args) {
+        System.out.println(LambdaUtil.getFieldName(SysConfig::getConfigKey));
+    }
 }

@@ -3,13 +3,14 @@ package com.hawk.system.mapper;
 import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.toolkit.Constants;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.hawk.common.core.domain.entity.SysRole;
-import com.hawk.common.core.domain.entity.SysUser;
-import com.hawk.mybatis.annotation.DataScope;
-import com.hawk.mybatis.mapper.BaseMapperPlus;
+import com.hawk.framework.annotation.scope.DataScope;
+import com.hawk.framework.mybatis.mapper.BaseMapperPlus;
+import com.hawk.system.entity.SysRole;
+import com.hawk.system.entity.SysUser;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
+
 
 /**
  * @program: springboot3-mybatis

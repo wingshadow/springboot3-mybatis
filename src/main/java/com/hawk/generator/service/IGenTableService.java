@@ -1,8 +1,8 @@
 package com.hawk.generator.service;
 
 
-import com.hawk.common.web.page.PageInfo;
-import com.hawk.common.web.page.PageQuery;
+import com.hawk.framework.web.page.PageInfo;
+import com.hawk.framework.web.page.PageQuery;
 import com.hawk.generator.domain.GenTable;
 import com.hawk.generator.domain.GenTableColumn;
 

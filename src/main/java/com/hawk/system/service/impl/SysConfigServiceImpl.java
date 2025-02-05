@@ -5,19 +5,18 @@ import cn.hutool.core.util.ObjectUtil;
 import com.baomidou.dynamic.datasource.annotation.DS;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.hawk.common.constant.CacheNames;
-import com.hawk.common.constant.UserConstants;
-import com.hawk.common.core.domain.entity.SysConfig;
-import com.hawk.common.core.domain.entity.SysUser;
-import com.hawk.common.exception.ServiceException;
-import com.hawk.common.utils.CacheUtils;
-import com.hawk.common.utils.SpringUtils;
-import com.hawk.common.web.page.PageInfo;
+import com.hawk.framework.common.constant.CacheNames;
+import com.hawk.framework.common.constant.UserConstants;
+import com.hawk.framework.exception.ServiceException;
+import com.hawk.framework.mybatis.common.impl.BaseServiceImpl;
 import com.hawk.framework.service.ConfigService;
-import com.hawk.mybatis.common.impl.BaseServiceImpl;
+import com.hawk.framework.web.page.PageInfo;
+import com.hawk.system.entity.SysConfig;
 import com.hawk.system.mapper.SysConfigMapper;
 import com.hawk.system.service.SysConfigService;
+import com.hawk.utils.SpringUtils;
 import com.hawk.utils.StringUtils;
+import com.hawk.utils.redis.CacheUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
@@ -34,7 +33,7 @@ import java.util.Map;
  */
 @RequiredArgsConstructor
 @Service
-public class SysConfigServiceImpl extends BaseServiceImpl<SysConfigMapper,SysConfig> implements SysConfigService, ConfigService {
+public class SysConfigServiceImpl extends BaseServiceImpl<SysConfigMapper, SysConfig> implements SysConfigService, ConfigService {
 
     private final SysConfigMapper baseMapper;
 

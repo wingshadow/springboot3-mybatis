@@ -1,10 +1,10 @@
 package com.hawk.system.service;
 
-import com.hawk.common.core.domain.entity.SysRole;
-import com.hawk.common.web.page.PageInfo;
+import com.hawk.framework.mybatis.common.BaseService;
+import com.hawk.framework.web.page.PageInfo;
+import com.hawk.system.entity.SysRole;
+import com.hawk.system.entity.SysUser;
 import com.hawk.system.mapper.SysUserMapper;
-import com.hawk.common.core.domain.entity.SysUser;
-import com.hawk.mybatis.common.BaseService;
 
 import java.util.List;
 
