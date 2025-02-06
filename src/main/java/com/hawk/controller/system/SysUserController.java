@@ -48,9 +48,9 @@ public class SysUserController extends BaseController {
     private SysDeptService deptService;
 
     @GetMapping(value = "/list")
-    private PageInfo<SysUser> list(SysUserForm form) {
+    private R<PageInfo<SysUser>> list(SysUserForm form) {
         SysUser sysUser = BeanUtil.copyProperties(form, SysUser.class);
-        return userService.selectPageUserList(sysUser, form.getPageSize(), form.getPageNum());
+        return R.ok(userService.selectPageUserList(sysUser, form.getPageSize(), form.getPageNum()));
     }
 
     @GetMapping(value = {"/", "/{userId}"})
