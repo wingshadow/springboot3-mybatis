@@ -9,6 +9,7 @@ import com.hawk.framework.common.constant.Constants;
 import com.hawk.framework.config.properites.CaptchaProperties;
 import com.hawk.framework.enums.CaptchaType;
 import com.hawk.framework.web.resp.R;
+import com.hawk.system.service.SysConfigService;
 import com.hawk.utils.ReflectUtils;
 import com.hawk.utils.SpringUtils;
 import com.hawk.utils.StringUtils;
@@ -43,10 +44,12 @@ public class CaptchaController {
     @Autowired
     private CaptchaProperties captchaProperties;
 
+    private final SysConfigService sysConfigService;
+
     @GetMapping("/captchaImage")
     public R<Map<String, Object>> getCode() {
         Map<String, Object> ajax = new HashMap<>();
-        boolean captchaEnabled = false;
+        boolean captchaEnabled = sysConfigService.selectCaptchaEnabled();
         ajax.put("captchaEnabled", captchaEnabled);
         if (!captchaEnabled) {
             return R.ok(ajax);
