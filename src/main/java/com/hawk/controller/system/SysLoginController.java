@@ -1,6 +1,7 @@
 package com.hawk.controller.system;
 
 import cn.dev33.satoken.annotation.SaIgnore;
+import cn.dev33.satoken.stp.StpUtil;
 import com.hawk.framework.common.constant.Constants;
 import com.hawk.framework.helper.LoginHelper;
 import com.hawk.framework.model.LoginBody;
@@ -44,13 +45,16 @@ public class SysLoginController {
     public R<Map<String, Object>> login(@Validated @RequestBody LoginBody loginBody) {
         Map<String, Object> ajax = new HashMap<>();
         // 生成令牌
-        String token = loginService.login(loginBody.getUserAccount(), loginBody.getPassword());
+        String token = loginService.login(loginBody.getUserAccount(), loginBody.getPassword(),loginBody.getCode(),loginBody.getUuid());
         ajax.put(Constants.TOKEN, token);
         return R.ok(ajax);
     }
 
     @PostMapping(value = "logout")
     public R<Void> logout() {
+        if (!StpUtil.isLogin()) {
+            return R.fail(401, "Token 已失效，请重新登录");
+        }
         loginService.logout();
         return R.ok();
     }
@@ -62,6 +66,9 @@ public class SysLoginController {
      */
     @GetMapping("getInfo")
     public R<Map<String, Object>> getInfo() {
+        if (!StpUtil.isLogin()) {
+            return R.fail(401, "Token 已失效，请重新登录");
+        }
         LoginUser loginUser = LoginHelper.getLoginUser();
         SysUser user = new SysUser();
         user.setUserId(loginUser.getUserId());

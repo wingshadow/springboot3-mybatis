@@ -21,4 +21,6 @@ public class SysUserForm extends BasePageForm {
     private String deptId;
 
     private String status;
+
+    private String roleId;
 }

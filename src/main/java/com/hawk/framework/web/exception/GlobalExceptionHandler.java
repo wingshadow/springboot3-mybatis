@@ -1,4 +1,4 @@
-package com.hawk.framework.exception;
+package com.hawk.framework.web.exception;
 
 import cn.dev33.satoken.exception.NotLoginException;
 import cn.dev33.satoken.exception.NotPermissionException;
