@@ -7,7 +7,7 @@ import ${packageName}.domain.bo.${ClassName}Bo;
 import com.hawk.common.core.page.PageInfo;
 import com.hawk.common.core.domain.PageQuery;
 #end
-import com.ruoyi.common.mybatis.service.BaseService;
+import com.hawk.framework.mybatis.common.BaseService;
 
 import java.util.Collection;
 import java.util.List;
@@ -18,37 +18,55 @@ import java.util.List;
  * @author ${author}
  * @date ${datetime}
  */
-public interface I${ClassName}Service extends BaseService<${ClassName}>  {
+public interface ${ClassName}Service extends BaseService<${ClassName}Mapper,${ClassName}>  {
 
-    /**
-     * 查询${functionName}
-     */
-    ${ClassName}Vo queryById(${pkColumn.javaType} ${pkColumn.javaField});
-
-#if($table.crud || $table.sub)
-    /**
-     * 查询${functionName}列表
-     */
-    PageInfo<${ClassName}Vo> queryPageList(${ClassName}Bo bo, PageQuery pageQuery);
-#end
-
-    /**
-     * 查询${functionName}列表
-     */
-    List<${ClassName}Vo> queryList(${ClassName}Bo bo);
-
-    /**
-     * 新增${functionName}
-     */
-    Boolean insertByBo(${ClassName}Bo bo);
-
-    /**
-     * 修改${functionName}
-     */
-    Boolean updateByBo(${ClassName}Bo bo);
-
-    /**
-     * 校验并批量删除${functionName}信息
-     */
-    Boolean deleteWithValidByIds(Collection<${pkColumn.javaType}> ids, Boolean isValid);
-}
+##    /**
+##     * 新增${functionName}
+##    */
+##    boolean insert(${ClassName} paramBean);
+##
+##    /**
+##     * 删除${functionName}
+##     */
+##    boolean deleteByPrimaryKey(Long id);
+##
+##    /**
+##     * 校验并批量删除${functionName}信息
+##     */
+##    void deleteBatchByPrimaryKeys(String ids);
+##
+##    /**
+##     * 校验并批量删除${functionName}信息
+##     */
+##    void deleteBatchByPrimaryKeys(List<Long> ids);
+##
+##    /**
+##     * 修改${functionName}
+##     */
+##    boolean updateByPrimaryKeySelective(${ClassName} paramBean);
+##
+##    /**
+##     * 查询${functionName}
+##     */
+##    ${ClassName} getByPrimaryKey(Long id);
+##
+##    /**
+##     * 查询${functionName}列表
+##     */
+##    List<${ClassName}> listByConditions(${ClassName} paramBean);
+##
+##    /**
+##     * 查询${functionName}全部
+##     */
+##    List<${ClassName}> listAll();
+##
+##    /**
+##     * 查询${functionName}全部
+##     */
+##     ${ClassName} listOne(${ClassName} paramBean);
+##
+##    /**
+##     * 分页查询${functionName}
+##     */
+##    PageInfo<${ClassName}> selectPageList(${ClassName} paramBean, int pageSize, int pageNum)
+##}

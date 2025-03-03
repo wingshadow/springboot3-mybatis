@@ -3,6 +3,8 @@ package com.hawk.framework.mybatis.common;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.hawk.framework.common.core.entity.BaseEntity;
+import com.hawk.framework.web.page.PageInfo;
+import com.hawk.system.entity.SysConfig;
 
 import java.util.List;
 
@@ -72,4 +74,6 @@ public interface BaseService<M extends BaseMapper<T>, T extends BaseEntity> exte
      * @return
      */
     T listOne(T paramBean);
+
+    PageInfo<T> selectPageList(T paramBean, int pageSize, int pageNum);
 }

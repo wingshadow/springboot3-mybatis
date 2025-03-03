@@ -31,7 +31,7 @@ import com.hawk.common.core.domain.TreeEntity;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class ${ClassName}BO extends ${Entity} {
+public class ${ClassName}From extends ${Entity} {
 
 #foreach ($column in $columns)
 #if(!$table.isSuperColumn($column.javaField) && ($column.query || $column.insert || $column.edit))

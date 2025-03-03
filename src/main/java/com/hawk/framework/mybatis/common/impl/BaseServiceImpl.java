@@ -3,9 +3,12 @@ package com.hawk.framework.mybatis.common.impl;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.hawk.framework.common.core.entity.BaseEntity;
 import com.hawk.framework.mybatis.common.BaseService;
+import com.hawk.framework.web.page.PageInfo;
+import com.hawk.system.entity.SysConfig;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
@@ -21,6 +24,7 @@ import java.util.stream.Collectors;
  */
 public abstract class BaseServiceImpl<M extends BaseMapper<T>, T extends BaseEntity> extends ServiceImpl<M, T> implements BaseService<M, T> {
 
+    @Override
     public boolean insert(T paramBean) {
         return baseMapper.insert(paramBean) > 0;
     }
@@ -68,6 +72,11 @@ public abstract class BaseServiceImpl<M extends BaseMapper<T>, T extends BaseEnt
     public T listOne(T paramBean) {
         return baseMapper.selectOne(new LambdaQueryWrapper<>(paramBean));
     }
-
-
+    @Override
+    public PageInfo<T> selectPageList(T paramBean, int pageSize, int pageNum){
+        LambdaQueryWrapper<T> lqw = new LambdaQueryWrapper<T>();
+        Page<T> page = new Page<>(pageNum, pageSize);
+        page = baseMapper.selectPage(page, lqw);
+        return PageInfo.build(page);
+    }
 }

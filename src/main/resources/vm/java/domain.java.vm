@@ -11,9 +11,9 @@ import java.math.BigDecimal;
 import ${import};
 #end
 #if($table.crud || $table.sub)
-import com.ruoyi.common.core.domain.BaseEntity;
+import com.hawk.framework.common.core.entity.BaseEntity;
 #elseif($table.tree)
-import com.ruoyi.common.core.domain.TreeEntity;
+import com.hawk.framework.common.core.entity.TreeEntity;
 #end
 
 /**
@@ -23,7 +23,7 @@ import com.ruoyi.common.core.domain.TreeEntity;
  * @date ${datetime}
  */
 #if($table.crud || $table.sub)
-    #set($Entity="BaseEntity")
+    #set($Entity="BaseDataEntity")
 #elseif($table.tree)
     #set($Entity="TreeEntity<${ClassName}>")
 #end
