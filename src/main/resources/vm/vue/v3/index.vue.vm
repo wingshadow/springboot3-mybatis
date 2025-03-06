@@ -421,8 +421,8 @@ function getList() {
 #end
 #end
   list${BusinessName}(queryParams.value).then(response => {
-    ${businessName}List.value = response.rows;
-    total.value = response.total;
+    ${businessName}List.value = response.data.list;
+    total.value = response.data.total;
     loading.value = false;
   });
 }
